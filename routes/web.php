@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,26 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Route::get('admin-page', function() {
+//    return 'Halaman untuk Admin';
+//})->middleware('role:admin')->name('admin.page');
+//
+//Route::get('user-page', function() {
+//    return 'Halaman untuk User';
+//})->middleware('role:user')->name('user.page');
+
+Auth::routes();
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+
+// Rute untuk menangani login dan registrasi
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+
+// Rute logout
+Route::post('/logout', 'AuthController@logout')->name('logout');
 
 Route::get('/', function () {
     return view('dashboard');
@@ -38,3 +59,4 @@ Route::get('/benefit', function () {
 Route::get('/benefit/detail/{id}', function () {
     return view('benefit/detail');
 });
+

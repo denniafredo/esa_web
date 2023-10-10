@@ -1,4 +1,4 @@
-@extends('app') <!-- Extend the main template -->
+@extends('layouts.app') <!-- Extend the main template -->
 
 @section('content')
     <div id="remoteModelData" class="modal fade" role="dialog"></div>
@@ -36,7 +36,8 @@
                                 <div class="col-md-3 mb-3">
                                     <div class="card-body rounded bg-light">
                                         <div class="d-flex justify-content-center">
-                                            <img src="{{asset('images/user/unknown.jpg')}}" class="img-fluid" alt="profile">
+                                            <img src="{{asset('images/user/unknown.jpg')}}" class="img-fluid"
+                                                 alt="profile">
                                         </div>
                                         <div class="d-flex justify-content-center mt-2 mb-3">
 

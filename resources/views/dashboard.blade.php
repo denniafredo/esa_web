@@ -1,4 +1,4 @@
-@extends('app') <!-- Extend the main template -->
+@extends('layouts.app') <!-- Extend the main template -->
 
 @section('content')
     <div id="remoteModelData" class="modal fade" role="dialog"></div>
@@ -68,7 +68,8 @@
                             <ul class="list-style-3 mb-0">
                                 <li class="p-3 list-item d-flex justify-content-start align-items-center">
                                     <div class="avatar">
-                                        <img class="avatar avatar-img avatar-60 rounded" src="{{asset('images/user/1.jpg')}}">
+                                        <img class="avatar avatar-img avatar-60 rounded"
+                                             src="{{asset('images/user/1.jpg')}}">
                                     </div>
                                     <div class="list-style-detail ml-3 mr-2">
                                         <p class="mb-0">Caitriona Balfe</p>
@@ -76,7 +77,8 @@
                                 </li>
                                 <li class="p-3 list-item d-flex justify-content-start align-items-center">
                                     <div class="avatar">
-                                        <img class="avatar avatar-img avatar-60 rounded" src="{{asset('images/user/2.jpg')}}">
+                                        <img class="avatar avatar-img avatar-60 rounded"
+                                             src="{{asset('images/user/2.jpg')}}">
                                     </div>
                                     <div class="list-style-detail ml-3 mr-2">
                                         <p class="mb-0">Christian Bale</p>
@@ -84,7 +86,8 @@
                                 </li>
                                 <li class="p-3 list-item d-flex justify-content-start align-items-center">
                                     <div class="avatar">
-                                        <img class="avatar avatar-img avatar-60 rounded" src="{{asset('images/user/3.jpg')}}">
+                                        <img class="avatar avatar-img avatar-60 rounded"
+                                             src="{{asset('images/user/3.jpg')}}">
                                     </div>
                                     <div class="list-style-detail ml-3 mr-2">
                                         <p class="mb-0">Jack McMullen</p>
@@ -294,7 +297,7 @@
                                         </td>
                                         <td>Research and Development</td>
                                         <td>
-                                            <p class="mb-0 text-success d-flex justify-content-start align-items-center">
+                                            <p class="mb-0 text-success d-flex justify-content-start">
                                                 <small><i class="fas fa-circle mr-2"></i></small>Karyawan Tetap
                                             </p>
                                         </td>
@@ -312,7 +315,7 @@
                                         </td>
                                         <td>Teknisi</td>
                                         <td>
-                                            <p class="mb-0 text-success d-flex justify-content-start align-items-center">
+                                            <p class="mb-0 text-success d-flex justify-content-start">
                                                 <small><i class="fas fa-circle mr-2"></i></small>Karyawan Tetap
                                             </p>
                                         </td>
@@ -330,7 +333,7 @@
                                         </td>
                                         <td>Finance</td>
                                         <td>
-                                            <p class="mb-0 text-warning d-flex justify-content-start align-items-center">
+                                            <p class="mb-0 text-warning d-flex justify-content-start">
                                                 <small><i class="fas fa-circle mr-2"></i></small>Karyawan Kontrak
                                             </p>
                                         </td>
@@ -348,7 +351,7 @@
                                         </td>
                                         <td>IT</td>
                                         <td>
-                                            <p class="mb-0 text-danger d-flex justify-content-start align-items-center">
+                                            <p class="mb-0 text-danger d-flex justify-content-start">
                                                 <small><i class="fas fa-circle mr-2"></i></small>Magang
                                             </p>
                                         </td>
