@@ -63,4 +63,10 @@ class AuthController extends Controller
         // Setelah registrasi berhasil, arahkan pengguna ke halaman beranda atau halaman lain yang sesuai.
         return redirect('/home');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
