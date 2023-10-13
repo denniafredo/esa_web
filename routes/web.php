@@ -40,21 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return view('dashboard');
     });
-//    Route::get('/employee', function () {
-//        return view('employee/view');
-//    });
-//
-//    Route::get('/employee/detail/{id}', function () {
-//        return view('employee/detail');
-//    });
-//
-//    Route::get('/employee/add', function () {
-//        return view('employee/add');
-//    });
-//
-//    Route::get('/employee/{id}', function () {
-//        return view('employee/edit');
-//    });
+
     Route::resource('employee', EmployeeController::class);
 
     Route::get('/absence', function () {

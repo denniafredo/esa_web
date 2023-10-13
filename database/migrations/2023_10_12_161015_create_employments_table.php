@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('sex', ['Pria', 'Wanita']);
+            $table->enum('gender', ['Pria', 'Wanita']);
             $table->string('place_of_birth')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('type_of_blood',2)->nullable();

@@ -1,10 +1,14 @@
 @extends('layouts.app') <!-- Extend the main template -->
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <div class="content-page">
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
@@ -44,23 +48,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @php
-                                                $employees = [
-                                                    [
-                                                        'id' => '1',
-                                                        'name' => 'Christian Bale',
-                                                        'avatar' => 'images/user/1.jpg',
-                                                        'company' => 'Vari tech'
-                                                    ],
-                                                    [
-                                                        'id' => '2',
-                                                        'name' => 'Jennifer Lawrence',
-                                                        'avatar' => 'images/user/2.jpg',
-                                                        'company' => 'Tech Innovators'
-                                                    ]
-                                                ];
-                                            @endphp
-                                            @foreach($employees as $employee)
+                                            @foreach($employments as $employment)
                                                 <tr class="white-space-no-wrap">
                                                     <td>
                                                         <div class="active-project-1 d-flex align-items-center mt-0 ">
@@ -70,7 +58,8 @@
                                                             </div>
                                                             <div class="data-content">
                                                                 <div>
-                                                                    <span class="font-weight-bold">{{$employee['name']}}</span>
+                                                                    <span
+                                                                        class="font-weight-bold">{{$employment->name}}</span>
                                                                 </div>
                                                                 <p class="m-0 text-secondary small">
                                                                     Vari tech
@@ -90,7 +79,7 @@
                                                             <a class="" data-toggle="tooltip" data-placement="top"
                                                                title=""
                                                                data-original-title="View"
-                                                               href="{{route('employee.show', ['employee' => $employee['id']])}}">
+                                                               href="{{route('employee.show', $employment->id)}}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                      class="text-secondary"
                                                                      width="20" fill="none" viewBox="0 0 24 24"
@@ -106,7 +95,7 @@
                                                             <a class="" data-toggle="tooltip" data-placement="top"
                                                                title=""
                                                                data-original-title="Edit"
-                                                               href="{{route('employee.edit', ['employee' => $employee['id']])}}">
+                                                               href="{{route('employee.edit', $employment->id)}}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                      class="text-secondary mx-4"
                                                                      width="20" fill="none" viewBox="0 0 24 24"
@@ -119,7 +108,7 @@
                                                             <a class="badge bg-danger" data-toggle="tooltip"
                                                                data-placement="top"
                                                                title="" data-original-title="Delete"
-                                                               href="{{route('employee.destroy', ['employee' => $employee['id']])}}">
+                                                               href="{{route('employee.destroy', $employment->id)}}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                      fill="none"
                                                                      viewBox="0 0 24 24" stroke="currentColor">
