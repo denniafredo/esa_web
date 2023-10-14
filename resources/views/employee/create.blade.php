@@ -38,13 +38,16 @@
                                 <div class="col-md-3 mb-3">
                                     <div class="card-body rounded bg-light">
                                         <div class="d-flex justify-content-center">
-                                            <img id="previewImage" src="{{ asset('images/user/unknown.jpg') }}" class="img-fluid" alt="profile">
+                                            <img id="previewImage" src="{{ asset('images/user/unknown.jpg') }}"
+                                                 class="img-fluid" alt="profile">
                                         </div>
                                         <div class="d-flex justify-content-center mt-2 mb-3">
-                                            <label for="imageUpload" class="mb-0 text-muted font-weight-bold">Upload Gambar</label>
+                                            <label for="imageUpload" class="mb-0 text-muted font-weight-bold">Upload
+                                                Gambar</label>
                                         </div>
                                         <div class="d-flex justify-content-center mt-2 mb-3">
-                                            <input type="file" name="image" id="imageUpload" accept=".jpg, .jpeg" onchange="previewFile()">
+                                            <input type="file" name="image" id="imageUpload" accept=".jpg, .jpeg"
+                                                   onchange="previewFile()">
                                         </div>
                                     </div>
                                 </div>
@@ -104,6 +107,13 @@
                                                    name="date_of_birth" placeholder="Masukan Tanggal Lahir"
                                                    autocomplete="off" data-date-format="d-m-Y"
                                                    value="">
+                                            <span class="search-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                                </svg>
+                                            </span>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="type_of_blood"
@@ -196,13 +206,20 @@
                                                    name="date_start_of_work" placeholder="Masukan Tanggal Bekerja"
                                                    autocomplete="off" data-date-format="d-m-Y"
                                                    value="">
+                                            <span class="search-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                                </svg>
+                                            </span>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="employment_status"
                                                    class="form-label font-weight-bold text-muted text-uppercase">Status
-                                                Karyawan</label>
+                                                Karyawan<span style="color: red">*</span></label>
                                             <select id="employment_status" class="form-select form-control choicesjs"
-                                                    name="employment_status">
+                                                    name="employment_status" required>
                                                 <option value="">Pilih Status Karyawan</option>
                                                 @foreach($employmentStatuses as $employmentStatus)
                                                     <option
@@ -212,9 +229,9 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="employment_division"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Divisi</label>
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Divisi<span style="color: red">*</span></label>
                                             <select id="employment_division" name="employment_division"
-                                                    class="form-select form-control choicesjs">
+                                                    class="form-select form-control choicesjs" required>
                                                 <option value="">Pilih Divisi</option>
                                                 @foreach($employmentDivisions as $employmentDivision)
                                                     <option
@@ -224,9 +241,9 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="employment_country"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Jabatan</label>
-                                            <select id="employment_country" name="employment_country"
-                                                    class="form-select form-control choicesjs">
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Jabatan<span style="color: red">*</span></label>
+                                            <select id="employment_role" name="employment_role"
+                                                    class="form-select form-control choicesjs" required>
                                                 <option value="">Pilih Jabatan</option>
                                                 @foreach($employmentRoles as $employmentRole)
                                                     <option
@@ -265,6 +282,9 @@
                 reader.readAsDataURL(file);
             }
         }
+        flatpickr("input[type=date]",{
+            allowInput: true,
+        });
     </script>
 @endsection
 

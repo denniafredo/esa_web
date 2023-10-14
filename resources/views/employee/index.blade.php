@@ -53,8 +53,15 @@
                                                     <td>
                                                         <div class="active-project-1 d-flex align-items-center mt-0 ">
                                                             <div class="h-avatar is-medium">
-                                                                <img class="avatar rounded-circle"
-                                                                     src="images/user/1.jpg">
+                                                                @if($employment->image_path != '')
+                                                                    <img class="avatar rounded-circle"
+                                                                         src={{asset('images/employment/'.$employment->image_path)}}>
+                                                                    @else
+                                                                    <img class="avatar rounded-circle"
+                                                                    <img class="avatar rounded-circle"
+                                                                         src={{asset('images/user/1.jpg')}}>
+                                                                @endif
+
                                                             </div>
                                                             <div class="data-content">
                                                                 <div>
@@ -62,24 +69,24 @@
                                                                         class="font-weight-bold">{{$employment->name}}</span>
                                                                 </div>
                                                                 <p class="m-0 text-secondary small">
-                                                                    Vari tech
+                                                                    {{$employment->employmentRole->name}}
                                                                 </p>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>christian.Bale@blueberrye.com</td>
+                                                    <td>{{$employment->email}}</td>
                                                     <td>
-                                                        +1 (021) 145-2256
+                                                        {{$employment->phone}}
                                                     </td>
                                                     <td>
-                                                        Magang
+                                                        {{$employment->employmentStatus->name}}
                                                     </td>
                                                     <td>
                                                         <div class="d-flex justify-content-end align-items-center">
                                                             <a class="" data-toggle="tooltip" data-placement="top"
                                                                title=""
                                                                data-original-title="View"
-                                                               href="{{route('employee.show', $employment->id)}}">
+                                                               href="{{route('employee.show', $employment->nik)}}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                      class="text-secondary"
                                                                      width="20" fill="none" viewBox="0 0 24 24"
@@ -95,7 +102,7 @@
                                                             <a class="" data-toggle="tooltip" data-placement="top"
                                                                title=""
                                                                data-original-title="Edit"
-                                                               href="{{route('employee.edit', $employment->id)}}">
+                                                               href="{{route('employee.edit', $employment->nik)}}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                      class="text-secondary mx-4"
                                                                      width="20" fill="none" viewBox="0 0 24 24"
@@ -108,7 +115,7 @@
                                                             <a class="badge bg-danger" data-toggle="tooltip"
                                                                data-placement="top"
                                                                title="" data-original-title="Delete"
-                                                               href="{{route('employee.destroy', $employment->id)}}">
+                                                               href="{{route('employee.destroy', $employment->nik)}}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                      fill="none"
                                                                      viewBox="0 0 24 24" stroke="currentColor">

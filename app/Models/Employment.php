@@ -23,6 +23,7 @@ class Employment extends Model
         'region',
         'zip_code',
         'address',
+        'image_path',
         'date_start_of_work',
         'employment_status_id',
         'employment_division_id',

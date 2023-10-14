@@ -28,17 +28,6 @@
     <div id="loading-center">
     </div>
 </div>
-@include('top-navbar')
-@include('side-navbar')
-
-<div class="container">
-    @yield('content')
-</div>
-
-@include('footer')
-
-
-<!-- Backend Bundle JavaScript -->
 <script src="{{asset('js/backend-bundle.min.js')}}"></script>
 
 <!-- Flextree Javascript-->
@@ -75,6 +64,20 @@
 {{--<script src="{{asset('vendor/emoji-picker-element/index.js')}}" type="module"></script>--}}
 <!-- app JavaScript -->
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/custom.js')}}"></script>
+
+@include('top-navbar')
+@include('side-navbar')
+
+<div class="container">
+    @yield('content')
+</div>
+
+@include('footer')
+
+
+<!-- Backend Bundle JavaScript -->
+
 <script>
     (function ($) {
         "use strict";
@@ -86,8 +89,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
-            flatpickr("input[type=date]");
 
             $(document).on('click', '.loadRemoteModel', function (e) {
                 e.preventDefault();

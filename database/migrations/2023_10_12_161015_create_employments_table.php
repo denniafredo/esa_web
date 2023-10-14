@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->string('email')->nullable()->unique();
             $table->string('phone')->nullable();
-            $table->enum('religion', ['Islam', 'Kristen','Katolik','Budha','Hindu','Konghucu']);
+            $table->enum('religion', ['Islam', 'Kristen','Katolik','Budha','Hindu','Konghucu'])->nullable();
             $table->string('country')->nullable();
             $table->string('region')->nullable();
             $table->string('zip_code')->nullable();

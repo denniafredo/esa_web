@@ -10,205 +10,281 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb p-0 mb-0">
-                                    <li class="breadcrumb-item"><a href="{{url('employee/view')}}">Employees</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Edit Employee</li>
+                                    <li class="breadcrumb-item"><a href="{{route('employee.index')}}">Karyawan</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Karyawan</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 mb-3 d-flex justify-content-between">
-                    <h4 class="font-weight-bold d-flex align-items-center">Edit Employee</h4>
-                    <a href="{{url('employee')}}"
+                    <h4 class="font-weight-bold d-flex align-items-center">Edit Karyawan</h4>
+                    <a href="{{route('employee.index')}}"
                        class="btn btn-primary btn-sm d-flex align-items-center justify-content-between ml-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"
                                   d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                                   clip-rule="evenodd"/>
                         </svg>
-                        <span class="ml-2">Back</span>
+                        <span class="ml-2">Kembali</span>
                     </a>
                 </div>
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row">
+                            <form class="row" action="{{route('employee.store')}}"
+                                  method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="col-md-3 mb-3">
                                     <div class="card-body rounded bg-light">
                                         <div class="d-flex justify-content-center">
-
-
-                                            <img src="{{asset('images/user/1.jpg')}}" class="img-fluid" alt="profile">
+                                            <img id="previewImage" src="{{ asset('images/user/unknown.jpg') }}"
+                                                 class="img-fluid" alt="profile">
                                         </div>
                                         <div class="d-flex justify-content-center mt-2 mb-3">
-
-                                            <p class="mb-0 text-muted font-weight-bold">Upload Image</p>
+                                            <label for="imageUpload" class="mb-0 text-muted font-weight-bold">Upload
+                                                Gambar</label>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-2 mb-3">
+                                            <input type="file" name="image" id="imageUpload" accept=".jpg, .jpeg"
+                                                   onchange="previewFile()">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-                                    <form class="row g-3 date-icon-set-modal">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your
+                                            input.<br><br>
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    <div class="row g-3 date-icon-set-modal">
                                         <div class="col-md-6 mb-3">
                                             <label for="Text1"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Full
-                                                Name</label>
-                                            <input type="text" class="form-control" id="Text1"
-                                                   placeholder="Enter Full Name" value="Christian Bale">
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Nama
+                                                Lengkap<span style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                   placeholder="Masukan Nama Lengkap" value="" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label font-weight-bold text-muted text-uppercase mb-3">Gender</label><br>
+                                            <label class="form-label font-weight-bold text-muted text-uppercase mb-3">Jenis
+                                                Kelamin<span style="color: red">*</span></label><br>
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="inlineRadio1" name="customRadio-1"
-                                                           class="custom-control-input">
-                                                    <label class="custom-control-label" for="inlineRadio1">
-                                                        Male </label>
+                                                    <input type="radio" id="inlineRadio1" name="gender"
+                                                           class="custom-control-input" value="Pria" required>
+                                                    <label class="custom-control-label" for="inlineRadio1">Pria</label>
                                                 </div>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="inlineRadio2" name="customRadio-1"
-                                                           class="custom-control-input" checked="">
-                                                    <label class="custom-control-label" for="inlineRadio2">
-                                                        Female </label>
+                                                    <input type="radio" id="inlineRadio2" name="gender"
+                                                           class="custom-control-input" value="Wanita" required>
+                                                    <label class="custom-control-label"
+                                                           for="inlineRadio2">Wanita</label>
                                                 </div>
                                             </div>
-                                            <div class="form-check form-check-inline mt-2">
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="inlineRadio3" name="customRadio-1"
-                                                           class="custom-control-input">
-                                                    <label class="custom-control-label" for="inlineRadio3">
-                                                        Other </label>
-                                                </div>
-                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="place_of_birth"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Tempat
+                                                Lahir</label>
+                                            <input type="text" class="form-control" id="place_of_birth"
+                                                   name="place_of_birth"
+                                                   placeholder="Masukan Tempat Lahir" value="">
                                         </div>
                                         <div class="col-md-6 mb-3  position-relative">
-                                            <label for="Text2"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Birth
-                                                Day</label>
-                                            <input type="text" class="form-control vanila-datepicker" id="Text2"
-                                                   name="event_date" placeholder="Enter Birth Day" autocomplete="off"
-                                                   value="05/15/2021">
+                                            <label for="date_of_birth"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Tanggal
+                                                Lahir</label>
+                                            <input type="date" class="form-control" id="date_of_birth"
+                                                   name="date_of_birth" placeholder="Masukan Tanggal Lahir"
+                                                   autocomplete="off" data-date-format="d-m-Y"
+                                                   value="">
                                             <span class="search-link">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
-                                                 viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                            </svg>
-                                        </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                                </svg>
+                                            </span>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="Text3"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Company
-                                                Name</label>
-                                            <input type="text" class="form-control" id="Text3"
-                                                   placeholder="Enter Company Name" value="AB Nexa">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="Text4"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Email</label>
-                                            <input type="text" class="form-control" id="Text4" placeholder="Enter Email"
-                                                   value="christian.Bale@blueberrye.com">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="Text5"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Phone</label>
-                                            <input type="text" class="form-control" id="Text5" placeholder="Enter Phone"
-                                                   value="+1 (021) 145-2256">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="inputState"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Country</label>
-                                            <select id="inputcountry" class="form-select form-control choicesjs">
-                                                <option class="">Select Country</option>
-                                                <option value="USA" selected>USA</option>
-                                                <option value="UK">UK</option>
-                                                <option value="France">France</option>
+                                            <label for="type_of_blood"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Golongan
+                                                Darah</label>
+                                            <select id="type_of_blood" name="type_of_blood"
+                                                    class="form-select form-control choicesjs">
+                                                <option value="">Pilih Golongan Darah</option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="AB">AB</option>
+                                                <option value="O">O</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="inputState"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">State/Region</label>
-                                            <select id="inputState" class="form-select form-control choicesjs">
-                                                <option class="">Select State/Region</option>
-                                                <option value="Ohio" selected>Ohio</option>
-                                                <option value="Briston">Briston</option>
-                                                <option value="Nevada">Nevada</option>
-                                                <option value="Georgia">Georgia</option>
-                                                <option value="Texas">Texas</option>
-                                                <option value="California">California</option>
+                                            <label for="nik"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">NIK<span
+                                                    style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="nik" name="nik"
+                                                   placeholder="Masukan NIK" value="" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Email<span
+                                                    style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="email" name="email"
+                                                   placeholder="Masukan Email"
+                                                   value="" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phone2"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Telepon</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">+62</span>
+                                                <input type="tel" class="form-control" id="phone" name="phone"
+                                                       placeholder="Masukan Nomor Telepon" pattern="[0-9]*">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="religion"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Agama</label>
+                                            <select id="religion" name="religion"
+                                                    class="form-select form-control choicesjs">
+                                                <option value="">Pilih Agama</option>
+                                                <option value="Islam">Islam</option>
+                                                <option value="Kristen">Kristen</option>
+                                                <option value="Katolik">Katolik</option>
+                                                <option value="Budha">Budha</option>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Konghucu">Konghucu</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="Text6"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Address</label>
-                                            <input type="text" class="form-control" id="Text6"
-                                                   placeholder="Enter Address"
-                                                   value="Lane & High, 2124 North High Street, Columbus">
+                                            <label for="inputCountry"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Negara</label>
+                                            <select id="country" name="country"
+                                                    class="form-select form-control choicesjs">
+                                                <option value="">Pilih Negara</option>
+                                                <option value="INDONESIA" selected>INDONESIA</option>
+                                                <option value="LUAR NEGERI">LUAR NEGERI</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="region"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Provinsi</label>
+                                            <input type="text" class="form-control" id="region" name="region"
+                                                   placeholder="Masukan Provinsi"
+                                                   value="">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="Text7"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Zipcode</label>
-                                            <input type="text" class="form-control" id="Text7"
-                                                   placeholder="Enter Zipcode" value="43201">
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Kode
+                                                Pos</label>
+                                            <input type="text" class="form-control" id="zip_code" name="zip_code"
+                                                   placeholder="Masukan Kode Pos" value="">
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <label for="Text9"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Bio</label>
-                                            <textarea class="form-control" id="Text9" rows="2" placeholder="Enter Bio">Brolin uploaded a picture of Christian Bale next to his own father James Brolin. ... He commented on how similar the two looked in the photographs proving that they really were father and son.
-                                        </textarea>
+                                            <label for="address"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Alamat</label>
+                                            <textarea class="form-control" id="address" name="address" rows="2"
+                                                      placeholder="Masukan Alamat">
+                                            </textarea>
                                         </div>
-                                        <div class="col-md-12 mb-3">
-                                            <label class="form-label font-weight-bold text-muted text-uppercase mb-3">Notification
-                                                Type</label><br>
-                                            <div class="form-check form-check-inline">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input m-0"
-                                                           id="inlineCheckbox1">
-                                                    <label class="custom-control-label"
-                                                           for="inlineCheckbox1">Email</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input m-0"
-                                                           id="inlineCheckbox2" checked>
-                                                    <label class="custom-control-label"
-                                                           for="inlineCheckbox2">SMS</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input m-0"
-                                                           id="inlineCheckbox3">
-                                                    <label class="custom-control-label"
-                                                           for="inlineCheckbox3">Phone</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div class="d-flex flex-wrap justify-content-between mt-3">
-                                        <button class="btn btn-secondary font-weight-bold btn-sm">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="20"
-                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        <div class="col-md-6 mb-3  position-relative">
+                                            <label for="date_start_of_work"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Tanggal
+                                                Bekerja</label>
+                                            <input type="date" class="form-control"
+                                                   id="date_start_of_work"
+                                                   name="date_start_of_work" placeholder="Masukan Tanggal Bekerja"
+                                                   autocomplete="off" data-date-format="d-m-Y"
+                                                   value="">
+                                            <span class="search-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                                 </svg>
-                                                Delete Employee
-                                            </div>
-                                        </button>
-                                        <button class="btn btn-primary font-weight-bold btn-sm">
-                                            Save Employee
-                                        </button>
+                                            </span>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="employment_status"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Status
+                                                Karyawan<span style="color: red">*</span></label>
+                                            <select id="employment_status" class="form-select form-control choicesjs"
+                                                    name="employment_status" required>
+                                                <option value="">Pilih Status Karyawan</option>
+                                                @foreach($employmentStatuses as $employmentStatus)
+                                                    <option
+                                                        value="{{$employmentStatus->id}}">{{$employmentStatus->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="employment_division"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Divisi<span style="color: red">*</span></label>
+                                            <select id="employment_division" name="employment_division"
+                                                    class="form-select form-control choicesjs" required>
+                                                <option value="">Pilih Divisi</option>
+                                                @foreach($employmentDivisions as $employmentDivision)
+                                                    <option
+                                                        value="{{$employmentDivision->id}}">{{$employmentDivision->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="employment_country"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Jabatan<span style="color: red">*</span></label>
+                                            <select id="employment_role" name="employment_role"
+                                                    class="form-select form-control choicesjs" required>
+                                                <option value="">Pilih Jabatan</option>
+                                                @foreach($employmentRoles as $employmentRole)
+                                                    <option
+                                                        value="{{$employmentRole->id}}">{{$employmentRole->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="d-flex flex-wrap justify-content-end mt-3">
+                                            <button type="submit"
+                                                    class="btn btn-primary font-weight-bold btn-sm justify-content-end">
+                                                +
+                                                Tambah
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function previewFile() {
+            var preview = document.getElementById('previewImage');
+            var fileInput = document.getElementById('imageUpload');
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                preview.src = reader.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+        flatpickr("input[type=date]",{
+            allowInput: true,
+        });
+    </script>
 @endsection
+
