@@ -38,7 +38,12 @@
                                 <div class="col-md-3 mb-3">
                                     <div class="card-body rounded bg-light">
                                         <div class="d-flex justify-content-center">
-                                            <img id="previewImage" src="{{ asset('images/user/unknown.jpg') }}"
+                                            <img id="previewImage"
+                                                 @if($employment->image_path)
+                                                     src="{{ asset('images/employment/'.$employment->image_path) }}"
+                                                 @else
+                                                     src="{{ asset('images/user/unknown.jpg') }}"
+                                                 @endif
                                                  class="img-fluid" alt="profile">
                                         </div>
                                         <div class="d-flex justify-content-center mt-2 mb-3">
@@ -69,7 +74,7 @@
                                                    class="form-label font-weight-bold text-muted text-uppercase">Nama
                                                 Lengkap<span style="color: red">*</span></label>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                   placeholder="Masukan Nama Lengkap" value="" required>
+                                                   placeholder="Masukan Nama Lengkap" value="{{$employment->name}}" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label font-weight-bold text-muted text-uppercase mb-3">Jenis
@@ -77,14 +82,14 @@
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" id="inlineRadio1" name="gender"
-                                                           class="custom-control-input" value="Pria" required>
+                                                           class="custom-control-input" value="Pria" required @if($employment->gender == 'Pria') checked @endif>
                                                     <label class="custom-control-label" for="inlineRadio1">Pria</label>
                                                 </div>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" id="inlineRadio2" name="gender"
-                                                           class="custom-control-input" value="Wanita" required>
+                                                           class="custom-control-input" value="Wanita" required @if($employment->gender == 'Wanita') checked @endif>
                                                     <label class="custom-control-label"
                                                            for="inlineRadio2">Wanita</label>
                                                 </div>

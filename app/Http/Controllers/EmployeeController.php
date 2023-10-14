@@ -92,7 +92,7 @@ class EmployeeController extends Controller
 
         $employeeNik = Route::current()->parameter('employee');
 
-        dd($employeeNik);
+        $employment = Employment::where('nik', $employeeNik)->first();
 
         return view('employee.edit', compact(['employment','employmentStatuses', 'employmentRoles', 'employmentDivisions']));
     }
