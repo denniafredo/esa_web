@@ -46,16 +46,8 @@ class EmployeeController extends Controller
             'employment_division' => 'required',
             'employment_role' => 'required',
         ]);
-        if (!File::exists(public_path('images/employment'))) {
-            File::makeDirectory(public_path('images/employment'), $mode = 0777, true, true);
-        }
 
-        $imageName = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/employment'), $imageName);
-        }
+        $imageName = saveImage('employment', $request->file('image'));
 
         $formatedPhoneNumber = $request->input('phone') ? convertPhoneNumber($request->input('phone')) : '';
         $data = [
@@ -91,19 +83,24 @@ class EmployeeController extends Controller
         $employmentDivisions = EmploymentDivision::all();
 
         $employeeNik = Route::current()->parameter('employee');
-
         $employment = Employment::where('nik', $employeeNik)->first();
+        $employment->phone = remove62PhoneNumber($employment->phone);
 
-        return view('employee.edit', compact(['employment','employmentStatuses', 'employmentRoles', 'employmentDivisions']));
+        return view('employee.edit', compact(['employment', 'employmentStatuses', 'employmentRoles', 'employmentDivisions']));
     }
 
     public function update(Request $request, Employment $employment)
     {
         $request->validate([
             'name' => 'required',
-            'detail' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
+            'nik' => 'required',
+            'employment_status' => 'required',
+            'employment_division' => 'required',
+            'employment_role' => 'required',
         ]);
-
+            $imageName = $request->hasFile('image')?saveImage('employment', $request->file('image')):'';
         $employment->update($request->all());
 
         return redirect()->route('products.index')

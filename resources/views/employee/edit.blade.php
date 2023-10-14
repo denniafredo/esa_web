@@ -74,7 +74,8 @@
                                                    class="form-label font-weight-bold text-muted text-uppercase">Nama
                                                 Lengkap<span style="color: red">*</span></label>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                   placeholder="Masukan Nama Lengkap" value="{{$employment->name}}" required>
+                                                   placeholder="Masukan Nama Lengkap" value="{{$employment->name}}"
+                                                   required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label font-weight-bold text-muted text-uppercase mb-3">Jenis
@@ -82,14 +83,16 @@
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" id="inlineRadio1" name="gender"
-                                                           class="custom-control-input" value="Pria" required @if($employment->gender == 'Pria') checked @endif>
+                                                           class="custom-control-input" value="Pria" required
+                                                           @if($employment->gender == 'Pria') checked @endif>
                                                     <label class="custom-control-label" for="inlineRadio1">Pria</label>
                                                 </div>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" id="inlineRadio2" name="gender"
-                                                           class="custom-control-input" value="Wanita" required @if($employment->gender == 'Wanita') checked @endif>
+                                                           class="custom-control-input" value="Wanita" required
+                                                           @if($employment->gender == 'Wanita') checked @endif>
                                                     <label class="custom-control-label"
                                                            for="inlineRadio2">Wanita</label>
                                                 </div>
@@ -102,7 +105,8 @@
                                                 Lahir</label>
                                             <input type="text" class="form-control" id="place_of_birth"
                                                    name="place_of_birth"
-                                                   placeholder="Masukan Tempat Lahir" value="">
+                                                   placeholder="Masukan Tempat Lahir"
+                                                   value="{{$employment->place_of_birth}}">
                                         </div>
                                         <div class="col-md-6 mb-3  position-relative">
                                             <label for="date_of_birth"
@@ -111,7 +115,7 @@
                                             <input type="date" class="form-control" id="date_of_birth"
                                                    name="date_of_birth" placeholder="Masukan Tanggal Lahir"
                                                    autocomplete="off" data-date-format="d-m-Y"
-                                                   value="">
+                                                   value="{{$employment->date_of_birth}}">
                                             <span class="search-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
                                                      viewBox="0 0 24 24" stroke="currentColor">
@@ -127,10 +131,18 @@
                                             <select id="type_of_blood" name="type_of_blood"
                                                     class="form-select form-control choicesjs">
                                                 <option value="">Pilih Golongan Darah</option>
-                                                <option value="A">A</option>
-                                                <option value="B">B</option>
-                                                <option value="AB">AB</option>
-                                                <option value="O">O</option>
+                                                <option @if($employment->type_of_blood == 'A') selected
+                                                        @endif value="A">A
+                                                </option>
+                                                <option @if($employment->type_of_blood == 'B') selected
+                                                        @endif value="B">B
+                                                </option>
+                                                <option @if($employment->type_of_blood == 'AB') selected
+                                                        @endif value="AB">AB
+                                                </option>
+                                                <option @if($employment->type_of_blood == 'O') selected
+                                                        @endif value="O">O
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -138,7 +150,7 @@
                                                    class="form-label font-weight-bold text-muted text-uppercase">NIK<span
                                                     style="color: red">*</span></label>
                                             <input type="text" class="form-control" id="nik" name="nik"
-                                                   placeholder="Masukan NIK" value="" required>
+                                                   placeholder="Masukan NIK" value="{{$employment->nik}}" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="email"
@@ -146,7 +158,7 @@
                                                     style="color: red">*</span></label>
                                             <input type="text" class="form-control" id="email" name="email"
                                                    placeholder="Masukan Email"
-                                                   value="" required>
+                                                   value="{{$employment->email}}" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="phone2"
@@ -154,6 +166,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-text">+62</span>
                                                 <input type="tel" class="form-control" id="phone" name="phone"
+                                                       value="{{$employment->phone}}"
                                                        placeholder="Masukan Nomor Telepon" pattern="[0-9]*">
                                             </div>
                                         </div>
@@ -163,12 +176,24 @@
                                             <select id="religion" name="religion"
                                                     class="form-select form-control choicesjs">
                                                 <option value="">Pilih Agama</option>
-                                                <option value="Islam">Islam</option>
-                                                <option value="Kristen">Kristen</option>
-                                                <option value="Katolik">Katolik</option>
-                                                <option value="Budha">Budha</option>
-                                                <option value="Hindu">Hindu</option>
-                                                <option value="Konghucu">Konghucu</option>
+                                                <option @if($employment->religion == 'Islam') selected
+                                                        @endif value="Islam">Islam
+                                                </option>
+                                                <option @if($employment->religion == 'Kristen') selected
+                                                        @endif value="Kristen">Kristen
+                                                </option>
+                                                <option @if($employment->religion == 'Katolik') selected
+                                                        @endif value="Katolik">Katolik
+                                                </option>
+                                                <option @if($employment->religion == 'Budha') selected
+                                                        @endif value="Budha">Budha
+                                                </option>
+                                                <option @if($employment->religion == 'Hindu') selected
+                                                        @endif value="Hindu">Hindu
+                                                </option>
+                                                <option @if($employment->religion == 'Konghucu') selected
+                                                        @endif value="Konghucu">Konghucu
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -177,8 +202,12 @@
                                             <select id="country" name="country"
                                                     class="form-select form-control choicesjs">
                                                 <option value="">Pilih Negara</option>
-                                                <option value="INDONESIA" selected>INDONESIA</option>
-                                                <option value="LUAR NEGERI">LUAR NEGERI</option>
+                                                <option @if($employment->country == 'INDONESIA') selected
+                                                        @endif value="INDONESIA">INDONESIA
+                                                </option>
+                                                <option @if($employment->country == 'LUAR NEGERI') selected
+                                                        @endif value="LUAR NEGERI">LUAR NEGERI
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -186,21 +215,20 @@
                                                    class="form-label font-weight-bold text-muted text-uppercase">Provinsi</label>
                                             <input type="text" class="form-control" id="region" name="region"
                                                    placeholder="Masukan Provinsi"
-                                                   value="">
+                                                   value="{{$employment->region}}">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="Text7"
                                                    class="form-label font-weight-bold text-muted text-uppercase">Kode
                                                 Pos</label>
                                             <input type="text" class="form-control" id="zip_code" name="zip_code"
-                                                   placeholder="Masukan Kode Pos" value="">
+                                                   placeholder="Masukan Kode Pos" value="{{$employment->zip_code}}">
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label for="address"
                                                    class="form-label font-weight-bold text-muted text-uppercase">Alamat</label>
                                             <textarea class="form-control" id="address" name="address" rows="2"
-                                                      placeholder="Masukan Alamat">
-                                            </textarea>
+                                                      placeholder="Masukan Alamat">{{$employment->address}}</textarea>
                                         </div>
                                         <div class="col-md-6 mb-3  position-relative">
                                             <label for="date_start_of_work"
@@ -210,7 +238,7 @@
                                                    id="date_start_of_work"
                                                    name="date_start_of_work" placeholder="Masukan Tanggal Bekerja"
                                                    autocomplete="off" data-date-format="d-m-Y"
-                                                   value="">
+                                                   value="{{$employment->date_start_of_work}}">
                                             <span class="search-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
                                                      viewBox="0 0 24 24" stroke="currentColor">
@@ -228,39 +256,46 @@
                                                 <option value="">Pilih Status Karyawan</option>
                                                 @foreach($employmentStatuses as $employmentStatus)
                                                     <option
-                                                        value="{{$employmentStatus->id}}">{{$employmentStatus->name}}</option>
+                                                        @if($employment->employment_status_id == $employmentStatus->id) selected
+                                                        @endif value="{{$employmentStatus->id}}">{{$employmentStatus->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="employment_division"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Divisi<span style="color: red">*</span></label>
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Divisi<span
+                                                    style="color: red">*</span></label>
                                             <select id="employment_division" name="employment_division"
                                                     class="form-select form-control choicesjs" required>
                                                 <option value="">Pilih Divisi</option>
                                                 @foreach($employmentDivisions as $employmentDivision)
                                                     <option
-                                                        value="{{$employmentDivision->id}}">{{$employmentDivision->name}}</option>
+                                                        @if($employment->employment_division_id == $employmentDivision->id) selected
+                                                        @endif value="{{$employmentDivision->id}}">{{$employmentDivision->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="employment_country"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Jabatan<span style="color: red">*</span></label>
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Jabatan<span
+                                                    style="color: red">*</span></label>
                                             <select id="employment_role" name="employment_role"
                                                     class="form-select form-control choicesjs" required>
                                                 <option value="">Pilih Jabatan</option>
                                                 @foreach($employmentRoles as $employmentRole)
                                                     <option
-                                                        value="{{$employmentRole->id}}">{{$employmentRole->name}}</option>
+                                                        @if($employment->employment_role_id == $employmentRole->id) selected
+                                                        @endif value="{{$employmentRole->id}}">{{$employmentRole->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="d-flex flex-wrap justify-content-end mt-3">
                                             <button type="submit"
                                                     class="btn btn-primary font-weight-bold btn-sm justify-content-end">
-                                                +
-                                                Tambah
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                </svg>
+                                                Simpan
                                             </button>
                                         </div>
                                     </div>
@@ -287,7 +322,8 @@
                 reader.readAsDataURL(file);
             }
         }
-        flatpickr("input[type=date]",{
+
+        flatpickr("input[type=date]", {
             allowInput: true,
         });
     </script>

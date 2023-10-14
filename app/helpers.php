@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\File;
+
 function convertPhoneNumber($phoneNumber) {
     // Remove any non-digit characters from the phone number
     $cleanedPhoneNumber = preg_replace('/\D/', '', $phoneNumber);
@@ -14,3 +16,28 @@ function convertPhoneNumber($phoneNumber) {
     return $formattedPhoneNumber;
 }
 
+
+function remove62PhoneNumber($phoneNumber) {
+    if (substr($phoneNumber, 0, 3) === '+62') {
+        $phoneNumber = substr($phoneNumber, 2);
+    }
+    return $phoneNumber;
+}
+
+
+function saveImage($directory, $imageFile)
+{
+    $path = public_path('images/' . $directory);
+
+    if (!File::exists($path)) {
+        File::makeDirectory($path, 0777, true, true);
+    }
+
+    $imageName = null;
+    if ($imageFile) {
+        $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+        $imageFile->move($path, $imageName);
+    }
+
+    return $imageName;
+}
