@@ -1,6 +1,12 @@
 @extends('layouts.app') <!-- Extend the main template -->
 
 @section('content')
+    <style>
+        .benefit-list:hover {
+            background-color: #e0e0e0; /* Change the color to your desired shade of gray */
+            cursor: pointer; /* Change the cursor to a pointer to indicate interactivity */
+        }
+    </style>
     <div class="content-page">
         <div class="container-fluid">
             <div class="row">
@@ -54,15 +60,12 @@
                                                 <th scope="col">
                                                     Divisi
                                                 </th>
-                                                <th scope="col" class="text-center">
-                                                    Action
-                                                </th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @for($i=1;$i<6;$i++)
-                                                <tr class="white-space-no-wrap">
-                                                    <td class="">
+                                                <tr class="white-space-no-wrap benefit-list" href="#">
+                                                    <td>
                                                         <div class="active-project-1 d-flex align-items-center mt-0 ">
                                                             <div class="h-avatar is-medium">
                                                                 <img class="avatar rounded-circle"
@@ -81,39 +84,6 @@
                                                     <td>19900501 201501 1 02{{$i}}</td>
                                                     <td>
                                                         Finance
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center align-items-center">
-                                                            <a class="mr-3" data-toggle="tooltip" data-placement="top"
-                                                               title=""
-                                                               data-original-title="View" href="customer-view.html">
-                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                     class="text-secondary"
-                                                                     width="20" fill="none" viewBox="0 0 24 24"
-                                                                     stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                                                </svg>
-                                                            </a>
-                                                            <a class="" data-toggle="tooltip" data-placement="top"
-                                                               title=""
-                                                               data-original-title="Calculate"
-                                                               href="customer-edit.html">
-                                                                <svg style="color: rgb(153, 153, 153);"
-                                                                     xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                     height="16" fill="currentColor"
-                                                                     class="bi bi-calculator" viewBox="0 0 16 16">
-                                                                    <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"
-                                                                          fill="#999999"></path>
-                                                                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"
-                                                                          fill="#999999"></path>
-                                                                </svg>
-                                                            </a>
-                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endfor

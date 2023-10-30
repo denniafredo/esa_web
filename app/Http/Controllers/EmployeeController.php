@@ -6,6 +6,7 @@ use App\Models\Employment;
 use App\Models\EmploymentDivision;
 use App\Models\EmploymentRole;
 use App\Models\EmploymentStatus;
+use App\Models\HistoryLeave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -21,9 +22,11 @@ class EmployeeController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function show(Employment $employment)
+    public function show($employmentNik)
     {
-        return view('employee.detail', compact('employment'));
+        $employment = Employment::where('nik', $employmentNik)->first();
+        $historyLeaves= HistoryLeave::where('employment_id', $employment->id)->get();
+        return view('employee.show', compact(['employment','historyLeaves']));
     }
 
     public function create()
@@ -45,7 +48,15 @@ class EmployeeController extends Controller
             'employment_status' => 'required',
             'employment_division' => 'required',
             'employment_role' => 'required',
+            'leave_quota' => 'required',
         ]);
+
+        if (Employment::where('email', $request->input('email'))->exists()) {
+            return redirect()->route('employee.create')->with('error', 'Email sudah ada.');
+        }
+        if (Employment::where('nik', $request->input('nik'))->exists()) {
+            return redirect()->route('employee.create')->with('error', 'NIK sudah ada.');
+        }
 
         $imageName = saveImage('employment', $request->file('image'));
 
@@ -68,12 +79,13 @@ class EmployeeController extends Controller
             'employment_status_id' => $request->input('employment_status'),
             'employment_division_id' => $request->input('employment_division'),
             'employment_role_id' => $request->input('employment_role'),
-            'image_path' => $imageName
+            'image_path' => $imageName,
+            'leave_quota' => $request->input('leave_quota'),
         ];
 
         Employment::create($data);
 
-        return redirect()->route('employee.index')->with('success', 'Employee added successfully');
+        return redirect()->route('employee.index')->with('success', 'Data Karyawan berhasil ditambah');
     }
 
     public function edit()
@@ -89,7 +101,7 @@ class EmployeeController extends Controller
         return view('employee.edit', compact(['employment', 'employmentStatuses', 'employmentRoles', 'employmentDivisions']));
     }
 
-    public function update(Request $request, Employment $employment)
+    public function update(Request $request, $employmentNik)
     {
         $request->validate([
             'name' => 'required',
@@ -99,21 +111,37 @@ class EmployeeController extends Controller
             'employment_status' => 'required',
             'employment_division' => 'required',
             'employment_role' => 'required',
+            'leave_quota' => 'required',
         ]);
-            $imageName = $request->hasFile('image')?saveImage('employment', $request->file('image')):'';
+        $employment = Employment::where('nik', $employmentNik)->first();
+
+        if (!$employment) {
+            return redirect()->route('employee.index')
+                ->with('error', 'Data karyawan tidak ditemukan');
+        }
+
+        if ($request->hasFile('image')) {
+            $imageName = saveImage('employment', $request->file('image'));
+            // Update the image path in the employment record
+            $employment->image_path = $imageName;
+        }
+
         $employment->update($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Employee updated successfully');
-
+        return redirect()->route('employee.index')
+            ->with('success', 'Data karyawan berhasil di update');
     }
 
-    public function destroy(Employment $employment)
+    public function destroy($employmentNik)
     {
-        $employment->delete();
+        $employment = Employment::where('nik', $employmentNik)->first();
 
-        return redirect()->route('employee.index')
-            ->with('success', 'Employee deleted successfully');
+        if ($employment) {
+            $employment->delete();
+            return redirect()->route('employee.index')->with('success', 'Data karyawan Berhasil di hapus');
+        } else {
+            return redirect()->route('employee.index')->with('error', 'Data karyawan tidak ditemukan');
+        }
     }
 
 }

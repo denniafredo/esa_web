@@ -32,9 +32,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="row" action="{{route('employee.store')}}"
+                            <form class="row" action="{{route('employee.update',['employee' => $employment->nik])}}"
                                   method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="col-md-3 mb-3">
                                     <div class="card-body rounded bg-light">
                                         <div class="d-flex justify-content-center">
@@ -57,6 +58,18 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9">
+                                    @if(session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+
+                                    <!-- Display error message if it exists -->
+                                    @if(session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <strong>Whoops!</strong> There were some problems with your
@@ -289,14 +302,24 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="d-flex flex-wrap justify-content-end mt-3">
-                                            <button type="submit"
-                                                    class="btn btn-primary font-weight-bold btn-sm justify-content-end">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                                </svg>
-                                                Simpan
-                                            </button>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="leave_quota"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Jumlah Cuti<span
+                                                    style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="leave_quota" name="leave_quota" placeholder="Masukkan Jumlah Cuti"
+                                                   value="{{$employment->leave_quota}}"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                        <button type="submit"
+                                                class="btn btn-primary font-weight-bold btn-sm justify-content-end">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                            </svg>
+                                            Simpan
+                                        </button>
                                         </div>
                                     </div>
                                 </div>
@@ -325,6 +348,22 @@
 
         flatpickr("input[type=date]", {
             allowInput: true,
+        });
+
+        var nikInput = document.getElementById("nik");
+        nikInput.addEventListener("keyup", function () {
+            var validInput = /^[0-9]*$/;
+            if (!validInput.test(nikInput.value)) {
+                nikInput.value = nikInput.value.replace(/[^0-9]/g, '');
+            }
+        });
+
+        var zipCode = document.getElementById("zip_code");
+        zipCode.addEventListener("keyup", function () {
+            var validInput = /^[0-9]*$/;
+            if (!validInput.test(zipCode.value)) {
+                zipCode.value = zipCode.value.replace(/[^0-9]/g, '');
+            }
         });
     </script>
 @endsection

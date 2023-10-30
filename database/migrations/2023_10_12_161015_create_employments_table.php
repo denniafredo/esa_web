@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('type_of_blood',2)->nullable();
             $table->string('nik')->unique();
-            $table->string('email')->nullable()->unique();
+            $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->enum('religion', ['Islam', 'Kristen','Katolik','Budha','Hindu','Konghucu'])->nullable();
             $table->string('country')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('image_path')->nullable();
             $table->date('date_start_of_work')->nullable();
+            $table->integer('leave_quota')->nullable();
             $table->unsignedBigInteger('employment_status_id');
             $table->unsignedBigInteger('employment_division_id');
             $table->unsignedBigInteger('employment_role_id');

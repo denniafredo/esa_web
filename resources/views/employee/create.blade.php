@@ -52,6 +52,18 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9">
+                                    @if(session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+
+                                    <!-- Display error message if it exists -->
+                                    @if(session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <strong>Whoops!</strong> There were some problems with your
@@ -132,8 +144,7 @@
                                             <label for="nik"
                                                    class="form-label font-weight-bold text-muted text-uppercase">NIK<span
                                                     style="color: red">*</span></label>
-                                            <input type="text" class="form-control" id="nik" name="nik"
-                                                   placeholder="Masukan NIK" value="" required>
+                                            <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK" value="" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="email"
@@ -251,12 +262,16 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="d-flex flex-wrap justify-content-end mt-3">
-                                            <button type="submit"
-                                                    class="btn btn-primary font-weight-bold btn-sm justify-content-end">
-                                                +
-                                                Tambah
-                                            </button>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="leave_quota"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Jumlah Cuti<span
+                                                    style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="leave_quota" name="leave_quota" placeholder="Masukkan Jumlah Cuti" value="" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary font-weight-bold btn-sm">+ Tambah</button>
                                         </div>
                                     </div>
                                 </div>
@@ -284,6 +299,30 @@
         }
         flatpickr("input[type=date]",{
             allowInput: true,
+        });
+
+        var nikInput = document.getElementById("nik");
+        nikInput.addEventListener("keyup", function () {
+            var validInput = /^[0-9]*$/;
+            if (!validInput.test(nikInput.value)) {
+                nikInput.value = nikInput.value.replace(/[^0-9]/g, '');
+            }
+        });
+
+        var leaveQuotaInput = document.getElementById("leave_quota");
+        leaveQuotaInput.addEventListener("keyup", function () {
+            var validInput = /^[0-9]*$/;
+            if (!validInput.test(leaveQuotaInput.value)) {
+                leaveQuotaInput.value = leaveQuotaInput.value.replace(/[^0-9]/g, '');
+            }
+        });
+
+        var zipCode = document.getElementById("zip_code");
+        zipCode.addEventListener("keyup", function () {
+            var validInput = /^[0-9]*$/;
+            if (!validInput.test(zipCode.value)) {
+                zipCode.value = zipCode.value.replace(/[^0-9]/g, '');
+            }
         });
     </script>
 @endsection

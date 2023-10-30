@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="{{asset('css/backend-plugin.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/backende209.css?v=1.0.0')}}">
     <link rel="stylesheet" href="{{asset('css/backende209.css?v=1.0.0')}}">
-{{--    <link rel="stylesheet" href="{{asset('vendor/%40fortawesome/fontawesome-free/css/all.min.css')}}">--}}
     <link rel="stylesheet" href="{{asset('vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/flatpickr/flatpickr.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/remixicon/fonts/remixicon.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/Leaflet/leaflet.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('css/inputfile.css')}}">
 </head>
 <body class="" id="app">
 <div id="loading">
@@ -65,6 +65,7 @@
 <!-- app JavaScript -->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
+<script src="{{asset('js/inputfile.js')}}"></script>
 
 @include('top-navbar')
 @include('side-navbar')

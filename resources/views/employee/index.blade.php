@@ -1,11 +1,7 @@
 @extends('layouts.app') <!-- Extend the main template -->
 
 @section('content')
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
+
     <div class="content-page">
         <div class="container-fluid">
             <div class="row">
@@ -14,6 +10,17 @@
                         <div class="col-lg-12">
                             <div class="card card-block card-stretch">
                                 <div class="card-body p-0">
+                                    @if(session('success'))
+                                        <div class="alert alert-success mb-2">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                    <!-- Display error message if it exists -->
+                                    @if(session('error'))
+                                        <div class="alert alert-danger mb-2">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                     <div class="d-flex justify-content-between align-items-center p-3">
                                         <h5 class="font-weight-bold">List Karyawan</h5>
                                         <a href="{{ route('employee.create') }}"
@@ -56,12 +63,15 @@
                                                                 @if($employment->image_path != '')
                                                                     <img class="avatar rounded-circle"
                                                                          src={{asset('images/employment/'.$employment->image_path)}}>
+                                                                @else
+                                                                    @if($employment->gender == 'Pria')
+                                                                        <img class="avatar rounded-circle"
+                                                                             src={{asset('images/user/1.jpg')}}>
                                                                     @else
-                                                                    <img class="avatar rounded-circle"
-                                                                    <img class="avatar rounded-circle"
-                                                                         src={{asset('images/user/1.jpg')}}>
+                                                                        <img class="avatar rounded-circle"
+                                                                             src={{asset('images/user/2.jpg')}}>
+                                                                    @endif
                                                                 @endif
-
                                                             </div>
                                                             <div class="data-content">
                                                                 <div>
@@ -112,18 +122,16 @@
                                                                           d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                                                                 </svg>
                                                             </a>
-                                                            <a class="badge bg-danger" data-toggle="tooltip"
-                                                               data-placement="top"
-                                                               title="" data-original-title="Delete"
-                                                               href="{{route('employee.destroy', $employment->nik)}}">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                     fill="none"
-                                                                     viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                                                </svg>
-                                                            </a>
+                                                            <form action="{{ route('employee.destroy', $employment->nik) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="badge bg-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </td>
                                                 </tr>

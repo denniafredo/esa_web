@@ -41,3 +41,9 @@ function saveImage($directory, $imageFile)
 
     return $imageName;
 }
+
+
+function dateIndo($dateString){
+    $timestamp = strtotime($dateString);
+    return date("j F Y", $timestamp);
+}

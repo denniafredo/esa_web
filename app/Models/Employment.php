@@ -27,7 +27,8 @@ class Employment extends Model
         'date_start_of_work',
         'employment_status_id',
         'employment_division_id',
-        'employment_role_id'
+        'employment_role_id',
+        'leave_quota'
     ];
 
     public function employmentRole()
@@ -44,4 +45,15 @@ class Employment extends Model
     {
         return $this->belongsTo(EmploymentStatus::class);
     }
+
+    public function absences()
+    {
+        return $this->hasMany(Absence::class);
+    }
+
+    public function historyLeaves()
+    {
+        return $this->hasMany(HistoryLeave::class);
+    }
+
 }
