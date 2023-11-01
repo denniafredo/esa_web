@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AbsenceController;
+use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\HistoryLeaveController;
 use App\Http\Controllers\DashboardController;
 
@@ -45,13 +46,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('employee', EmployeeController::class);
     Route::resource('absence', AbsenceController::class);
     Route::resource('historyLeave', HistoryLeaveController::class);
-
-    Route::get('/benefit', function () {
-        return view('benefit/view');
-    });
-
-    Route::get('/benefit/detail/{id}', function () {
-        return view('benefit/detail');
-    });
+    Route::resource('benefit', BenefitController::class);
 });
 
