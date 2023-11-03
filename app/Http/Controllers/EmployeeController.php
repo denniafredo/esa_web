@@ -8,7 +8,6 @@ use App\Models\EmploymentRole;
 use App\Models\EmploymentStatus;
 use App\Models\HistoryLeave;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 // Adjust the namespace as needed
@@ -25,17 +24,8 @@ class EmployeeController extends Controller
     public function show($employmentNik)
     {
         $employment = Employment::where('nik', $employmentNik)->first();
-        $historyLeaves= HistoryLeave::where('employment_id', $employment->id)->get();
-        return view('employee.show', compact(['employment','historyLeaves']));
-    }
-
-    public function create()
-    {
-        $employmentStatuses = EmploymentStatus::all();
-        $employmentRoles = EmploymentRole::all();
-        $employmentDivisions = EmploymentDivision::all();
-
-        return view('employee.create', compact(['employmentStatuses', 'employmentRoles', 'employmentDivisions']));
+        $historyLeaves = HistoryLeave::where('employment_id', $employment->id)->get();
+        return view('employee.show', compact(['employment', 'historyLeaves']));
     }
 
     public function store(Request $request)
@@ -59,7 +49,6 @@ class EmployeeController extends Controller
         }
 
         $imageName = saveImage('employment', $request->file('image'));
-
         $formatedPhoneNumber = $request->input('phone') ? convertPhoneNumber($request->input('phone')) : '';
         $data = [
             'name' => $request->input('name'),
@@ -88,6 +77,15 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index')->with('success', 'Data Karyawan berhasil ditambah');
     }
 
+    public function create()
+    {
+        $employmentStatuses = EmploymentStatus::all();
+        $employmentRoles = EmploymentRole::all();
+        $employmentDivisions = EmploymentDivision::all();
+
+        return view('employee.create', compact(['employmentStatuses', 'employmentRoles', 'employmentDivisions']));
+    }
+
     public function edit()
     {
         $employmentStatuses = EmploymentStatus::all();
@@ -97,7 +95,6 @@ class EmployeeController extends Controller
         $employeeNik = Route::current()->parameter('employee');
         $employment = Employment::where('nik', $employeeNik)->first();
         $employment->phone = remove62PhoneNumber($employment->phone);
-
         return view('employee.edit', compact(['employment', 'employmentStatuses', 'employmentRoles', 'employmentDivisions']));
     }
 
@@ -122,7 +119,6 @@ class EmployeeController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = saveImage('employment', $request->file('image'));
-            // Update the image path in the employment record
             $employment->image_path = $imageName;
         }
 

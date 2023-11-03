@@ -117,7 +117,7 @@
                                                 Lahir</label>
                                             <input type="date" class="form-control" id="date_of_birth"
                                                    name="date_of_birth" placeholder="Masukan Tanggal Lahir"
-                                                   autocomplete="off" data-date-format="d-m-Y"
+                                                   autocomplete="off" data-date-format="Y-m-d"
                                                    value="">
                                             <span class="search-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
@@ -143,13 +143,14 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="nik"
                                                    class="form-label font-weight-bold text-muted text-uppercase">NIK<span
-                                                    style="color: red">*</span></label>
-                                            <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK" value="" required>
+                                                        style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="nik" name="nik"
+                                                   placeholder="Masukkan NIK" value="" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="email"
                                                    class="form-label font-weight-bold text-muted text-uppercase">Email<span
-                                                    style="color: red">*</span></label>
+                                                        style="color: red">*</span></label>
                                             <input type="text" class="form-control" id="email" name="email"
                                                    placeholder="Masukan Email"
                                                    value="" required>
@@ -215,7 +216,7 @@
                                             <input type="date" class="form-control"
                                                    id="date_start_of_work"
                                                    name="date_start_of_work" placeholder="Masukan Tanggal Bekerja"
-                                                   autocomplete="off" data-date-format="d-m-Y"
+                                                   autocomplete="off" data-date-format="Y-m-d"
                                                    value="">
                                             <span class="search-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" fill="none"
@@ -234,44 +235,50 @@
                                                 <option value="">Pilih Status Karyawan</option>
                                                 @foreach($employmentStatuses as $employmentStatus)
                                                     <option
-                                                        value="{{$employmentStatus->id}}">{{$employmentStatus->name}}</option>
+                                                            value="{{$employmentStatus->id}}">{{$employmentStatus->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="employment_division"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Divisi<span style="color: red">*</span></label>
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Divisi<span
+                                                        style="color: red">*</span></label>
                                             <select id="employment_division" name="employment_division"
                                                     class="form-select form-control choicesjs" required>
                                                 <option value="">Pilih Divisi</option>
                                                 @foreach($employmentDivisions as $employmentDivision)
                                                     <option
-                                                        value="{{$employmentDivision->id}}">{{$employmentDivision->name}}</option>
+                                                            value="{{$employmentDivision->id}}">{{$employmentDivision->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="employment_country"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Jabatan<span style="color: red">*</span></label>
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Jabatan<span
+                                                        style="color: red">*</span></label>
                                             <select id="employment_role" name="employment_role"
                                                     class="form-select form-control choicesjs" required>
                                                 <option value="">Pilih Jabatan</option>
                                                 @foreach($employmentRoles as $employmentRole)
                                                     <option
-                                                        value="{{$employmentRole->id}}">{{$employmentRole->name}}</option>
+                                                            value="{{$employmentRole->id}}">{{$employmentRole->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="leave_quota"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Jumlah Cuti<span
-                                                    style="color: red">*</span></label>
-                                            <input type="text" class="form-control" id="leave_quota" name="leave_quota" placeholder="Masukkan Jumlah Cuti" value="" required>
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Jumlah
+                                                Cuti<span
+                                                        style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="leave_quota" name="leave_quota"
+                                                   placeholder="Masukkan Jumlah Cuti" value="" required>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary font-weight-bold btn-sm">+ Tambah</button>
+                                            <button type="submit" class="btn btn-primary font-weight-bold btn-sm">+
+                                                Tambah
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +304,8 @@
                 reader.readAsDataURL(file);
             }
         }
-        flatpickr("input[type=date]",{
+
+        flatpickr("input[type=date]", {
             allowInput: true,
         });
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employment;
 use App\Models\Benefit;
+use App\Models\Employment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +20,6 @@ class BenefitController extends Controller
     {
     }
 
-    public function create()
-    {
-    }
-
     public function store(Request $request)
     {
     }
@@ -35,16 +31,20 @@ class BenefitController extends Controller
         if (!$employment) {
             return redirect()->route('benefit.index')->with('error', 'Data karyawan tidak ditemukan');
         }
-        $benefit = Benefit::where('employment_id',$employment->id)->first();
-        if(!$benefit){
+        $benefit = Benefit::where('employment_id', $employment->id)->first();
+        if (!$benefit) {
             $data = [
                 'employment_id' => $employment->id,
             ];
 
             Benefit::create($data);
-            $benefit = Benefit::where('employment_id',$employment->id)->first();
+            $benefit = Benefit::where('employment_id', $employment->id)->first();
         }
         return view('benefit.edit', compact(['employment', 'benefit']));
+    }
+
+    public function create()
+    {
     }
 
     public function update(Request $request, $employmentNik)
@@ -57,11 +57,18 @@ class BenefitController extends Controller
             return redirect()->back()
                 ->with('error', 'Data karyawan tidak ditemukan');
         }
-        $benefit = Benefit::where('employment_id',$employment->id)->first();
+        $benefit = Benefit::where('employment_id', $employment->id)->first();
         if (!$employment) {
             return redirect()->back()
                 ->with('error', 'Data benefit tidak ditemukan');
         }
+
+        $request['basic_salary'] = str_replace(',', '', $request['basic_salary']);
+        $request['fixed_allowances'] = str_replace(',', '', $request['fixed_allowances']);
+        $request['meal_allowances'] = str_replace(',', '', $request['meal_allowances']);
+        $request['transport_allowances'] = str_replace(',', '', $request['transport_allowances']);
+        $request['overtime_allowances'] = str_replace(',', '', $request['overtime_allowances']);
+
         $benefit->update($request->all());
 
         return redirect()->back()

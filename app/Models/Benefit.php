@@ -15,7 +15,8 @@ class Benefit extends Model
         'fixed_allowances',
         'meal_allowances',
         'transport_allowances',
-        'overtime_allowances'
+        'overtime_allowances',
+        'persenpph'
     ];
 
     public function employment()

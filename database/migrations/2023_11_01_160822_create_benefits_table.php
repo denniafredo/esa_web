@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,6 +18,7 @@ return new class extends Migration
             $table->float('meal_allowances')->nullable();
             $table->float('transport_allowances')->nullable();
             $table->float('overtime_allowances')->nullable();
+            $table->string('persenpph')->nullable();
             $table->timestamps();
 
             $table->foreign('employment_id')->references('id')->on('employments');
