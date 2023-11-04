@@ -134,16 +134,26 @@
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body p-0">
+                            <ul class="nav tab-nav-pane nav-tabs pt-2 mb-0">
+                                <li class="pb-2 mb-0 nav-item"><a data-toggle="tab"
+                                                                  class="font-weight-bold text-uppercase px-5 py-2 active"
+                                                                  href="#page-cuti">Cuti</a></li>
+                                <li class="pb-2 mb-0 nav-item"><a data-toggle="tab"
+                                                                  class="font-weight-bold text-uppercase px-5 py-2"
+                                                                  href="#page-absensi">Absensi</a></li>
+                            </ul>
                             <div class="tab-content">
-                                <div id="invoice" class="tab-pane fade show active">
+                                <div id="page-cuti" class="tab-pane fade show active">
                                     <div class="d-flex justify-content-between align-items-center p-3">
                                         <h5>Data Cuti</h5>
-                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                                        <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                                data-target="#myModal">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" width="20" fill="none"
                                                  viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                       d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                                            </svg> Tambah Cuti
+                                            </svg>
+                                            Tambah Cuti
                                         </button>
                                     </div>
                                     <div class="table-responsive">
@@ -165,6 +175,43 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div id="page-absensi" class="tab-pane fade">
+                                    <div class="d-flex justify-content-between align-items-center p-3">
+                                        <h5>Data Absensi</h5>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table data-table mb-0">
+                                            <thead class="table-color-heading">
+                                            <tr class="">
+                                                <th scope="col">
+                                                    Tanggal
+                                                </th>
+                                                <th scope="col">
+                                                    Jam Masuk
+                                                </th>
+                                                <th scope="col">
+                                                    Jam Keluar
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($absences as $absence)
+                                                <tr class="white-space-no-wrap">
+                                                    <td>
+                                                        {{dateIndo($absence->date_in)}}
+                                                    </td>
+                                                    <td>
+                                                        {{$absence->time_in}}
+                                                    </td>
+                                                    <td>
+                                                        {{$absence->time_out}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -172,7 +219,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -183,17 +231,20 @@
                 </div>
                 <form action="{{route('historyLeave.store')}}" method="POST">
                     <div class="modal-body col">
-                            @csrf
-                        <input type="hidden" id="employment_id" name="employment_id" value="{{$employment->id}}" required>
-                            <div class="form-group">
-                                <label for="date_leave" class="form-label font-weight-bold text-muted text-uppercase">Tanggal Cuti<span style="color: red">*</span></label></label>
-                                <input type="date" class="form-control" id="date_leave" name="date_leave" required>
-                            </div>
+                        @csrf
+                        <input type="hidden" id="employment_id" name="employment_id" value="{{$employment->id}}"
+                               required>
+                        <div class="form-group">
+                            <label for="date_leave" class="form-label font-weight-bold text-muted text-uppercase">Tanggal
+                                Cuti<span style="color: red">*</span></label></label>
+                            <input type="date" class="form-control" id="date_leave" name="date_leave" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="reason" class="form-label font-weight-bold text-muted text-uppercase">Keterangan</label></label>
-                                <textarea class="form-control" id="reason" name="reason" rows="4"></textarea>
-                            </div>
+                        <div class="form-group">
+                            <label for="reason"
+                                   class="form-label font-weight-bold text-muted text-uppercase">Keterangan</label></label>
+                            <textarea class="form-control" id="reason" name="reason" rows="4"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

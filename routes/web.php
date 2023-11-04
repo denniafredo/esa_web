@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AbsenceController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BenefitController;
-use App\Http\Controllers\HistoryLeaveController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HistoryLeaveController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,11 +41,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/',[DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index']);
 
     Route::resource('employee', EmployeeController::class);
     Route::resource('absence', AbsenceController::class);
     Route::resource('historyLeave', HistoryLeaveController::class);
     Route::resource('benefit', BenefitController::class);
+
+    Route::get('/benefit/export/{nik}', [BenefitController::class, 'export'])->name('benefit.export');
+
 });
 

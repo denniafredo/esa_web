@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absence;
 use App\Models\Employment;
 use App\Models\EmploymentDivision;
 use App\Models\EmploymentRole;
@@ -9,8 +10,6 @@ use App\Models\EmploymentStatus;
 use App\Models\HistoryLeave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-// Adjust the namespace as needed
 
 class EmployeeController extends Controller
 {
@@ -25,7 +24,8 @@ class EmployeeController extends Controller
     {
         $employment = Employment::where('nik', $employmentNik)->first();
         $historyLeaves = HistoryLeave::where('employment_id', $employment->id)->get();
-        return view('employee.show', compact(['employment', 'historyLeaves']));
+        $absences = Absence::latest()->paginate(5);
+        return view('employee.show', compact(['employment', 'historyLeaves', 'absences']));
     }
 
     public function store(Request $request)
@@ -139,5 +139,4 @@ class EmployeeController extends Controller
             return redirect()->route('employee.index')->with('error', 'Data karyawan tidak ditemukan');
         }
     }
-
 }
