@@ -52,9 +52,21 @@
                                     <ul class="list-style-1 mb-0">
                                         <li class="list-item d-flex justify-content-start align-items-center">
                                             <div class="avatar">
-                                                <img class="avatar avatar-img avatar-60 rounded-circle"
-                                                     src="{{asset('images/user/1.jpg')}}" alt="01.jpg"/>
+                                                @if($employment->image_path != '')
+                                                    <img class="avatar avatar-img avatar-60 rounded-circle"
+                                                         src="{{asset('images/employment/'.$employment->image_path)}}"
+                                                         alt="01.jpg"/>
+                                                @else
+                                                    @if($employment->gender == 'Pria')
+                                                        <img class="avatar avatar-img avatar-60 rounded-circle"
+                                                             src="{{asset('images/user/1.jpg')}}" alt="01.jpg"/>
+                                                    @else
+                                                        < <img class="avatar avatar-img avatar-60 rounded-circle"
+                                                               src="{{asset('images/user/2.jpg')}}" alt="02.jpg"/>
+                                                    @endif
+                                                @endif
                                             </div>
+
                                             <div class="list-style-detail ml-4 mr-2">
                                                 <h5 class="font-weight-bold">{{$employment->name}}</h5>
                                                 <p class="mb-0 mt-1 text-muted">{{$employment->employmentRole->name}}</p>
