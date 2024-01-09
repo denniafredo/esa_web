@@ -33,17 +33,18 @@ class EmployeeController extends Controller
         $request->validate([
             'name' => 'required',
             'gender' => 'required',
-            'email' => 'required',
             'nik' => 'required',
             'employment_status' => 'required',
             'employment_division' => 'required',
             'employment_role' => 'required',
             'leave_quota' => 'required',
         ]);
-
-        if (Employment::where('email', $request->input('email'))->exists()) {
-            return redirect()->route('employee.create')->with('error', 'Email sudah ada.');
+        if ($request->input('email') != '') {
+            if (Employment::where('email', $request->input('email'))->exists()) {
+                return redirect()->route('employee.create')->with('error', 'Email sudah ada.');
+            }
         }
+
         if (Employment::where('nik', $request->input('nik'))->exists()) {
             return redirect()->route('employee.create')->with('error', 'NIK sudah ada.');
         }
@@ -103,7 +104,6 @@ class EmployeeController extends Controller
         $request->validate([
             'name' => 'required',
             'gender' => 'required',
-            'email' => 'required',
             'nik' => 'required',
             'employment_status' => 'required',
             'employment_division' => 'required',
@@ -116,7 +116,11 @@ class EmployeeController extends Controller
             return redirect()->route('employee.index')
                 ->with('error', 'Data karyawan tidak ditemukan');
         }
-
+        if ($request->input('email') != '') {
+            if (Employment::where('email', $request->input('email'))->where('nik', '!=', $request->input('nik'))->exists()) {
+                return redirect()->route('employee.create')->with('error', 'Email sudah ada.');
+            }
+        }
         if ($request->hasFile('image')) {
             $imageName = saveImage('employment', $request->file('image'));
             $employment->image_path = $imageName;

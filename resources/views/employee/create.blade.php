@@ -149,11 +149,10 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="email"
-                                                   class="form-label font-weight-bold text-muted text-uppercase">Email<span
-                                                        style="color: red">*</span></label>
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Email</label>
                                             <input type="text" class="form-control" id="email" name="email"
                                                    placeholder="Masukan Email"
-                                                   value="" required>
+                                                   value="">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="phone2"
