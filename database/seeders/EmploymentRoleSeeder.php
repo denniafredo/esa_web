@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\EmploymentRole;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class EmploymentRoleSeeder extends Seeder
@@ -13,11 +12,18 @@ class EmploymentRoleSeeder extends Seeder
      */
     public function run(): void
     {
-        EmploymentRole::create([
-            'name' => 'Manager',
-        ]);
-        EmploymentRole::create([
-            'name' => 'Staff',
-        ]);
+
+        $roles = [
+            'Dept Head',
+            'Supervisor (SPV)',
+            'Staff',
+            'Operational (Opt)',
+        ];
+
+        foreach ($roles as $role) {
+            EmploymentRole::create([
+                'name' => $role,
+            ]);
+        }
     }
 }

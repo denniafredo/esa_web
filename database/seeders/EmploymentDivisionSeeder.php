@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\EmploymentDivision;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class EmploymentDivisionSeeder extends Seeder
@@ -13,8 +12,24 @@ class EmploymentDivisionSeeder extends Seeder
      */
     public function run(): void
     {
-        EmploymentDivision::create([
-            'name' => 'Finance',
-        ]);
+        $divisions = [
+            'Production',
+            'PPIC / Warehouse',
+            'Quality Control (QC)',
+            'Quality Assurance (QA)',
+            'Research and Development (R&D)',
+            'Purchasing',
+            'Finance / Accounting',
+            'Human Resource / Legal',
+            'General Affair',
+            'Machinery Engineering (ME)',
+        ];
+
+        foreach ($divisions as $division) {
+            EmploymentDivision::create([
+                'name' => $division,
+            ]);
+        }
+
     }
 }
