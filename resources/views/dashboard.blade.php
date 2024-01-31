@@ -1,6 +1,18 @@
 @extends('layouts.app') <!-- Extend the main template -->
 
 @section('content')
+    <style>
+        .table-spacing .hidden {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .accordion-container.expanded .table-spacing .hidden {
+            display: table-row;
+        }
+
+    </style>
     <div id="remoteModelData" class="modal fade" role="dialog"></div>
     <div class="content-page">
         <div class="container-fluid">
@@ -98,33 +110,38 @@
                                 <h4 class="card-title">Upcoming National Event</h4>
                             </div>
                         </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-spacing mb-0">
-                                    <tbody>
-                                    @foreach($publicHolidays as $publicHoliday)
-                                        <tr class="white-space-no-wrap">
-                                            <td>
-                                                <h6 class="mb-0 text-uppercase {{ $publicHoliday['is_national_holiday'] ? 'text-danger' :'text-secondary'}}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="pr-2" width="30"
-                                                         fill="none"
-                                                         viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                                    </svg>
-                                                    {{$publicHoliday['day_of_week']}}
-                                                    , {{$publicHoliday['holiday_date']}}
-                                                </h6>
-                                            </td>
-                                            <td class=" pl-0 py-3">
-                                                {{$publicHoliday['holiday_name']}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                        <div class="accordion-container">
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-spacing mb-0">
+                                        <tbody>
+                                        @foreach($publicHolidays as $publicHoliday)
+                                            <tr class="white-space-no-wrap">
+                                                <td>
+                                                    <h6 class="mb-0 text-uppercase {{ $publicHoliday['is_national_holiday'] ? 'text-danger' :'text-secondary'}}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="pr-2" width="30"
+                                                             fill="none"
+                                                             viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                                        </svg>
+                                                        {{$publicHoliday['day_of_week']}}
+                                                        , {{$publicHoliday['holiday_date']}}
+                                                    </h6>
+                                                </td>
+                                                <td class=" pl-0 py-3">
+                                                    {{$publicHoliday['holiday_name']}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center border-top-table p-3">
+                            <button class="btn btn-secondary btn-sm" id="seeMoreBtn">See More</button>
                         </div>
                     </div>
                 </div>
@@ -195,4 +212,30 @@
             <!-- Page end  -->
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var accordionContainer = document.querySelector('.accordion-container');
+            var seeMoreBtn = document.getElementById('seeMoreBtn');
+            var rowsToShow = 6;
+
+            function toggleRows() {
+                var rows = accordionContainer.querySelectorAll('tbody tr');
+                rows.forEach(function (row, index) {
+                    if (index >= rowsToShow) {
+                        row.classList.toggle('hidden');
+                    }
+                });
+            }
+
+            seeMoreBtn.addEventListener('click', function () {
+                accordionContainer.classList.toggle('expanded');
+                toggleRows();
+                seeMoreBtn.textContent = accordionContainer.classList.contains('expanded') ? 'See Less' : 'See More';
+            });
+
+            toggleRows(); // Initially hide rows beyond the limit
+        });
+    </script>
+
 @endsection

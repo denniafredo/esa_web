@@ -50,11 +50,6 @@ class DashboardController extends Controller
                 $publicHolidays[$i]['day_of_week'] = $date->format('D');
                 $filteredHolidays[] = $publicHolidays[$i];
             }
-
-            // Limit to 6 events
-            if (count($filteredHolidays) >= 6) {
-                break;
-            }
         }
         $publicHolidays = $filteredHolidays;
 
