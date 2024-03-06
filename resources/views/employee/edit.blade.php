@@ -176,8 +176,9 @@
                                             <label for="phone2"
                                                    class="form-label font-weight-bold text-muted text-uppercase">Telepon</label>
                                             <div class="input-group">
-                                                <span class="input-group-text">+62</span>
-                                                <input type="tel" class="form-control" id="phone" name="phone"
+                                                <input type="text" class="form-control col-md-3" id="default_phone"
+                                                       name="default_phone" value="+62" readonly>
+                                                <input type="tel" class="form-control col-md-9" id="phone" name="phone"
                                                        value="{{$employment->phone}}"
                                                        placeholder="Masukan Nomor Telepon" pattern="[0-9]*">
                                             </div>

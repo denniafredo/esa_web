@@ -40,8 +40,11 @@
                                     <div class="d-flex justify-content-between align-items-center p-3">
                                         <h5 class="font-weight-bold">Absence List</h5>
                                         <form method="GET" action="{{ route('absence.index') }}">
-                                            <label for="date_filter" class="form-label font-weight-bold text-muted text-uppercase">Filter by Date:</label>
-                                            <input type="date" class="form-control" id="date_filter" name="date_in" placeholder="Masukan Filter Tanggal"
+                                            <label for="date_filter"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Filter
+                                                by Date:</label>
+                                            <input type="date" class="form-control" id="date_filter" name="date_in"
+                                                   placeholder="Masukan Filter Tanggal"
                                                    autocomplete="off" data-date-format="d-m-Y"
                                                    value="{{ request()->input('date_in') }}">
                                         </form>
@@ -50,7 +53,7 @@
                                                  fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                                                 <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
                                                 <path
-                                                    d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                                                        d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
                                             </svg>
                                             Print
                                         </button>
@@ -60,10 +63,10 @@
                                             <thead class="table-color-heading">
                                             <tr class="">
                                                 <th scope="col">
-                                                    Name
+                                                    Nama
                                                 </th>
                                                 <th scope="col">
-                                                    NIK
+                                                    Person ID
                                                 </th>
                                                 <th scope="col">
                                                     Divisi
@@ -101,7 +104,7 @@
                                                             <div class="data-content">
                                                                 <div>
                                                                     <span
-                                                                        class="font-weight-bold">{{$absence->employment->name}}</span>
+                                                                            class="font-weight-bold">{{$absence->employment->name}}</span>
                                                                 </div>
                                                                 <p class="m-0 text-secondary small">
                                                                     {{$absence->employment->role}}
@@ -136,9 +139,9 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var dateFilter = document.getElementById('date_filter');
-            dateFilter.addEventListener('change', function() {
+            dateFilter.addEventListener('change', function () {
                 this.form.submit();
             });
         });
