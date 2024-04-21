@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Carbon\Carbon; @endphp
+        <!DOCTYPE html>
 <html>
 <head>
     <title>Data Karyawan</title>
@@ -7,20 +8,20 @@
 <h1>Data Karyawan</h1>
 <table>
     <tr>
-        <td><strong>Email</strong></td>
-        <td>: {{ $benefit->employment->email }}</td>
+        <td><strong>Nama</strong></td>
+        <td>: {{ $benefit->employment->name }}</td>
     </tr>
     <tr>
         <td><strong>NIK</strong></td>
         <td>: {{ $benefit->employment->nik }}</td>
     </tr>
     <tr>
-        <td><strong>Phone</strong></td>
-        <td>: {{ convertPhoneNumber($benefit->employment->phone) }}</td>
+        <td><strong>Jabatan (Divisi)</strong></td>
+        <td>: {{ $benefit->employment->employmentRole->name }} ({{$benefit->employment->employmentDivision->name}})</td>
     </tr>
     <tr>
-        <td><strong>Address</strong></td>
-        <td>: {{ $benefit->employment->address }}</td>
+        <td><strong>Tanggal Cetak</strong></td>
+        <td>: {{ Carbon::now()->format('d F Y') }}</td>
     </tr>
     <!-- Add more employee data fields here as needed -->
 </table>

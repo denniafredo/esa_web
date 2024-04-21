@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Benefit;
 use App\Models\Employment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PDF;
@@ -15,7 +16,7 @@ class BenefitController extends Controller
 {
     public function index()
     {
-        $employments = Employment::latest()->paginate(5);
+        $employments = Employment::all();
         return view('benefit.index', compact('employments'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -129,14 +130,14 @@ class BenefitController extends Controller
 
         // Set the employee information in the Excel file
         $worksheet->setCellValue('A1', 'Employee Information');
-        $worksheet->setCellValue('A2', 'Email:');
-        $worksheet->setCellValue('B2', $benefit->employment->email);
-        $worksheet->setCellValue('A3', 'NIK:');
+        $worksheet->setCellValue('A2', 'Nama');
+        $worksheet->setCellValue('B2', $benefit->employment->name);
+        $worksheet->setCellValue('A3', 'NIK');
         $worksheet->setCellValue('B3', $benefit->employment->nik);
-        $worksheet->setCellValue('A4', 'Phone:');
-        $worksheet->setCellValue('B4', convertPhoneNumber($benefit->employment->phone));
-        $worksheet->setCellValue('A5', 'Address:');
-        $worksheet->setCellValue('B5', $benefit->employment->address);
+        $worksheet->setCellValue('A4', 'Jabatan (Divisi)');
+        $worksheet->setCellValue('B4', $benefit->employment->employmentRole->name . ' ' . ($benefit->employment->employmentDivision->name));
+        $worksheet->setCellValue('A5', 'Tanggal Cetak');
+        $worksheet->setCellValue('B5', Carbon::now()->format('d F Y'));
 
         // Set the Benefit information in the Excel file
         $worksheet->setCellValue('A7', 'Benefit');
