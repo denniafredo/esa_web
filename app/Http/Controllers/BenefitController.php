@@ -73,6 +73,8 @@ class BenefitController extends Controller
         $request['meal_allowances'] = str_replace(',', '', $request['meal_allowances']);
         $request['transport_allowances'] = str_replace(',', '', $request['transport_allowances']);
         $request['overtime_allowances'] = str_replace(',', '', $request['overtime_allowances']);
+        $request['performance_allowances'] = str_replace(',', '', $request['performance_allowances']);
+        $request['burden'] = str_replace(',', '', $request['burden']);
 
         $benefit->update($request->all());
 

@@ -151,7 +151,7 @@
                             <div class="tab-content">
                                 <div id="invoice" class="tab-pane fade show active">
                                     <div class="d-flex justify-content-between align-items-center p-3">
-                                        <h5>Benefit</h5>
+                                        <h5>Pendapatan</h5>
                                     </div>
                                     <div class="col-md-12">
                                         <form action="{{route('benefit.update',['benefit' => $employment->nik])}}"
@@ -172,36 +172,63 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                </div>
-                                                <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
-                                                        <label style="width: 50%;" for="fixed_allowances"
-                                                               class="form-label font-weight-bold text-muted text-uppercase">Tunjangan
-                                                            Tetap :</label>
-                                                        <input style="width: 50%;" type="text"
+                                                        <label style="width: 60%;" for="day_of_works"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Hari
+                                                            Kerja<span style="color: red">*</span> :</label>
+                                                        <input style="width: 40%;" type="text"
                                                                class="form-control rupiah"
-                                                               id="fixed_allowances" name="fixed_allowances"
-                                                               placeholder="Masukan Tunjangan Tetap"
-                                                               value="{{$benefit->fixed_allowances}}">
+                                                               id="day_of_works" name="day_of_works"
+                                                               placeholder="Masukan Hari Kerja"
+                                                               required
+                                                               value="{{$benefit->day_of_works}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
-                                                        <label style="width: 60%;" for="bpjs_kesehatan"
-                                                               class="form-label font-weight-bold text-muted text-uppercase">Potongan
-                                                            BPJS Kesehatan (1%) :</label>
-                                                        <input style="width: 40%;" type="text"
+                                                        <label style="width: 50%;" for="performance_allowances"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Tunjangan
+                                                            Kinerja :</label>
+                                                        <input style="width: 50%;" type="text"
                                                                class="form-control rupiah"
-                                                               id="bpjs_kesehatan" name="bpjs_kesehatan"
-                                                               placeholder="0" value="0" readonly>
+                                                               id="performance_allowances" name="performance_allowances"
+                                                               placeholder="Masukan Tunjangan Tetap"
+                                                               value="{{$benefit->performance_allowances}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="transport_allowances"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Transport
+                                                            (Hari) :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="transport_allowances" name="transport_allowances"
+                                                               placeholder="Masukan Uang Transport"
+                                                               value="{{$benefit->transport_allowances}}">
                                                     </div>
 
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="transport_allowances_month"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Transport
+                                                            (Bulan):</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="transport_allowances_month"
+                                                               name="transport_allowances_month" placeholder="0"
+                                                               value="0"
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
                                                         <label style="width: 50%;" for="meal_allowances"
-                                                               class="form-label font-weight-bold text-muted text-uppercase">Uang
-                                                            Makan :</label>
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Makan
+                                                            (Hari) :</label>
                                                         <input style="width: 50%;" type="text"
                                                                class="form-control rupiah"
                                                                id="meal_allowances" name="meal_allowances"
@@ -211,54 +238,258 @@
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
-                                                        <label style="width: 60%;" for="bpjs_jht"
-                                                               class="form-label font-weight-bold text-muted text-uppercase">Potongan
-                                                            BPJS JHT (2%):</label>
+                                                        <label style="width: 60%;" for="meal_allowances_month"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Makan
+                                                            (Bulan):</label>
                                                         <input style="width: 40%;" type="text"
                                                                class="form-control rupiah"
-                                                               id="bpjs_jht" name="bpjs_jht" placeholder="0"
+                                                               id="meal_allowances_month" name="meal_allowances_month"
+                                                               placeholder="0"
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="pdpt_kesehatan"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">BPJS
+                                                            Kesehatan (4%):</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pdpt_kesehatan" name="pdpt_kesehatan"
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="pdpt_jht"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">JHT
+                                                            (3,70%):</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pdpt_jht" name="pdpt_jht" value="0" readonly>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="pdpt_jkk"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">JKK
+                                                            (0.54%) :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pdpt_jkk" name="pdpt_jkk"
+                                                               value="0" readonly>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="pdpt_jkm"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">JKM
+                                                            (0,03%):</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pdpt_jkm" name="pdpt_jkm" placeholder="0"
                                                                value="0"
                                                                readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
-                                                        <label style="width: 50%;" for="transport_allowances"
-                                                               class="form-label font-weight-bold text-muted text-uppercase">Uang
-                                                            Transport :</label>
+                                                        <label style="width: 50%;" for="pdpt_pensiun"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">PENSIUN
+                                                            (2%) :</label>
                                                         <input style="width: 50%;" type="text"
                                                                class="form-control rupiah"
-                                                               id="transport_allowances" name="transport_allowances"
-                                                               placeholder="Masukan Uang Transport"
-                                                               value="{{$benefit->transport_allowances}}">
+                                                               id="pdpt_pensiun" name="pdpt_pensiun"
+                                                               placeholder=""
+                                                               value="0"
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;font-size: 20px" for="total_pendapatan"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">TOTAL
+                                                            PENDAPATAN:</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="total_pendapatan" name="total_pendapatan"
+                                                               placeholder="0"
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-3" style="border-top: 2px solid grey;">
+                                                    <div class="d-flex justify-content-between align-items-center pt-2">
+                                                        <h5>Presensi Kehadiran</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
-                                                        <label style="width: 60%;" for="bpjs_pensiun"
-                                                               class="form-label font-weight-bold text-muted text-uppercase">Potongan
-                                                            BPJS Pensiun (1%):</label>
-                                                        <input style="width: 40%;" type="text"
+                                                        <label style="width: 50%;" for="leaves"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Cuti<span
+                                                                    style="color: red">*</span> :</label>
+                                                        <input style="width: 50%;" type="number"
                                                                class="form-control rupiah"
-                                                               id="bpjs_pensiun" name="bpjs_pensiun" placeholder="0"
+                                                               id="leaves" name="leaves"
+                                                               placeholder=""
+                                                               value="{{$benefit->leaves}}" min="0" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="hari_masuk"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Total
+                                                            Hari Masuk :</label>
+                                                        <input style="width: 40%;" type="number"
+                                                               class="form-control rupiah"
+                                                               id="hari_masuk" name="hari_masuk"
+                                                               placeholder=""
+                                                               value="" min="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="sick_leaves"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Sakit<span
+                                                                    style="color: red">*</span> :</label>
+                                                        <input style="width: 50%;" type="number"
+                                                               class="form-control rupiah"
+                                                               id="sick_leaves" name="sick_leaves"
+                                                               placeholder=""
+                                                               value="{{$benefit->sick_leaves}}" min="0" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="absence_leaves"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Ijin
+                                                            / Absen<span
+                                                                    style="color: red">*</span> :</label>
+                                                        <input style="width: 50%;" type="number"
+                                                               class="form-control rupiah"
+                                                               id="absence_leaves" name="absence_leaves"
+                                                               placeholder=""
+                                                               value="{{$benefit->absence_leaves}}" min="0" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+
+                                                <div class="col-md-12 mb-3" style="border-top: 2px solid grey;">
+                                                    <div class="d-flex justify-content-between align-items-center pt-2">
+                                                        <h5>Potongan</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="pot_absensi"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Absensi
+                                                            :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pot_absensi" name="pot_absensi"
                                                                value="0" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
-                                                        <label style="width: 50%;" for="overtime_allowances"
-                                                               class="form-label font-weight-bold text-muted text-uppercase">Uang
-                                                            Lembur :</label>
+                                                        <label style="width: 60%;" for="pot_transport"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Transport
+                                                            :</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pot_transport" name="pot_transport"
+                                                               placeholder=""
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="pot_makan"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">MAKAN
+                                                            :</label>
                                                         <input style="width: 50%;" type="text"
                                                                class="form-control rupiah"
-                                                               id="overtime_allowances" name="overtime_allowances"
-                                                               placeholder="Masukan Uang Lembur"
-                                                               value="{{$benefit->overtime_allowances}}">
+                                                               id="pot_makan" name="pot_makan"
+                                                               placeholder=""
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="burden"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Pinjaman
+                                                            / Tanggungan
+                                                            :</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="burden" name="burden"
+                                                               placeholder=""
+                                                               value="{{$benefit->burden}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="pot_bpjs_kes"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">BPJS
+                                                            KESEHATAN (1%)
+                                                            :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pot_bpjs_kes" name="pot_bpjs_kes"
+                                                               placeholder=""
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="pot_bpjs_tk"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">BPJS
+                                                            TK (3%)
+                                                            :</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="pot_bpjs_tk" name="pot_bpjs_tk"
+                                                               placeholder=""
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="sub_bpjs_kes"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">SUBSIDI
+                                                            BPJS KESEHATAN
+                                                            :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="sub_bpjs_kes" name="sub_bpjs_kes"
+                                                               placeholder=""
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="sub_bpjs_tk"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">SUBSIDI
+                                                            BPJS TK
+                                                            :</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="sub_bpjs_tk" name="sub_bpjs_tk"
+                                                               placeholder=""
+                                                               value="0" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="row align-items-center justify-content-between">
-                                                        <div class="col-6">
+                                                        <div class="col-md-6">
                                                             <label for="pph"
                                                                    class="form-label font-weight-bold text-muted text-uppercase">Potongan
                                                                 PPH :</label>
@@ -291,20 +522,35 @@
 
 
                                                         </div>
-                                                        <div class="col-6">
-                                                            <input style="width: 85%;margin-left: 15%" type="text"
+                                                        <div class="col-md-6">
+                                                            <input style="width: 100%;" type="text"
                                                                    class="form-control rupiah" id="pph" name="pph"
                                                                    placeholder="0" value="0" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;font-size: 20px" for="total_potongan"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">TOTAL
+                                                            POTONGAN:</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="total_potongan" name="total_potongan"
+                                                               placeholder="0"
+                                                               value="0" readonly>
+                                                    </div>
+                                                </div>
                                                 <hr>
                                                 <div class="col-md-12 mb-3" style="border-top: 2px solid grey;">
                                                     <div class="d-flex align-items-center mt-2">
                                                         <label style="width: 50%; font-size: 20px" for="thp"
-                                                               class="form-label font-weight-bold text-muted text-uppercase text-right pr-2">Take
-                                                            Home Pay : </label>
+                                                               class="form-label font-weight-bold text-muted text-uppercase text-right pr-2">Gaji
+                                                            Bersih : </label>
                                                         <input style="width: 25%;" type="text"
                                                                class="form-control rupiah"
                                                                id="thp" name="thp" placeholder="0" value="0"
@@ -378,14 +624,58 @@
         }
 
         function hitung() {
+            var hariKerja = document.getElementById('day_of_works').value;
+
             var gajiPokok = document.getElementById('basic_salary').value.replace(/,/g, '');
-            var tunjanganTetap = document.getElementById('fixed_allowances').value.replace(/,/g, '');
-            var uangMakan = document.getElementById('meal_allowances').value.replace(/,/g, '');
-            var uangTransport = document.getElementById('transport_allowances').value.replace(/,/g, '');
-            var uangLembur = document.getElementById('overtime_allowances').value.replace(/,/g, '');
-            var persenBPJSKesehatan = 1;
-            var persenBPJSJHT = 2;
-            var persenBPJSPensiun = 1;
+            var makan = document.getElementById('meal_allowances').value.replace(/,/g, '');
+            var transport = document.getElementById('transport_allowances').value.replace(/,/g, '');
+            var kinerja = document.getElementById('performance_allowances').value.replace(/,/g, '');
+
+            var transportPerBulan = parseInt(transport) * parseInt(hariKerja);
+            var makanPerBulan = parseInt(makan) * parseInt(hariKerja);
+
+            var BPJSKesehatanPendapatan = parseInt(gajiPokok) * 0.04;
+            var BPJSJHTPendapatan = parseInt(gajiPokok) * 0.037;
+            var BPJSJKKPendapatan = parseInt(gajiPokok) * 0.0054;
+            var BPJSJKMPendapatan = parseInt(gajiPokok) * 0.003;
+            var BPJSPensiunPendapatan = parseInt(gajiPokok) * 0.02;
+            var totalPendapatan = parseInt(gajiPokok) + parseInt(kinerja) + parseInt(transportPerBulan) + parseInt(makanPerBulan) +
+                parseInt(BPJSKesehatanPendapatan) + parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
+
+            document.getElementById('transport_allowances_month').value = transportPerBulan;
+            document.getElementById('meal_allowances_month').value = makanPerBulan;
+            document.getElementById('pdpt_kesehatan').value = BPJSKesehatanPendapatan;
+            document.getElementById('pdpt_jht').value = BPJSJHTPendapatan;
+            document.getElementById('pdpt_jkk').value = BPJSJKKPendapatan;
+            document.getElementById('pdpt_jkm').value = BPJSJKMPendapatan;
+            document.getElementById('pdpt_pensiun').value = BPJSPensiunPendapatan;
+            document.getElementById('total_pendapatan').value = totalPendapatan;
+
+            var leaves = document.getElementById('leaves').value;
+            var sick_leaves = document.getElementById('sick_leaves').value;
+            var absence_leaves = document.getElementById('absence_leaves').value;
+            var totalHariMasuk = parseInt(hariKerja) - parseInt(leaves) - parseInt(sick_leaves) - parseInt(absence_leaves);
+            document.getElementById('hari_masuk').value = totalHariMasuk;
+
+            var pot_absensi = Math.floor((parseInt(absence_leaves) / parseInt(hariKerja)) * (parseInt(gajiPokok) + parseInt(kinerja)));
+            document.getElementById('pot_absensi').value = pot_absensi;
+
+            var pot_transport = Math.floor((parseInt(leaves) + parseInt(sick_leaves) + parseInt(absence_leaves)) / parseInt(hariKerja) * parseInt(transportPerBulan));
+            document.getElementById('pot_transport').value = pot_transport;
+
+            var pot_makan = Math.floor((parseInt(leaves) + parseInt(sick_leaves) + parseInt(absence_leaves)) / parseInt(hariKerja) * parseInt(makanPerBulan));
+            document.getElementById('pot_makan').value = pot_makan;
+
+            var pot_bpjs_kes = Math.floor(0.01 * parseInt(gajiPokok));
+            document.getElementById('pot_bpjs_kes').value = pot_bpjs_kes;
+
+            var pot_bpjs_tk = Math.floor(0.03 * parseInt(gajiPokok));
+            document.getElementById('pot_bpjs_tk').value = pot_bpjs_tk;
+
+            document.getElementById('sub_bpjs_kes').value = parseInt(BPJSKesehatanPendapatan);
+            document.getElementById('sub_bpjs_tk').value = parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
+            var burden = document.getElementById('burden').value;
+
             var persenBPJSPPH;
             var radioButtons = document.getElementsByName('persenpph');
 
@@ -399,18 +689,23 @@
                 persenBPJSPPH = 5;
             }
 
-            var total = parseInt(gajiPokok) + parseInt(tunjanganTetap);
-            var total_all = total + parseInt(uangMakan) + parseInt(uangTransport) + parseInt(uangLembur);
-            var bpjs_kesehatan = total * (parseInt(persenBPJSKesehatan) / 100);
-            var bpjs_jht = total * (parseInt(persenBPJSJHT) / 100);
-            var bpjs_pensiun = total * (parseInt(persenBPJSPensiun) / 100);
-            var pph = total_all * (parseInt(persenBPJSPPH) / 100);
-            document.getElementById('bpjs_kesehatan').value = bpjs_kesehatan;
-            document.getElementById('bpjs_jht').value = bpjs_jht;
-            document.getElementById('bpjs_pensiun').value = bpjs_pensiun;
-            document.getElementById('pph').value = pph;
-            var thp = total_all - bpjs_kesehatan - bpjs_jht - bpjs_pensiun - pph;
+            var totalPotongan = parseInt(pot_absensi) + parseInt(pot_transport) + parseInt(pot_makan) + parseInt(burden) + parseInt(pot_bpjs_kes) + parseInt(pot_bpjs_tk) +
+                parseInt(BPJSKesehatanPendapatan) + parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
+            document.getElementById('total_potongan').value = parseInt(totalPotongan);
+
+            var thp = totalPendapatan - totalPotongan;
             document.getElementById('thp').value = thp;
+            // var total_all = total + parseInt(uangMakan) + parseInt(uangTransport) + parseInt(uangLembur);
+            // var bpjs_kesehatan = total * (parseInt(persenBPJSKesehatan) / 100);
+            // var bpjs_jht = total * (parseInt(persenBPJSJHT) / 100);
+            // var bpjs_pensiun = total * (parseInt(persenBPJSPensiun) / 100);
+            // var pph = total_all * (parseInt(persenBPJSPPH) / 100);
+            // document.getElementById('bpjs_kesehatan').value = bpjs_kesehatan;
+            // document.getElementById('bpjs_jht').value = bpjs_jht;
+            // document.getElementById('bpjs_pensiun').value = bpjs_pensiun;
+            // document.getElementById('pph').value = pph;
+            // var thp = total_all - bpjs_kesehatan - bpjs_jht - bpjs_pensiun - pph;
+            // document.getElementById('thp').value = thp;
             formatRupiahInputs();
         }
 

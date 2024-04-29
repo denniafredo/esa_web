@@ -12,11 +12,16 @@ class Benefit extends Model
     protected $fillable = [
         'employment_id',
         'basic_salary',
-        'fixed_allowances',
         'meal_allowances',
         'transport_allowances',
-        'overtime_allowances',
-        'persenpph'
+        'persenpph',
+        'day_of_works',
+        'performance_allowances',
+        'leaves',
+        'sick_leaves',
+        'absence_leaves',
+        'burden',
+
     ];
 
     public function employment()
