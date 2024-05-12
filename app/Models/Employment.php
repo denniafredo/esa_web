@@ -28,7 +28,8 @@ class Employment extends Model
         'employment_status_id',
         'employment_division_id',
         'employment_role_id',
-        'leave_quota'
+        'leave_quota',
+        'no_account'
     ];
 
     public function employmentRole()
@@ -54,6 +55,11 @@ class Employment extends Model
     public function historyLeaves()
     {
         return $this->hasMany(HistoryLeave::class);
+    }
+
+    public function benefits()
+    {
+        return $this->hasMany(Benefit::class);
     }
 
 }

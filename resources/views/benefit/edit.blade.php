@@ -75,8 +75,10 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12 text-center">
-                                        <form method="GET" action="{{ route('benefit.export', $employment->nik) }}">
+                                        <form method="GET"
+                                              action="{{ route('benefit.export', $employment->nik) }}">
                                             @csrf
+                                            <input type="hidden" name="periode" value="{{$benefit->periode}}">
                                             <div class="btn-group">
                                                 <button type="submit" name="format" value="pdf"
                                                         class="btn btn-danger btn-sm">
@@ -150,15 +152,44 @@
                         <div class="card-body p-0">
                             <div class="tab-content">
                                 <div id="invoice" class="tab-pane fade show active">
-                                    <div class="d-flex justify-content-between align-items-center p-3">
-                                        <h5>Pendapatan</h5>
-                                    </div>
+
                                     <div class="col-md-12">
                                         <form action="{{route('benefit.update',['benefit' => $employment->nik])}}"
                                               method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="row g-3 date-icon-set-modal">
+                                                <div class="col-md-6 mb-3 pt-2">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="basic_salary"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Nomor
+                                                            Rekening<span style="color: red">*</span> :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control"
+                                                               id="no_account" name="no_account"
+                                                               placeholder="Masukan Nomor Rekening"
+                                                               value="{{$benefit->no_account ?: $employment->no_account}}"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3 pt-2">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="basic_salary"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Periode:</label>
+                                                        <input style="width: 50%;" type="month"
+                                                               class="form-control"
+                                                               id="periode" name="periode"
+                                                               placeholder="Periode"
+                                                               value="{{$benefit->periode}}"
+                                                               onchange="updateUrl(this)"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-3" style="border-top: 2px solid grey;">
+                                                    <div class="d-flex justify-content-between align-items-center pt-2">
+                                                        <h5>Pendapatan</h5>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <label style="width: 50%;" for="basic_salary"
@@ -573,6 +604,12 @@
         </div>
     </div>
     <script>
+        function updateUrl(input) {
+            var selectedMonth = input.value;
+            var urls = '{{ route('benefit.edit', ['benefit' => $employment->nik, 'month' => '']) }}';
+            window.location.href = urls + selectedMonth;
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             hitung();
             formatRupiahInputs();
@@ -674,7 +711,7 @@
 
             document.getElementById('sub_bpjs_kes').value = parseInt(BPJSKesehatanPendapatan);
             document.getElementById('sub_bpjs_tk').value = parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
-            var burden = document.getElementById('burden').value;
+            var burden = document.getElementById('burden').value.replace(/,/g, '');
 
             var persenBPJSPPH;
             var radioButtons = document.getElementsByName('persenpph');
@@ -693,19 +730,10 @@
                 parseInt(BPJSKesehatanPendapatan) + parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
             document.getElementById('total_potongan').value = parseInt(totalPotongan);
 
+            console.log(parseInt(burden));
+
             var thp = totalPendapatan - totalPotongan;
             document.getElementById('thp').value = thp;
-            // var total_all = total + parseInt(uangMakan) + parseInt(uangTransport) + parseInt(uangLembur);
-            // var bpjs_kesehatan = total * (parseInt(persenBPJSKesehatan) / 100);
-            // var bpjs_jht = total * (parseInt(persenBPJSJHT) / 100);
-            // var bpjs_pensiun = total * (parseInt(persenBPJSPensiun) / 100);
-            // var pph = total_all * (parseInt(persenBPJSPPH) / 100);
-            // document.getElementById('bpjs_kesehatan').value = bpjs_kesehatan;
-            // document.getElementById('bpjs_jht').value = bpjs_jht;
-            // document.getElementById('bpjs_pensiun').value = bpjs_pensiun;
-            // document.getElementById('pph').value = pph;
-            // var thp = total_all - bpjs_kesehatan - bpjs_jht - bpjs_pensiun - pph;
-            // document.getElementById('thp').value = thp;
             formatRupiahInputs();
         }
 

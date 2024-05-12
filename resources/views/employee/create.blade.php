@@ -273,6 +273,15 @@
                                             <input type="text" class="form-control" id="leave_quota" name="leave_quota"
                                                    placeholder="Masukkan Jumlah Cuti" value="" required>
                                         </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="leave_quota"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Nomor
+                                                Rekening</label>
+                                            <input type="text" class="form-control" id="no_account" name="no_account"
+                                                   placeholder="Masukkan Nomor Rekening"
+                                                   value=""
+                                                   required>
+                                        </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-12">

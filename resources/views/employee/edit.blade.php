@@ -170,7 +170,7 @@
                                                    class="form-label font-weight-bold text-muted text-uppercase">Email</label>
                                             <input type="text" class="form-control" id="email" name="email"
                                                    placeholder="Masukan Email"
-                                                   value="{{$employment->email}}" required>
+                                                   value="{{$employment->email}}">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="phone2"
@@ -310,6 +310,15 @@
                                             <input type="text" class="form-control" id="leave_quota" name="leave_quota"
                                                    placeholder="Masukkan Jumlah Cuti"
                                                    value="{{$employment->leave_quota}}"
+                                                   required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="leave_quota"
+                                                   class="form-label font-weight-bold text-muted text-uppercase">Nomor
+                                                Rekening</label>
+                                            <input type="text" class="form-control" id="no_account" name="no_account"
+                                                   placeholder="Masukkan Nomor Rekening"
+                                                   value="{{$employment->no_account}}"
                                                    required>
                                         </div>
                                     </div>

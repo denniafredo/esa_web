@@ -21,7 +21,8 @@ class Benefit extends Model
         'sick_leaves',
         'absence_leaves',
         'burden',
-
+        'no_account',
+        'periode',
     ];
 
     public function employment()

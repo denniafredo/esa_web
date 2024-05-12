@@ -32,18 +32,20 @@ class BenefitController extends Controller
     public function edit()
     {
         $employeeNik = Route::current()->parameter('benefit');
+        $month = request()->query('month');
         $employment = Employment::where('nik', $employeeNik)->first();
         if (!$employment) {
             return redirect()->route('benefit.index')->with('error', 'Data karyawan tidak ditemukan');
         }
-        $benefit = Benefit::where('employment_id', $employment->id)->first();
+        $benefit = Benefit::where('employment_id', $employment->id)->where('periode', $month)->first();
         if (!$benefit) {
             $data = [
                 'employment_id' => $employment->id,
+                'periode' => $month
             ];
 
             Benefit::create($data);
-            $benefit = Benefit::where('employment_id', $employment->id)->first();
+            $benefit = Benefit::where('employment_id', $employment->id)->where('periode', $month)->first();
         }
         return view('benefit.edit', compact(['employment', 'benefit']));
     }
@@ -75,7 +77,6 @@ class BenefitController extends Controller
         $request['overtime_allowances'] = str_replace(',', '', $request['overtime_allowances']);
         $request['performance_allowances'] = str_replace(',', '', $request['performance_allowances']);
         $request['burden'] = str_replace(',', '', $request['burden']);
-
         $benefit->update($request->all());
 
         return redirect()->back()
@@ -89,13 +90,13 @@ class BenefitController extends Controller
     public function export(Request $request, $nik)
     {
         $employee = Employment::where('nik', $nik)->first();
-
+        $periode = $request->input('periode');
         if ($employee) {
             $format = $request->input('format');
             $filename = 'benefit_' . $employee->name . '_' . date(now());
-            $benefit = Benefit::where('employment_id', $employee->id)->first();
-
+            $benefit = Benefit::where('employment_id', $employee->id)->where('periode', $periode)->first();
             if ($format == 'pdf') {
+//                return view('pdf.benefit', compact('benefit'));
                 $pdf = PDF::loadView('pdf.benefit', compact('benefit'));
                 return $pdf->download($filename . '.pdf');
             } else if ($format == 'excel') {

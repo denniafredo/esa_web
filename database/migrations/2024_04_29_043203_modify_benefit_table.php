@@ -24,6 +24,8 @@ return new class extends Migration {
             $table->integer('transport_allowances')->default(0);
             $table->integer('persenpph')->default(5);
             $table->integer('burden')->default(0);
+            $table->string('no_account')->nullable();
+            $table->string('periode')->nullable();
             $table->timestamps();
 
             $table->foreign('employment_id')->references('id')->on('employments');

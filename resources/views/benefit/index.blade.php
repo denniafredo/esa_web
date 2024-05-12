@@ -52,7 +52,7 @@
                                             <tbody>
                                             @foreach($employments as $employment)
                                                 <tr class="white-space-no-wrap benefit-list"
-                                                    onclick="window.location='{{route('benefit.edit', $employment->nik)}}'">
+                                                    onclick="window.location='{{route('benefit.edit', ['benefit' => $employment->nik, 'month' => now()->format('Y-m')])}}'">
                                                     <td>
                                                         <div class="active-project-1 d-flex align-items-center mt-0 ">
                                                             <div class="h-avatar is-medium">
@@ -72,7 +72,7 @@
                                                             <div class="data-content">
                                                                 <div>
                                                                     <span
-                                                                        class="font-weight-bold">{{$employment->name}}</span>
+                                                                            class="font-weight-bold">{{$employment->name}}</span>
                                                                 </div>
                                                                 <p class="m-0 text-secondary small">
                                                                     {{$employment->employmentRole->name}}
