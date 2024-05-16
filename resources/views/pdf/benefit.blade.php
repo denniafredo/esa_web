@@ -130,14 +130,14 @@ $sisaCuti = $benefit->leave_rights - $totalAbsensi;
     </tr>
     <tr>
         <td>- Transport</td>
-        <td>Rp. {{ number_format($benefit->transport_allowances, 0, '.', ',') }}</td>
+        <td>Rp. {{ number_format($transportPerBulan, 0, '.', ',') }}</td>
         <td width="15%" colspan="2">Pinjaman / Tanggungan</td>
         <td width="35%">Rp. {{ number_format($burden, 0, '.', ',') }}</td>
 
     </tr>
     <tr>
         <td>- Makan</td>
-        <td>Rp. {{ number_format($benefit->meal_allowances, 0, '.', ',') }}</td>
+        <td>Rp. {{ number_format($makanPerBulan, 0, '.', ',') }}</td>
         <td width="15%" colspan="2">Potongan BPJS Kesehatan</td>
         <td width="35%">Rp. {{ number_format($pot_bpjs_kes, 0, '.', ',') }}</td>
 

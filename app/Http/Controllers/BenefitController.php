@@ -206,10 +206,10 @@ class BenefitController extends Controller
         $worksheet->setCellValue('C11', number_format($benefit->performance_allowances, 0, '.', ','));
         $worksheet->setCellValue('A12', '- Transport');
         $worksheet->setCellValue('B12', ':');
-        $worksheet->setCellValue('C12', number_format($benefit->transport_allowances, 0, '.', ','));
+        $worksheet->setCellValue('C12', number_format($transportPerBulan, 0, '.', ','));
         $worksheet->setCellValue('A13', '- Makan');
         $worksheet->setCellValue('B13', ':');
-        $worksheet->setCellValue('C13', number_format($benefit->meal_allowances, 0, '.', ','));
+        $worksheet->setCellValue('C13', number_format($makanPerBulan, 0, '.', ','));
         $worksheet->setCellValue('A14', '- BPJS TK');
         $worksheet->setCellValue('B14', ':');
         $worksheet->setCellValue('C14', number_format($totalBPJKTK, 0, '.', ','));
