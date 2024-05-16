@@ -179,21 +179,19 @@ $sisaCuti = $benefit->leave_rights - $totalAbsensi;
 <table style="border: none !important;">
     <tr>
         <td width="10%">Hak Cuti</td>
-        <td width="40%">: {{ $benefit->leave_rights }}</td>
-        <td width="25%"><b>GAJI BERSIH DITERIMA</b></td>
+        <td width="35%">: {{ $benefit->leave_rights }}</td>
+        <td width="30%"><b>GAJI BERSIH DITERIMA</b></td>
         <td width="25%">Rp. {{ number_format($thp, 0, '.', ',') }}</td>
     </tr>
     <tr>
         <td width="10%">Diambil</td>
         <td width="40%">: {{ $totalAbsensi }}</td>
-        <td width="25%"></td>
-        <td width="25%" align="center">Ungaran, {{ Carbon::now()->format('d F Y') }}</td>
+        <td width="25%" colspan="2" align="center">Ungaran, {{ Carbon::now()->format('d F Y') }}</td>
     </tr>
     <tr>
         <td width="10%">Sisa</td>
         <td width="40%">: {{$sisaCuti}}</td>
-        <td width="25%"></td>
-        <td width="25%" align="center">HRD</td>
+        <td width="25%" colspan="2" align="center">HRD</td>
     </tr>
 </table>
 </body>
