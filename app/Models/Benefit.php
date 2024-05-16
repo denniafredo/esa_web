@@ -14,7 +14,7 @@ class Benefit extends Model
         'basic_salary',
         'meal_allowances',
         'transport_allowances',
-        'persenpph',
+        'potongan_pph_21',
         'day_of_works',
         'performance_allowances',
         'leaves',
@@ -23,6 +23,7 @@ class Benefit extends Model
         'burden',
         'no_account',
         'periode',
+        'leave_rights',
     ];
 
     public function employment()

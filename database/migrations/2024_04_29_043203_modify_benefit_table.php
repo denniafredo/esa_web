@@ -22,10 +22,11 @@ return new class extends Migration {
             $table->integer('basic_salary')->default(0);
             $table->integer('meal_allowances')->default(0);
             $table->integer('transport_allowances')->default(0);
-            $table->integer('persenpph')->default(5);
+            $table->integer('potongan_pph_21')->default(0);
             $table->integer('burden')->default(0);
             $table->string('no_account')->nullable();
             $table->string('periode')->nullable();
+            $table->integer('leave_rights')->default(0);
             $table->timestamps();
 
             $table->foreign('employment_id')->references('id')->on('employments');

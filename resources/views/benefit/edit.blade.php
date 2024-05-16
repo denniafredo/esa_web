@@ -362,6 +362,21 @@
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <label style="width: 50%;" for="leaves"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Hak
+                                                            Cuti<span
+                                                                    style="color: red">*</span> :</label>
+                                                        <input style="width: 50%;" type="number"
+                                                               class="form-control rupiah"
+                                                               id="leave_rights" name="leave_rights"
+                                                               placeholder=""
+                                                               value="{{$benefit->leave_rights}}" min="0" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="leaves"
                                                                class="form-label font-weight-bold text-muted text-uppercase">Cuti<span
                                                                     style="color: red">*</span> :</label>
                                                         <input style="width: 50%;" type="number"
@@ -519,47 +534,60 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <div class="row align-items-center justify-content-between">
-                                                        <div class="col-md-6">
-                                                            <label for="pph"
-                                                                   class="form-label font-weight-bold text-muted text-uppercase">Potongan
-                                                                PPH :</label>
-                                                            <div class="btn-group btn-group-sm" data-toggle="buttons">
-                                                                <label class="btn btn-secondary @if($benefit->persenpph == 5) active @endif">
-                                                                    <input type="radio" id="pph5" name="persenpph"
-                                                                           value="5"
-                                                                           @if($benefit->persenpph == 5) checked @endif>
-                                                                    5%
-                                                                </label>
-                                                                <label class="btn btn-secondary @if($benefit->persenpph == 15) active @endif">
-                                                                    <input type="radio" id="pph15" name="persenpph"
-                                                                           value="15"
-                                                                           @if($benefit->persenpph == 15) checked @endif>
-                                                                    15%
-                                                                </label>
-                                                                <label class="btn btn-secondary @if($benefit->persenpph == 25) active @endif">
-                                                                    <input type="radio" id="pph25" name="persenpph"
-                                                                           value="25"
-                                                                           @if($benefit->persenpph == 25) checked @endif>
-                                                                    25%
-                                                                </label>
-                                                                <label class="btn btn-secondary @if($benefit->persenpph == 30) active @endif">
-                                                                    <input type="radio" id="pph30" name="persenpph"
-                                                                           value="30"
-                                                                           @if($benefit->persenpph == 30) checked @endif>
-                                                                    30%
-                                                                </label>
-                                                            </div>
-
-
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input style="width: 100%;" type="text"
-                                                                   class="form-control rupiah" id="pph" name="pph"
-                                                                   placeholder="0" value="0" readonly>
-                                                        </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="sub_bpjs_tk"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">POTONGAN
+                                                            PPH 21
+                                                            :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="potongan_pph_21" name="potongan_pph_21"
+                                                               placeholder=""
+                                                               value="{{$benefit->potongan_pph_21}}">
                                                     </div>
                                                 </div>
+                                                {{--                                                <div class="col-md-6 mb-3">--}}
+                                                {{--                                                    <div class="row align-items-center justify-content-between">--}}
+                                                {{--                                                        <div class="col-md-6">--}}
+                                                {{--                                                            <label for="pph"--}}
+                                                {{--                                                                   class="form-label font-weight-bold text-muted text-uppercase">Potongan--}}
+                                                {{--                                                                PPH :</label>--}}
+                                                {{--                                                            <div class="btn-group btn-group-sm" data-toggle="buttons">--}}
+                                                {{--                                                                <label class="btn btn-secondary @if($benefit->persenpph == 5) active @endif">--}}
+                                                {{--                                                                    <input type="radio" id="pph5" name="persenpph"--}}
+                                                {{--                                                                           value="5"--}}
+                                                {{--                                                                           @if($benefit->persenpph == 5) checked @endif>--}}
+                                                {{--                                                                    5%--}}
+                                                {{--                                                                </label>--}}
+                                                {{--                                                                <label class="btn btn-secondary @if($benefit->persenpph == 15) active @endif">--}}
+                                                {{--                                                                    <input type="radio" id="pph15" name="persenpph"--}}
+                                                {{--                                                                           value="15"--}}
+                                                {{--                                                                           @if($benefit->persenpph == 15) checked @endif>--}}
+                                                {{--                                                                    15%--}}
+                                                {{--                                                                </label>--}}
+                                                {{--                                                                <label class="btn btn-secondary @if($benefit->persenpph == 25) active @endif">--}}
+                                                {{--                                                                    <input type="radio" id="pph25" name="persenpph"--}}
+                                                {{--                                                                           value="25"--}}
+                                                {{--                                                                           @if($benefit->persenpph == 25) checked @endif>--}}
+                                                {{--                                                                    25%--}}
+                                                {{--                                                                </label>--}}
+                                                {{--                                                                <label class="btn btn-secondary @if($benefit->persenpph == 30) active @endif">--}}
+                                                {{--                                                                    <input type="radio" id="pph30" name="persenpph"--}}
+                                                {{--                                                                           value="30"--}}
+                                                {{--                                                                           @if($benefit->persenpph == 30) checked @endif>--}}
+                                                {{--                                                                    30%--}}
+                                                {{--                                                                </label>--}}
+                                                {{--                                                            </div>--}}
+
+
+                                                {{--                                                        </div>--}}
+                                                {{--                                                        <div class="col-md-6">--}}
+                                                {{--                                                            <input style="width: 100%;" type="text"--}}
+                                                {{--                                                                   class="form-control rupiah" id="pph" name="pph"--}}
+                                                {{--                                                                   placeholder="0" value="0" readonly>--}}
+                                                {{--                                                        </div>--}}
+                                                {{--                                                    </div>--}}
+                                                {{--                                                </div>--}}
                                                 <div class="col-md-6 mb-3">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
@@ -712,25 +740,25 @@
             document.getElementById('sub_bpjs_kes').value = parseInt(BPJSKesehatanPendapatan);
             document.getElementById('sub_bpjs_tk').value = parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
             var burden = document.getElementById('burden').value.replace(/,/g, '');
+            var potongan_pph_21 = document.getElementById('potongan_pph_21').value.replace(/,/g, '');
 
-            var persenBPJSPPH;
-            var radioButtons = document.getElementsByName('persenpph');
+            // var persenBPJSPPH;
+            // var radioButtons = document.getElementsByName('persenpph');
 
-            for (var i = 0; i < radioButtons.length; i++) {
-                if (radioButtons[i].checked) {
-                    persenBPJSPPH = radioButtons[i].value;
-                    break;
-                }
-            }
-            if (persenBPJSPPH === undefined) {
-                persenBPJSPPH = 5;
-            }
+            // for (var i = 0; i < radioButtons.length; i++) {
+            //     if (radioButtons[i].checked) {
+            //         persenBPJSPPH = radioButtons[i].value;
+            //         break;
+            //     }
+            // }
+            // if (persenBPJSPPH === undefined) {
+            //     persenBPJSPPH = 5;
+            // }
 
             var totalPotongan = parseInt(pot_absensi) + parseInt(pot_transport) + parseInt(pot_makan) + parseInt(burden) + parseInt(pot_bpjs_kes) + parseInt(pot_bpjs_tk) +
-                parseInt(BPJSKesehatanPendapatan) + parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
+                parseInt(BPJSKesehatanPendapatan) + parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan)
+                + parseInt(potongan_pph_21);
             document.getElementById('total_potongan').value = parseInt(totalPotongan);
-
-            console.log(parseInt(burden));
 
             var thp = totalPendapatan - totalPotongan;
             document.getElementById('thp').value = thp;
