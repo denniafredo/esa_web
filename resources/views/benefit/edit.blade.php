@@ -232,6 +232,32 @@
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <label style="width: 50%;" for="transport_allowances"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Lembur
+                                                            :</label>
+                                                        <input style="width: 50%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="overtime_allowances" name="overtime_allowances"
+                                                               placeholder="Masukan Uang Lembur"
+                                                               value="{{$benefit->overtime_allowances}}">
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 60%;" for="transport_allowances_month"
+                                                               class="form-label font-weight-bold text-muted text-uppercase">Pendapatan
+                                                            Lainnya :</label>
+                                                        <input style="width: 40%;" type="text"
+                                                               class="form-control rupiah"
+                                                               id="other_allowances"
+                                                               name="other_allowances"
+                                                               placeholder="Masukan Pendapatan Lainnya"
+                                                               value="{{$benefit->other_allowances}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <label style="width: 50%;" for="transport_allowances"
                                                                class="form-label font-weight-bold text-muted text-uppercase">Transport
                                                             (Hari) :</label>
                                                         <input style="width: 50%;" type="text"
@@ -695,6 +721,8 @@
             var makan = document.getElementById('meal_allowances').value.replace(/,/g, '');
             var transport = document.getElementById('transport_allowances').value.replace(/,/g, '');
             var kinerja = document.getElementById('performance_allowances').value.replace(/,/g, '');
+            var lembur = document.getElementById('overtime_allowances').value.replace(/,/g, '');
+            var pendapatan_lainnya = document.getElementById('other_allowances').value.replace(/,/g, '');
 
             var transportPerBulan = parseInt(transport) * parseInt(hariKerja);
             var makanPerBulan = parseInt(makan) * parseInt(hariKerja);
@@ -705,7 +733,7 @@
             var BPJSJKMPendapatan = parseInt(gajiPokok) * 0.003;
             var BPJSPensiunPendapatan = parseInt(gajiPokok) * 0.02;
             var totalPendapatan = parseInt(gajiPokok) + parseInt(kinerja) + parseInt(transportPerBulan) + parseInt(makanPerBulan) +
-                parseInt(BPJSKesehatanPendapatan) + parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan);
+                parseInt(BPJSKesehatanPendapatan) + parseInt(BPJSJHTPendapatan) + parseInt(BPJSJKKPendapatan) + parseInt(BPJSJKMPendapatan) + parseInt(BPJSPensiunPendapatan) + +parseInt(lembur) + parseInt(pendapatan_lainnya);
 
             document.getElementById('transport_allowances_month').value = transportPerBulan;
             document.getElementById('meal_allowances_month').value = makanPerBulan;

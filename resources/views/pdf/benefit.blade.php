@@ -61,8 +61,8 @@ $gajiPokok = $benefit->basic_salary;
 $makan = $benefit->meal_allowances;
 $transport = $benefit->transport_allowances;
 $kinerja = $benefit->performance_allowances;
-
-$persenBPJSPPH = $benefit->persenpph;
+$lembur = $benefit->overtime_allowances;
+$pendapatan_lainnya = $benefit->other_allowances;
 
 $transportPerBulan = intval($transport) * intval($hariKerja);
 $makanPerBulan = intval($makan) * intval($hariKerja);
@@ -74,7 +74,7 @@ $BPJSJKMPendapatan = intval($gajiPokok) * 0.003;
 $BPJSPensiunPendapatan = intval($gajiPokok) * 0.02;
 $totalBPJKTK = $BPJSJHTPendapatan + $BPJSJKKPendapatan + $BPJSJKMPendapatan + $BPJSPensiunPendapatan;
 $totalPendapatan = intval($gajiPokok) + intval($kinerja) + intval($transportPerBulan) + intval($makanPerBulan) +
-    intval($BPJSKesehatanPendapatan) + intval($BPJSJHTPendapatan) + intval($BPJSJKKPendapatan) + intval($BPJSJKMPendapatan) + intval($BPJSPensiunPendapatan);
+    intval($BPJSKesehatanPendapatan) + intval($BPJSJHTPendapatan) + intval($BPJSJKKPendapatan) + intval($BPJSJKMPendapatan) + intval($BPJSPensiunPendapatan) + intval($lembur) + intval($pendapatan_lainnya);
 
 $leaves = intval($benefit->leaves);
 $sick_leaves = intval($benefit->sick_leaves);
@@ -157,14 +157,14 @@ $sisaCuti = $benefit->leave_rights - $totalAbsensi;
 
     </tr>
     <tr>
-        <td></td>
-        <td></td>
+        <td>- Lembur</td>
+        <td>Rp. {{ number_format($lembur, 0, '.', ',') }}</td>
         <td width="15%" colspan="2">Subsidi BPJS TK</td>
         <td width="35%">Rp. {{ number_format($sub_bpjs_tk, 0, '.', ',') }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
+        <td>- Pendapatan Lainnya</td>
+        <td>Rp. {{ number_format($pendapatan_lainnya, 0, '.', ',') }}</td>
         <td width="15%" colspan="2">PPh Pasal 21</td>
         <td width="35%">Rp. {{ number_format($potongan_pph_21, 0, '.', ',') }}</td>
     </tr>

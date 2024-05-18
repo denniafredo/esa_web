@@ -24,6 +24,8 @@ class Benefit extends Model
         'no_account',
         'periode',
         'leave_rights',
+        'overtime_allowances',
+        'other_allowances'
     ];
 
     public function employment()

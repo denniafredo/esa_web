@@ -76,9 +76,12 @@ class BenefitController extends Controller
         $request['meal_allowances'] = str_replace(',', '', $request['meal_allowances']);
         $request['transport_allowances'] = str_replace(',', '', $request['transport_allowances']);
         $request['overtime_allowances'] = str_replace(',', '', $request['overtime_allowances']);
+        $request['other_allowances'] = str_replace(',', '', $request['other_allowances']);
         $request['performance_allowances'] = str_replace(',', '', $request['performance_allowances']);
         $request['burden'] = str_replace(',', '', $request['burden']);
         $request['potongan_pph_21'] = str_replace(',', '', $request['potongan_pph_21']);
+        $request['leave_rights'] = str_replace(',', '', $request['leave_rights']);
+        $request['leave_rights'] = str_replace(',', '', $request['leave_rights']);
         $request['leave_rights'] = str_replace(',', '', $request['leave_rights']);
         $benefit->update($request->all());
 
@@ -119,8 +122,8 @@ class BenefitController extends Controller
         $makan = $benefit->meal_allowances;
         $transport = $benefit->transport_allowances;
         $kinerja = $benefit->performance_allowances;
-
-        $persenBPJSPPH = $benefit->persenpph;
+        $lembur = $benefit->overtime_allowances;
+        $pendapatan_lainnya = $benefit->other_allowances;
 
         $transportPerBulan = intval($transport) * intval($hariKerja);
         $makanPerBulan = intval($makan) * intval($hariKerja);
@@ -131,8 +134,9 @@ class BenefitController extends Controller
         $BPJSJKMPendapatan = intval($gajiPokok) * 0.003;
         $BPJSPensiunPendapatan = intval($gajiPokok) * 0.02;
         $totalBPJKTK = $BPJSJHTPendapatan + $BPJSJKKPendapatan + $BPJSJKMPendapatan + $BPJSPensiunPendapatan;
-        $totalPendapatan = intval($gajiPokok) + intval($kinerja) + intval($transportPerBulan) + intval($makanPerBulan) +
-            intval($BPJSKesehatanPendapatan) + intval($BPJSJHTPendapatan) + intval($BPJSJKKPendapatan) + intval($BPJSJKMPendapatan) + intval($BPJSPensiunPendapatan);
+        $totalPendapatan = intval($gajiPokok) + intval($kinerja) + intval($transportPerBulan) + intval($makanPerBulan)
+            + intval($BPJSKesehatanPendapatan) + intval($BPJSJHTPendapatan) + intval($BPJSJKKPendapatan) + intval($BPJSJKMPendapatan)
+            + intval($BPJSPensiunPendapatan) + intval($lembur) + intval($pendapatan_lainnya);
 
         $leaves = intval($benefit->leaves);
         $sick_leaves = intval($benefit->sick_leaves);
@@ -216,6 +220,12 @@ class BenefitController extends Controller
         $worksheet->setCellValue('A15', '- BPJS Kesehatan');
         $worksheet->setCellValue('B15', ':');
         $worksheet->setCellValue('C15', number_format($BPJSKesehatanPendapatan, 0, '.', ','));
+        $worksheet->setCellValue('A16', '- Lembur');
+        $worksheet->setCellValue('B16', ':');
+        $worksheet->setCellValue('C16', number_format($lembur, 0, '.', ','));
+        $worksheet->setCellValue('A17', '- Pendapatan Lainnya');
+        $worksheet->setCellValue('B17', ':');
+        $worksheet->setCellValue('C17', number_format($pendapatan_lainnya, 0, '.', ','));
 
         $worksheet->setCellValue('G9', 'ABSENSI');
         $worksheet->setCellValue('H9', $totalAbsensi);
