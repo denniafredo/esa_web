@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\AbsenceController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleWebController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BenefitController;
+use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\HistoryLeaveController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,36 +21,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('admin-page', function() {
-//    return 'Halaman untuk Admin';
-//})->middleware('role:admin')->name('admin.page');
-//
-//Route::get('user-page', function() {
-//    return 'Halaman untuk User';
-//})->middleware('role:user')->name('user.page');
-
 Auth::routes();
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
 
-// Rute untuk menangani login dan registrasi
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-// Rute logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('language/{locale}', function ($locale) {
+    Session::put('locale', $locale);
+    return redirect()->back();
+});
+Route::resource('dashboard', DashboardController::class);
+Route::resource('product', ProductController::class);
+Route::resource('articleweb', ArticleWebController::class);
+Route::resource('customer', CustomerController::class);
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
-
-    Route::resource('employee', EmployeeController::class);
-    Route::resource('absence', AbsenceController::class);
-    Route::resource('historyLeave', HistoryLeaveController::class);
-    Route::resource('benefit', BenefitController::class);
-
-    Route::get('/benefit/export/{nik}', [BenefitController::class, 'export'])->name('benefit.export');
-
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('/company-profile', CompanyProfileController::class);
+    Route::resource('/article', ArticleController::class);
 });
 

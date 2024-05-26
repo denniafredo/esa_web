@@ -24,7 +24,7 @@ return array(
         /**
          * The location of the DOMPDF font directory
          *
-         * The location of the directory where DOMPDF will store fonts and font metrics
+         * The location of the directory where DOMPDF will article fonts and font metrics
          * Note: This directory must exist and be writable by the webserver process.
          * *Please note the trailing slash.*
          *
@@ -96,9 +96,9 @@ return array(
             "https://" => ["rules" => []]
         ],
 
-         /**
-          * @var string
-          */
+        /**
+         * @var string
+         */
         'log_output_file' => null,
 
         /**
@@ -171,13 +171,13 @@ return array(
          */
         "default_paper_size" => "a4",
 
-         /**
-          * The default paper orientation.
-          *
-          * The orientation of the page (portrait or landscape).
-          *
-          * @var string
-          */
+        /**
+         * The default paper orientation.
+         *
+         * The orientation of the page (portrait or landscape).
+         *
+         * @var string
+         */
         'default_paper_orientation' => "portrait",
 
         /**

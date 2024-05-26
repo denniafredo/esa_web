@@ -93,14 +93,14 @@ return [
     |--------------------------------------------------------------------------
     |
     | While using one of the framework's cache driven session backends you may
-    | list a cache store that should be used for these sessions. This value
+    | list a cache article that should be used for these sessions. This value
     | must match with one of the application's configured cache "stores".
     |
     | Affects: "apc", "dynamodb", "memcached", "redis"
     |
     */
 
-    'store' => env('SESSION_STORE'),
+    'article' => env('SESSION_STORE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +128,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
     ),
 
     /*

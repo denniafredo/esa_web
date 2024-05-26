@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -19,6 +16,7 @@ class AuthController extends Controller
 
         return redirect()->route('user.page');
     }
+
     public function showLoginForm()
     {
         return view('auth.login');
@@ -33,7 +31,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/');
+            return redirect()->intended('/admin/company-profile');
         }
 
         return back()->withErrors(['email' => 'Email atau password salah.'])->withInput();
@@ -60,7 +58,6 @@ class AuthController extends Controller
 
         $user->save();
 
-        // Setelah registrasi berhasil, arahkan pengguna ke halaman beranda atau halaman lain yang sesuai.
         return redirect('/home');
     }
 
