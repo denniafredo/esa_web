@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('company_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('coverImage');
             $table->string('namaKonten');
             $table->text('konten');
             $table->string('contentName');

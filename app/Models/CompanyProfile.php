@@ -10,6 +10,7 @@ class CompanyProfile extends Model
     use HasFactory;
 
     protected $fillable = [
+        'coverImage',
         'namaKonten',
         'konten',
         'contentName',

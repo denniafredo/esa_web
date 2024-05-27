@@ -44,7 +44,7 @@
         <div class="tbl_head01 tbl_wrap">
             <div class="article-item">
                 <img src="{{$data->coverImage}}" alt="{{$locale == 'en' ? $data->contentName : $data->namaKonten}}">
-                <h3>{{$locale == 'en' ? $data->contentName : $item->namaKonten}}</h3>
+                <h3>{{$locale == 'en' ? $data->contentName : $data->namaKonten}}</h3>
                 <p class="grid-label">{!!$locale == 'en' ? $data->content : $data->konten!!}</p>
                 <p class="grid-date">{{$data->created_at->format('F j, Y')}}</p>
             </div>

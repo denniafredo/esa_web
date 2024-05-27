@@ -25,6 +25,7 @@
                             <table id="datatables-reponsive" class="table table-striped w-100">
                                 <thead>
                                 <tr>
+                                    <th>Cover Image</th>
                                     <th>Nama Konten</th>
                                     <th>Konten</th>
                                     <th>Urutan</th>
@@ -34,6 +35,7 @@
                                 <tbody>
                                 @foreach($data as $item)
                                     <tr>
+                                        <td><img src="{{$item->coverImage}}" alt="" width="250px"></td>
                                         <td>{{$item->namaKonten}}</td>
                                         <td>{{$item->konten}}</td>
                                         <td>{{$item->urutan}}</td>
