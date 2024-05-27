@@ -18,7 +18,7 @@
                 <a href="{{ url('product') }}" class="{{ Request::is('product*') ? 'nav_active' : '' }}"
                    style="color: white">{{ __('PRODUCT INFO') }}</a>
                 <a href="{{ url('articleweb') }}" class="{{ Request::is('article*') ? 'nav_active' : '' }}"
-                   style="color: white">{{ __('STORE INFO') }}</a>
+                   style="color: white">{{ __('ARTICLE') }}</a>
                 <a href="{{ url('customer') }}" class="{{ Request::is('customer*') ? 'nav_active' : '' }}"
                    style="color: white">{{ __('CUSTOMER CENTER') }}</a>
                 <div class="top_search">

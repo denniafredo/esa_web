@@ -97,7 +97,7 @@
             {{--                                <div class="col-md-6">--}}
             {{--                                    <div class="mb-3">--}}
             {{--                                        <label for="inputUsername" class="form-label">Content Render</label>--}}
-            {{--                                        <div id="displayContent" class="border p-3"></div>--}}
+            {{--                                        <div id="displahp artisan seryContent" class="border p-3"></div>--}}
             {{--                                    </div>--}}
             {{--                                </div>--}}
             {{--                            </div>--}}
