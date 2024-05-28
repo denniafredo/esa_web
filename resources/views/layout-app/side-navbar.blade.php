@@ -5,7 +5,7 @@
 @endphp
 <div class="left_navi">
     <div class="left_title">
-        @if($segment == 'dashboard')
+        @if($segment == 'dashboard' OR $segment == '')
             <img src="{{ asset('images/left_title_company.jpg') }}">
         @elseif($segment == 'product')
             <img src="{{ asset('images/left_title_product.jpg') }}">
@@ -14,7 +14,7 @@
         @endif
         <div class="left_sub">
             <ul>
-                @if($segment == 'dashboard')
+                @if($segment == 'dashboard' OR $segment == '')
                     @foreach($companyProfiles as $cp)
                         <li>
                             <a href="{{ route('dashboard.show', $cp->id) }}">{{ $locale == 'en' ? $cp->contentName : $cp->namaKonten }}</a>

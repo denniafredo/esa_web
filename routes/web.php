@@ -35,6 +35,7 @@ Route::get('language/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
 });
+Route::get('/', [DashboardController::class, 'index']);
 Route::resource('dashboard', DashboardController::class);
 Route::resource('product', ProductController::class);
 Route::resource('articleweb', ArticleWebController::class);
