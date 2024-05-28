@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CompanyProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use stdClass;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,16 @@ class DashboardController extends Controller
     {
         $locale = App::getLocale();
         $companyProfiles = CompanyProfile::orderBy('urutan')->get();
-        $companyProfile = $companyProfiles[0];
+        $companyProfile = new stdClass();
+        $companyProfile->contentName = '';
+        $companyProfile->namaKonten = '';
+        $companyProfile->coverImage = '';
+        $companyProfile->konten = '';
+        $companyProfile->content = '';
+        $companyProfile->created_at = '';
+        if (sizeof($companyProfiles) > 0) {
+            $companyProfile = $companyProfiles[0];
+        }
         return view('dashboard.index', compact(['companyProfiles', 'locale', 'companyProfile']));
     }
 

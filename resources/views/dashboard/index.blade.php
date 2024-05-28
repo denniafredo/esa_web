@@ -44,7 +44,7 @@
                 <img src="{{$companyProfile->coverImage}}"
                      alt="{{$locale == 'en' ? $companyProfile->contentName : $companyProfile->namaKonten}}">
                 <p class="grid-label">{!!$locale == 'en' ? $companyProfile->content : $companyProfile->konten!!}</p>
-                <p class="grid-date">{{$companyProfile->created_at->format('F j, Y')}}</p>
+                <p class="grid-date">{{$companyProfile->created_at? $companyProfile->created_at->format('F j, Y'):''}}</p>
             </div>
         </div>
     </div>
