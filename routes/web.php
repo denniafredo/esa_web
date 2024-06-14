@@ -3,10 +3,12 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleWebController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductWebController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -37,12 +39,15 @@ Route::get('language/{locale}', function ($locale) {
 });
 Route::get('/', [DashboardController::class, 'index']);
 Route::resource('dashboard', DashboardController::class);
-Route::resource('product', ProductController::class);
+Route::resource('productweb', ProductWebController::class);
 Route::resource('articleweb', ArticleWebController::class);
 Route::resource('customer', CustomerController::class);
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('/company-profile', CompanyProfileController::class);
     Route::resource('/article', ArticleController::class);
+    Route::resource('/brand', BrandController::class);
+    Route::resource('/product', ProductController::class);
+    Route::get('/categories/{brandId}', [ProductController::class, 'getCategoriesByBrand'])->name('categories.byBrand');
 });
 

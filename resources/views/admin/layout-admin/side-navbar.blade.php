@@ -32,6 +32,23 @@
                             class="align-middle">Article</span>
                 </a>
             </li>
+            <li class="sidebar-item {{ request()->is('admin/brand*') || request()->is('admin/product*') ? ' active' : '' }}">
+                <a data-bs-target="#projects" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-lucide="shopping-bag"></i> <span
+                            class="align-middle">Setting Product</span>
+                </a>
+                <ul id="projects"
+                    class="sidebar-dropdown list-unstyled collapse {{ request()->is('admin/brand*') || request()->is('admin/product*')  ? ' show' : '' }}"
+                    data-bs-parent="#sidebar">
+                    <li class="sidebar-item {{ request()->is('admin/brand*')  ? ' active' : '' }}">
+                        <a
+                                class='sidebar-link' href='{{route('brand.index')}}'>Brand &
+                            Category</a>
+                    </li>
+                    <li class="sidebar-item {{request()->is('admin/product*')  ? ' active' : ''}}"><a
+                                class='sidebar-link' href='{{route('product.index')}}'>Product</a></li>
+                </ul>
+            </li>
         </ul>
 
     </div>

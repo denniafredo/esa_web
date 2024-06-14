@@ -7,7 +7,7 @@
     <div class="left_title">
         @if($segment == 'dashboard' OR $segment == '')
             <img src="{{ asset('images/left_title_company.jpg') }}">
-        @elseif($segment == 'product')
+        @elseif($segment == 'productweb')
             <img src="{{ asset('images/left_title_product.jpg') }}">
         @elseif($segment == 'customer')
             <img src="{{ asset('images/left_title_customer.jpg') }}">
@@ -20,15 +20,15 @@
                             <a href="{{ route('dashboard.show', $cp->id) }}">{{ $locale == 'en' ? $cp->contentName : $cp->namaKonten }}</a>
                         </li>
                     @endforeach
-                @elseif($segment == 'product')
+                @elseif($segment == 'productweb')
                     <li><a href="#basic_line">{{ __('BASIC LINE') }}</a></li>
                     <li><a href="#functionality">{{ __('FUNCTIONALITY') }}</a></li>
                     <li><a href="#sun_care">{{ __('SUN CARE') }}</a></li>
                     <li><a href="#cleansing">{{ __('CLEANSING') }}</a></li>
                 @elseif($segment == 'customer')
-                    <li><a href="#notice">{{ __('NOTICE') }}</a></li>
-                    <li><a href="#qna">{{ __('Q&A') }}</a></li>
-                    <li><a href="#my_order">{{ __('MY ORDER') }}</a></li>
+                    <li><a href="#notice">{{ __('HEAD OFFICE') }}</a></li>
+                    <li><a href="#qna">{{ __('BIZPART') }}</a></li>
+                    <li><a href="#my_order">{{ __('SALES EXECUTIVE') }}</a></li>
                 @endif
             </ul>
         </div>

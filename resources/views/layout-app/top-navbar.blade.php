@@ -15,10 +15,10 @@
             <div class="top_navi">
                 <a href="{{ url('dashboard') }}" class="{{ Request::is('dashboard*') ? 'nav_active' : '' }}"
                    style="color: white">{{ __('COMPANY INFO') }}</a>
-                <a href="{{ url('product') }}" class="{{ Request::is('product*') ? 'nav_active' : '' }}"
+                <a href="{{ url('productweb') }}" class="{{ Request::is('productweb*') ? 'nav_active' : '' }}"
                    style="color: white">{{ __('PRODUCT INFO') }}</a>
-                <a href="{{ url('articleweb') }}" class="{{ Request::is('article*') ? 'nav_active' : '' }}"
-                   style="color: white">{{ __('ARTICLE') }}</a>
+                <a href="{{ url('articleweb') }}" class="{{ Request::is('articleweb*') ? 'nav_active' : '' }}"
+                   style="color: white">{{ __('PRODUCT LABELING') }}</a>
                 <a href="{{ url('customer') }}" class="{{ Request::is('customer*') ? 'nav_active' : '' }}"
                    style="color: white">{{ __('CUSTOMER CENTER') }}</a>
                 <div class="top_search">
