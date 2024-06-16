@@ -49,6 +49,18 @@
                                 class='sidebar-link' href='{{route('product.index')}}'>Product</a></li>
                 </ul>
             </li>
+            <li class="sidebar-item {{ request()->is('admin/head-office*') ? ' active' : '' }}">
+                <a class='sidebar-link' href='{{route('head-office.index')}}'>
+                    <i class="align-middle" data-lucide="home"></i> <span
+                            class="align-middle">Head Office</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/sales-executive*') ? ' active' : '' }}">
+                <a class='sidebar-link' href='{{route('sales-executive.index')}}'>
+                    <i class="align-middle" data-lucide="star"></i> <span
+                            class="align-middle">Sales Executive</span>
+                </a>
+            </li>
         </ul>
 
     </div>

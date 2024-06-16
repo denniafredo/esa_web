@@ -21,14 +21,24 @@
                         </li>
                     @endforeach
                 @elseif($segment == 'productweb')
-                    <li><a href="#basic_line">{{ __('BASIC LINE') }}</a></li>
-                    <li><a href="#functionality">{{ __('FUNCTIONALITY') }}</a></li>
-                    <li><a href="#sun_care">{{ __('SUN CARE') }}</a></li>
-                    <li><a href="#cleansing">{{ __('CLEANSING') }}</a></li>
+                    @if(request('brand') != null AND request('searchProduct') == null)
+                        <li>
+                            <a href="{{ url()->current() }}?{{ http_build_query(array_merge(request()->query(), ['category' => null])) }}">
+                                {{ App::getLocale() == 'en' ? 'All Category' : "Semua Category" }}
+                            </a>
+                        </li>
+                        @foreach($selectedBrand->categories as $category)
+                            <li>
+                                <a href="{{ url()->current() }}?{{ http_build_query(array_merge(request()->query(), ['category' => $category->id])) }}">
+                                    {{ App::getLocale() == 'en' ? $category->name : $category->nama }}
+                                </a>
+                            </li>
+                        @endforeach
+                    @endif
                 @elseif($segment == 'customer')
-                    <li><a href="#notice">{{ __('HEAD OFFICE') }}</a></li>
-                    <li><a href="#qna">{{ __('BIZPART') }}</a></li>
-                    <li><a href="#my_order">{{ __('SALES EXECUTIVE') }}</a></li>
+                    <li><a href="#head-office">{{ __('HEAD OFFICE') }}</a></li>
+                    <li><a href="#bizpart">{{ __('BIZPART') }}</a></li>
+                    <li><a href="#sales-executive">{{ __('SALES EXECUTIVE') }}</a></li>
                 @endif
             </ul>
         </div>

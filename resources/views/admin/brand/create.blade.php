@@ -9,9 +9,29 @@
                 <div class="col-md-12 col-xl-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('brand.index') }}" method="POST">
+                            <form action="{{ route('brand.index') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="inputUsername" class="form-label">Brand Image
+                                                <i class="align-middle" data-lucide="star" style="color: red"></i>
+                                            </label>
+                                            <div class="mb-3">
+                                                <div class="text-center">
+                                                    <img alt="" src="" id="showImg" class="img-responsive mt-2"
+                                                         style="max-width: 400px;"/>
+                                                    <div class="mt-2">
+                                                        <input type="file" class="form-control" name="brandImage"
+                                                               id="brandImage"
+                                                               onchange="previewImage(event)" required>
+                                                    </div>
+                                                    <small>Upload cover image for brand here. (JPG, JPEG, PNG) (Max.
+                                                        Size 2 Mb)</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="namaKonten" class="form-label">Nama Brand
@@ -87,5 +107,15 @@
                 $(this).closest('tr').remove();
             });
         });
+
+        function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img = document.getElementById('showImg');
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     </script>
 @endsection

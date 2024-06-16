@@ -53,17 +53,18 @@ class ProductController extends Controller
             $categories = $request->input('category');
 
             $categoryProductData = [];
-            for ($i = 0; $i < count($categories); $i++) {
-                $category = $categories[$i];
-                if ($category) {
-                    $categoryProductData[] = [
-                        'product_id' => $product->id,
-                        'category_id' => intval($category),
-                    ];
+            if (is_array($categories) && !empty($categories)) {
+                for ($i = 0; $i < count($categories); $i++) {
+                    $category = $categories[$i];
+                    if ($category) {
+                        $categoryProductData[] = [
+                            'product_id' => $product->id,
+                            'category_id' => intval($category),
+                        ];
 
+                    }
                 }
             }
-
             if (!empty($categoryProductData)) {
                 ProductCategory::insert($categoryProductData);
             }
@@ -107,8 +108,8 @@ class ProductController extends Controller
             $data = $request->only(['nama', 'name', 'brand', 'deskripsi', 'description']);
 
             // Handle file upload if a new cover image is provided
-            if ($request->file('image')) {
-                $productImage = $request->file('image');
+            if ($request->file('productImage')) {
+                $productImage = $request->file('productImage');
                 $productImageName = time() . '_' . $productImage->getClientOriginalName();
                 $productImagePath = '/storage/product_images/' . $productImageName; // Assuming you want to product images in /storage/product_images folder
 
@@ -126,23 +127,25 @@ class ProductController extends Controller
                     }
                 }
             }
-
-            $product->update($data);
+            
+            $data['brand_id'] = $request->input('brand');
+            $updated = $product->update($data);
             ProductCategory::where('product_id', $id)->delete();
 
             $categories = $request->input('category');
             $categoryProductData = [];
-            for ($i = 0; $i < count($categories); $i++) {
-                $category = $categories[$i];
-                if ($category) {
-                    $categoryProductData[] = [
-                        'product_id' => $product->id,
-                        'category_id' => intval($category),
-                    ];
+            if (is_array($categories) && !empty($categories)) {
+                for ($i = 0; $i < count($categories); $i++) {
+                    $category = $categories[$i];
+                    if ($category) {
+                        $categoryProductData[] = [
+                            'product_id' => $product->id,
+                            'category_id' => intval($category),
+                        ];
 
+                    }
                 }
             }
-
             if (!empty($categoryProductData)) {
                 ProductCategory::insert($categoryProductData);
             }
@@ -167,14 +170,14 @@ class ProductController extends Controller
                     unlink($productImagePath);
                 }
             }
+            ProductCategory::where('product_id', $id)->delete();
 
             // Delete the product
             $product->delete();
 
             return redirect()->route('product.index')->with('success', 'Product Deleted Successfully');
         } catch (Exception $e) {
-            // Log the exception and return an error message
-            Log::error('Error deleting product: ' . $e->getMessage());
+            dd($e->getMessage());
             return redirect()->route('product.index')->with('error', 'An error occurred while deleting the product. Please try again.');
         }
     }

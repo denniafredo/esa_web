@@ -7,8 +7,10 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HeadOfficeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductWebController;
+use App\Http\Controllers\SalesExecutiveController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -48,6 +50,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('/article', ArticleController::class);
     Route::resource('/brand', BrandController::class);
     Route::resource('/product', ProductController::class);
+    Route::resource('/head-office', HeadOfficeController::class);
+    Route::resource('/sales-executive', SalesExecutiveController::class);
     Route::get('/categories/{brandId}', [ProductController::class, 'getCategoriesByBrand'])->name('categories.byBrand');
 });
 

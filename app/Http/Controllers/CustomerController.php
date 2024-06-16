@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HeadOffice;
+use App\Models\SalesExecutive;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
     public function index()
     {
-        return view('customer.index');
+        $headOffices = HeadOffice::all();
+        $salesExecutives = SalesExecutive::all();
+        return view('customer.index', compact(['headOffices', 'salesExecutives']));
     }
 
 

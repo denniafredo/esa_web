@@ -30,7 +30,7 @@
                                                                id="productImage"
                                                                onchange="previewImage(event)" {{ empty($data->image) ? 'required' : '' }}>
                                                     </div>
-                                                    <small>Upload cover image for article here. (JPG, JPEG, PNG) (Max.
+                                                    <small>Upload cover image for product here. (JPG, JPEG, PNG) (Max.
                                                         Size 2 Mb)</small>
                                                 </div>
                                             </div>
@@ -46,7 +46,7 @@
                                         <select class="form-control select2" id="brand" name="brand"
                                                 data-toggle="select2">
                                             @foreach($brands as $brand)
-                                                <option value="{{$brand->id}}" {{$data->brand_id ? 'selected' : ''}}>{{$brand->name}}</option>
+                                                <option value="{{$brand->id}}" {{$data->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -57,7 +57,7 @@
                                                 multiple="multiple"
                                                 data-toggle="select2">
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id}}" {{in_array($category->id, $selectedCategories) ? 'selected':''}}>{{$category->name}}</option>
+                                                <option value="{{$category->id}}" {{in_array($category->id, $selectedCategories) ? 'selected':''}}>{{$category->nama}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -135,7 +135,7 @@
                             var categorySelect = $('#category');
                             categorySelect.empty(); // Clear existing options
                             data.forEach(function (category) {
-                                categorySelect.append(new Option(category.name, category.id));
+                                categorySelect.append(new Option(category.nama, category.id));
                             });
                             categorySelect.trigger('change'); // Notify select2 of changes
                         },

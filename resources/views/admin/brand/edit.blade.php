@@ -3,16 +3,38 @@
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
-            <h1 class="h3 mb-3">New Brand</h1>
+            <h1 class="h3 mb-3">Edit Brand</h1>
 
             <div class="row">
                 <div class="col-md-12 col-xl-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('brand.update',$data->id)}}" method="POST">
+                            <form action="{{route('brand.update',$data->id)}}" method="POST"
+                                  enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="inputUsername" class="form-label">Brand Image
+                                                <i class="align-middle" data-lucide="star" style="color: red"></i>
+                                            </label>
+                                            <div class="mb-3">
+                                                <div class="text-center">
+                                                    <img alt="" src="{{$data->image}}" id="showImg"
+                                                         class="img-responsive mt-2"
+                                                         style="max-width: 400px;"/>
+                                                    <div class="mt-2">
+                                                        <input type="file" class="form-control" name="brandImage"
+                                                               id="brandImage"
+                                                               onchange="previewImage(event)" {{ empty($data->image) ? 'required' : '' }}>
+                                                    </div>
+                                                    <small>Upload cover image for product here. (JPG, JPEG, PNG) (Max.
+                                                        Size 2 Mb)</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="namaKonten" class="form-label">Nama Brand
@@ -95,5 +117,15 @@
                 $(this).closest('tr').remove();
             });
         });
+
+        function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img = document.getElementById('showImg');
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     </script>
 @endsection

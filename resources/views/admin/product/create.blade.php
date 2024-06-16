@@ -27,7 +27,7 @@
                                                                id="productImage"
                                                                onchange="previewImage(event)" required>
                                                     </div>
-                                                    <small>Upload cover image for article here. (JPG, JPEG, PNG) (Max.
+                                                    <small>Upload cover image for product here. (JPG, JPEG, PNG) (Max.
                                                         Size 2 Mb)</small>
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@
                             var categorySelect = $('#category');
                             categorySelect.empty(); // Clear existing options
                             data.forEach(function (category) {
-                                categorySelect.append(new Option(category.name, category.id));
+                                categorySelect.append(new Option(category.nama, category.id));
                             });
                             categorySelect.trigger('change'); // Notify select2 of changes
                         },

@@ -25,15 +25,25 @@ class BrandController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
+                'brandImage' => 'required',
             ]);
             $namaBrand = $request->input('name');
-
             $checkBrand = Brand::where('name', $namaBrand)->first();
             if ($checkBrand) {
                 return redirect()->route('brand.index')->with('info', 'Brand Already exists');
             }
 
-            $brand = Brand::create(['name' => $namaBrand]);
+            $brandImage = $request->file('brandImage');
+            $brandImageName = time() . '_' . $brandImage->getClientOriginalName();
+            $brandImagePath = '/storage/brand_images/' . $brandImageName;
+            $brandImage->move(public_path('storage/brand_images'), $brandImageName);
+
+            $data = [
+                'image' => $brandImagePath,
+                'name' => $namaBrand,
+            ];
+
+            $brand = Brand::create($data);
             $brandId = $brand->id;
 
             $kategories = $request->input('kategori');
@@ -89,6 +99,32 @@ class BrandController extends Controller
             }
 
             $brand = Brand::findOrFail($id);
+
+            $data = $request->only(['name']);
+
+            // Handle file upload if a new cover image is provided
+            if ($request->file('brandImage')) {
+
+                $brandImage = $request->file('brandImage');
+                $brandImageName = time() . '_' . $brandImage->getClientOriginalName();
+                $brandImagePath = '/storage/brand_images/' . $brandImageName;
+
+                // Move the new file to the desired location
+                $brandImage->move(public_path('storage/brand_images'), $brandImageName);
+
+                // Add the new cover image path to the data array
+                $data['image'] = $brandImagePath;
+
+                // Optionally, delete the old cover image file if it exists
+                if ($brand->image) {
+                    $oldImagePath = public_path($brand->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+            }
+            $brand->update($data);
+
             Category::where('brand_id', $brand->id)->delete();
             $kategories = $request->input('kategori');
             $categories = $request->input('category');
