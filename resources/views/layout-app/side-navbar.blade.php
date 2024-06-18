@@ -37,7 +37,7 @@
                     @endif
                 @elseif($segment == 'customer')
                     <li><a href="#head-office">{{ __('HEAD OFFICE') }}</a></li>
-                    <li><a href="#bizpart">{{ __('BIZPART') }}</a></li>
+                    <li><a href="https://forms.gle/4KAZzDsZb3vWxEyLA" target="_blank">{{ __('BIZPART') }}</a></li>
                     <li><a href="#sales-executive">{{ __('SALES EXECUTIVE') }}</a></li>
                 @endif
             </ul>
