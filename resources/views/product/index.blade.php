@@ -92,7 +92,8 @@
                                               action="{{ route('productweb.index') }}" method="GET">
                                             <label>
                                                 <input class="newsletter__subscribe--input"
-                                                       placeholder="Enter Product name" name="searchProduct" type="text"
+                                                       placeholder="{{__('Enter Product name')}}" name="searchProduct"
+                                                       type="text"
                                                        style="padding: 0 200px 0 1rem">
                                             </label>
                                             <button class="newsletter__subscribe--button"
