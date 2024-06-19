@@ -23,13 +23,13 @@
             <div class="container content_desc head-office active">
                 <div class="cart__section--inner">
                     <form action="#">
-                        <h2 class="cart__title mb-30">Head Office</h2>
+                        <h2 class="cart__title mb-30">{{__('HEAD OFFICE')}}</h2>
                         <div class="cart__table">
                             <table class="cart__table--inner">
                                 <thead class="cart__table--header">
                                 <tr class="cart__table--header__items">
                                     <th class="cart__table--header__list">No</th>
-                                    <th class="cart__table--header__list">Name</th>
+                                    <th class="cart__table--header__list">{{__('Name')}}</th>
                                     <th class="cart__table--header__list">Email</th>
                                     <th class="cart__table--header__list">Phone</th>
                                 </tr>
@@ -67,7 +67,7 @@
                                 <thead class="cart__table--header">
                                 <tr class="cart__table--header__items">
                                     <th class="cart__table--header__list">No</th>
-                                    <th class="cart__table--header__list">Name</th>
+                                    <th class="cart__table--header__list">{{__('Name')}}</th>
                                     <th class="cart__table--header__list">Email</th>
                                     <th class="cart__table--header__list">Phone</th>
                                 </tr>
