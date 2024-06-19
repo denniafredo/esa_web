@@ -27,8 +27,8 @@
                                         <h3 class="blog__card--title"><a
                                                     href="{{route('articleweb.show', $item->id)}}">{{App::getLocale() == 'en' ? $item->contentName : $item->namaKonten}}</a>
                                         </h3>
-                                        <a class="blog__card--link" href="{{route('articleweb.show', $item->id)}}">Read
-                                            More</a>
+                                        <a class="blog__card--link"
+                                           href="{{route('articleweb.show', $item->id)}}">{{__('Read More')}}</a>
                                     </div>
                                 </article>
                             </div>
