@@ -2,48 +2,6 @@
 
 @section('content')
     <style>
-        /* CSS for table formatting (unchanged) */
-        .tbl_head01 {
-            width: 100%;
-            margin-bottom: 20px;
-            border-collapse: collapse;
-            border-spacing: 0;
-            background-color: #fff;
-            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .tbl_head01 th, .tbl_head01 td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .tbl_head01 th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-
-        .tbl_head01 tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .tbl_wrap {
-            overflow-x: auto;
-        }
-
-        .content_title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .sub_navi {
-            font-size: 14px;
-            color: #999;
-        }
-
-        /* CSS to hide sections by default and add transition */
         .content_desc {
             opacity: 0;
             visibility: hidden;
@@ -59,78 +17,89 @@
             max-height: 1000px; /* Arbitrary large value to ensure the content fits */
         }
     </style>
-
-
-
-    <div class="content_desc head-office active">
-        <!-- Only add 'active' class if fragment matches -->
-        <div class="content_title">
-            <div class="sub_title">
-                <p>HEAD OFFICE</p>
+    <main class="main__content_wrapper">
+        <!-- cart section start -->
+        <section class="cart__section section--padding ">
+            <div class="container content_desc head-office active">
+                <div class="cart__section--inner">
+                    <form action="#">
+                        <h2 class="cart__title mb-30">Head Office</h2>
+                        <div class="cart__table">
+                            <table class="cart__table--inner">
+                                <thead class="cart__table--header">
+                                <tr class="cart__table--header__items">
+                                    <th class="cart__table--header__list">No</th>
+                                    <th class="cart__table--header__list">Name</th>
+                                    <th class="cart__table--header__list">Email</th>
+                                    <th class="cart__table--header__list">Phone</th>
+                                </tr>
+                                </thead>
+                                <tbody class="cart__table--body">
+                                @foreach($headOffices as $key => $headOffice)
+                                    <tr class="cart__table--body__items">
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">{{ $key + 1 }}</span>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <h3 class="cart__content--title h4">{{ $headOffice->name }}
+                                            </h3>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">{{ $headOffice->email }}</span>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">{{ $headOffice->phone }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="sub_navi">
-                <p><img src="{{ asset('images/navi_home.png') }}"> > HEAD OFFICE </p>
+            <div class="container content_desc sales-executive">
+                <div class="cart__section--inner">
+                    <form action="#">
+                        <h2 class="cart__title mb-30">SALES EXECUTIVE</h2>
+                        <div class="cart__table">
+                            <table class="cart__table--inner">
+                                <thead class="cart__table--header">
+                                <tr class="cart__table--header__items">
+                                    <th class="cart__table--header__list">No</th>
+                                    <th class="cart__table--header__list">Name</th>
+                                    <th class="cart__table--header__list">Email</th>
+                                    <th class="cart__table--header__list">Phone</th>
+                                </tr>
+                                </thead>
+                                <tbody class="cart__table--body">
+                                @foreach($salesExecutives as $key => $salesExecutive)
+                                    <tr class="cart__table--body__items">
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">{{ $key + 1 }}</span>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <h3 class="cart__content--title h4">{{ $salesExecutive->name }}
+                                            </h3>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">{{ $salesExecutive->email }}</span>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">{{ $salesExecutive->phone }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="tbl_head01 tbl_wrap">
-            <table>
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Kantor</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($headOffices as $key => $headOffice)
-                    <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td>{{ $headOffice->name }}</td>
-                        <td>{{ $headOffice->email }}</td>
-                        <td>{{ $headOffice->phone }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+        </section>
 
-    <div class="content_desc sales-executive">
-        <!-- Only add 'active' class if fragment matches -->
-        <div class="content_title">
-            <div class="sub_title">
-                <p>SALES EXECUTIVE</p>
-            </div>
-            <div class="sub_navi">
-                <p><img src="{{ asset('images/navi_home.png') }}"> > SALES EXECUTIVE </p>
-            </div>
-        </div>
-        <div class="tbl_head01 tbl_wrap">
-            <table>
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Kantor</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($salesExecutives as $key => $salesExecutive)
-                    <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td>{{ $salesExecutive->name }}</td>
-                        <td>{{ $salesExecutive->email }}</td>
-                        <td>{{ $salesExecutive->phone }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </main>
 
-    <
     <script>
         // JavaScript to handle scrolling to the fragment section
         function setActiveSection() {

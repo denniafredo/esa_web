@@ -1,53 +1,51 @@
 @extends('layout-app.web') <!-- Extend the main template -->
 
 @section('content')
-    <style>
-        .article-item {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-        }
+    <main class="main__content_wrapper">
 
-        .article-item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .article-item h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .article-item p.grid-label {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .article-item p.grid-date {
-            font-size: 14px;
-            color: #666;
-        }
-
-    </style>
-    <div class="content_desc">
-        <div class="content_title">
-            <div class="sub_title">
-                <p>Articles</p>
-            </div>
-            <div class="sub_navi">
-                <p><img src="{{asset('images/navi_home.png')}}"> > Article </p>
+        <!-- Start breadcrumb section -->
+        <div class="breadcrumb__section breadcrumb__bg">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <div class="breadcrumb__content text-center">
+                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
+                                <li class="breadcrumb__content--menu__items"><a href="#">{{__('ARTICLE')}}</a></li>
+                                <li class="breadcrumb__content--menu__items">
+                                    <span>{{App::getLocale()=='en'?$data->contentName:$data->namaKonten}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="tbl_head01 tbl_wrap">
-            <div class="article-item">
-                <img src="{{$data->coverImage}}" alt="{{$locale == 'en' ? $data->contentName : $data->namaKonten}}">
-                <h3>{{$locale == 'en' ? $data->contentName : $data->namaKonten}}</h3>
-                <p class="grid-label">{!!$locale == 'en' ? $data->content : $data->konten!!}</p>
-                <p class="grid-date">{{$data->created_at->format('F j, Y')}}</p>
+        <!-- End breadcrumb section -->
+
+        <!-- Start blog details section -->
+        <section class="blog__details--section section--padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="blog__details--wrapper">
+                            <div class="entry__blog">
+                                <div class="blog__post--header mb-30">
+                                    <h2 class="post__header--title mb-15">{{App::getLocale()=='en'?$data->contentName:$companyProfile->namaKonten}}</h2>
+                                    <p class="blog__post--meta">Posted by : Admin / On
+                                        : {{$data->created_at}} </p>
+                                </div>
+                                <div class="blog__thumbnail mb-30">
+                                    <img class="blog__thumbnail--img border-radius-10"
+                                         src="{{$data->coverImage}}" alt="blog-img">
+                                </div>
+                                <div class="blog__details--content">
+                                    <p class="blog__details--content__desc mb-20">{{App::getLocale()=='en'?$data->content:$data->konten}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 @endsection

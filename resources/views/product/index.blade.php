@@ -1,126 +1,145 @@
 @extends('layout-app.web') <!-- Extend the main template -->
 
 @section('content')
-    @php
-        $brandName = '';
-        $categoryName = '';
-    @endphp
     <style>
-        #brandForm {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .widget__tagcloud--link.active {
+            background-color: #C97F5F;
+            color: #fff; /* Optionally, change text color for better contrast */
         }
+
     </style>
-    <div class="content_desc">
-        <form id="brandForm" action="{{ route('productweb.index') }}" method="GET">
-            <div class="custom-select-wrapper">
-                <div class="custom-select">
-                    <div class="custom-select-trigger">
-                        <span>{{ App::getLocale() == 'en' ? 'Select a Brand' : 'Pilih Brand'}}</span>
-                        <div class="arrow"></div>
-                    </div>
-                    <div class="custom-options">
-                        <div class="custom-option" data-value="null">
-                            {{ App::getLocale() == 'en' ? 'All Brand' : 'Semua Brand'}}
-                        </div>
-                        @foreach($brands as $brand)
-                            <div class="custom-option {{ request('brand') == $brand->id ? 'selected' : '' }}"
-                                 data-value="{{$brand->id}}">
-                                <img src="{{$brand->image}}" alt="Option 1">
-                                {{$brand->name}}
+    <main class="main__content_wrapper">
+        <div class="shop__section section--padding pt-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 shop-col-width-lg-4">
+                        <div class="shop__sidebar--widget widget__area d-none d-lg-block">
+                            <div class="single__widget widget__bg">
+                                <h2 class="widget__title h3">{{__('Brand')}}</h2>
+                                <ul class="widget__tagcloud">
+                                    <li class="widget__tagcloud--list">
+                                        <a class="widget__tagcloud--link @if( !request('brand')) active @endif"
+                                           href="?">
+                                            {{__('All')}}
+                                        </a>
+                                    </li>
+                                    @foreach($brands as $brand)
+                                        <li class="widget__tagcloud--list">
+                                            <a class="widget__tagcloud--link @if($brand->id == request('brand')) active @endif"
+                                               href="?brand={{ $brand->id }}">
+                                                {{ $brand->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        @endforeach
+                        </div>
+                        <br>
+                        @if(request('brand'))
+                            <div class="shop__sidebar--widget widget__area d-none d-lg-block">
+                                <div class="single__widget widget__bg">
+                                    <h2 class="widget__title h3">{{__('Categories')}}</h2>
+                                    <ul class="widget__tagcloud">
+                                        <li class="widget__tagcloud--list">
+                                            <a class="widget__tagcloud--link @if( !request('category')) active @endif"
+                                               href="?brand={{ request('brand') }}">
+                                                {{__('All')}}
+                                            </a>
+                                        </li>
+                                        @foreach($brands as $brand)
+                                            @if($brand->id == request('brand'))
+                                                @foreach($brand->categories as $category)
+                                                    <li class="widget__tagcloud--list">
+                                                        <a class="widget__tagcloud--link @if($category->id == request('category')) active @endif"
+                                                           href="?brand={{ request('brand') }}&category={{ $category->id }}">
+                                                            {{App::getLocale()=='en'? $category->name:$category->nama}}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
+
+                    </div>
+                    <div class="col-xl-9 col-lg-8 shop-col-width-lg-8">
+                        <div class="shop__product--wrapper position__sticky">
+                            <div class="shop__header d-flex align-items-center justify-content-between mb-30">
+                                <div class="product__view--mode d-flex align-items-center">
+                                    <button class="widget__filter--btn d-flex d-lg-none align-items-center"
+                                            data-offcanvas="">
+                                        <svg class="widget__filter--btn__icon" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 512 512">
+                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                  stroke-linejoin="round" stroke-width="28"
+                                                  d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"></path>
+                                            <circle cx="336" cy="128" r="28" fill="none" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="28"></circle>
+                                            <circle cx="176" cy="256" r="28" fill="none" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="28"></circle>
+                                            <circle cx="336" cy="384" r="28" fill="none" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="28"></circle>
+                                        </svg>
+                                        <span class="widget__filter--btn__text">Filter</span>
+                                    </button>
+                                    <div class="product__view--mode__list product__short--by align-items-center d-flex">
+                                        <form class="newsletter__subscribe--form"
+                                              action="{{ route('productweb.index') }}" method="GET">
+                                            <label>
+                                                <input class="newsletter__subscribe--input"
+                                                       placeholder="Enter Product name" name="searchProduct" type="text"
+                                                       style="padding: 0 200px 0 1rem">
+                                            </label>
+                                            <button class="newsletter__subscribe--button"
+                                                    type="submit">{{__("Search Product")}}
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_content">
+                                <div id="product_grid" class="tab_pane active show">
+                                    <div class="product__section--inner">
+                                        <div class="row mb--n30">
+                                            @foreach($products as $product)
+                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6 custom-col mb-30">
+                                                    <article class="product__card">
+                                                        <div class="product__card--thumbnail">
+                                                            <a class="product__card--thumbnail__link display-block"
+                                                               href="{{route('productweb.show',$product->id)}}">
+                                                                <img class="product__card--thumbnail__img product__primary--img"
+                                                                     src="{{$product->image}}"
+                                                                     alt="product-img">
+                                                                <img class="product__card--thumbnail__img product__secondary--img"
+                                                                     src="{{$product->image}}"
+                                                                     alt="product-img">
+                                                            </a>
+                                                        </div>
+                                                        <div class="product__card--content text-center">
+                                                            <h3 class="product__card--title"><a
+                                                                        href="{{route('productweb.show',$product->id)}}">{{App::getLocale() == 'en'? $product->name : $product->nama}} </a>
+                                                            </h3>
+                                                            <div class="product__card--price">
+                                                                <span class="current__price"
+                                                                      style="color: black;font-style: italic">{{ App::getLocale() == 'en' ? $product->categories->pluck('name')->implode(', ') : $product->categories->pluck('nama')->implode(', ')}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <select name="brand" id="real-select" style="display: none;">
-                @foreach($brands as $brand)
-                    @php
-                        if($brand->id == request('brand')){
-                            $brandName = $brand->name;
-                        }
-                        foreach($brand->categories as $category){
-                            if($category->id == request('category')){
-                                if(App::getLocale() == 'en'){
-                                    $categoryName = $category->name;
-                                }else{
-                                    $categoryName = $category->nama;
-                                }
-                            }
-                        }
-                    @endphp
-                    <option value="{{$brand->id}}" {{$brand->id == request('brand') ? 'selected' : ''}}>{{$brand->name}}</option>
-                @endforeach
-            </select>
-            <div class="top_search">
-                <fieldset id="hd_sch">
-                    <legend>Search</legend>
-                    <input type="text" name="searchProduct" id="sch_stx" maxlength="20">
-                    <input type="submit" id="sch_submit" value="">
-                </fieldset>
-            </div>
-        </form>
-
-        <div class="content_title">
-            <div class="sub_title">
-                <p>{{$brandName != null ? $brandName: (App::getLocale() == 'en' ? 'All Brand' : 'Semua Brand')}}</p>
-            </div>
-            <div class="sub_navi">
-                <p>
-                    <img src="{{asset('images/navi_home.png')}}">> {{$categoryName != null ? $categoryName: (App::getLocale() == 'en' ? 'All Category' : 'Semua Kategori')}}
-                </p>
-            </div>
         </div>
-        <ul class="sct sct_10">
-            @foreach($products as $product)
-                <a href="{{route('productweb.show',$product->id)}}"
-                   style="text-decoration: none;color: black">
-                    <li class="sct_li sct_clear" style="width:250px">
-                        <div class="sct_img">
-                            <img src="{{$product->image}}" width="250" height="220"
-                                 alt="The odbo Renovating AntiWrinkle ORB cream">
-                        </div>
-                        <div class="sct_txt">
-                            {{ App::getLocale() == 'en' ? $product->name : $product->nama }}
-                        </div>
-                        <div class="sct_cost">
-                            {{ App::getLocale() == 'en' ? substr($product->description, 0, 100) . '...'  : substr($product->deskripsi, 0, 100) . '...'  }}
-                        </div>
-                        <small><i>{{ App::getLocale() == 'en' ? $product->categories->pluck('name')->implode(', ') : $product->categories->pluck('nama')->implode(', ') }}</i></small>
-                        <div class="sct_sns" style="top:230px"></div>
-                    </li>
-                </a>
-            @endforeach
-        </ul>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const customSelect = document.querySelector('.custom-select');
-            const customSelectTrigger = customSelect.querySelector('.custom-select-trigger');
-            const customOptions = customSelect.querySelector('.custom-options');
-            const realSelect = document.getElementById('real-select');
-            const brandForm = document.getElementById('brandForm');
-
-            customSelectTrigger.addEventListener('click', function () {
-                customOptions.style.display = customOptions.style.display === 'flex' ? 'none' : 'flex';
-            });
-
-            customOptions.addEventListener('click', function (event) {
-                if (event.target.classList.contains('custom-option')) {
-                    const value = event.target.getAttribute('data-value');
-                    customSelectTrigger.querySelector('span').textContent = event.target.textContent.trim();
-                    realSelect.value = value;
-                    customOptions.style.display = 'none';
-                    brandForm.submit(); // Submit the form when a brand is selected
-                }
-            });
-
-            document.addEventListener('click', function (event) {
-                if (!customSelect.contains(event.target)) {
-                    customOptions.style.display = 'none';
-                }
-            });
-        });
-    </script>
+    </main>
 @endsection

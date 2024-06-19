@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\CompanyProfile;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,8 @@ class ProductWebController extends Controller
 {
     public function index(Request $request)
     {
+        $companyProfiles = CompanyProfile::orderBy('urutan')->get();
+
         $brands = Brand::all();
         $brandId = $request->input('brand');
         $categoryId = $request->input('category');
@@ -46,14 +49,15 @@ class ProductWebController extends Controller
         // Fetch the products collection based on the applied filters
         $products = $productsQuery->get();
 
-        return view('product.index', compact(['products', 'brands', 'selectedBrand']));
+        return view('product.index', compact(['products', 'brands', 'selectedBrand', 'companyProfiles']));
     }
 
 
     public function show($id)
     {
+        $companyProfiles = CompanyProfile::orderBy('urutan')->get();
         $product = Product::find($id);
-        return view('product.show', compact('product'));
+        return view('product.show', compact(['product', 'companyProfiles']));
     }
 
     public function create()

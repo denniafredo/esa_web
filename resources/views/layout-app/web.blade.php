@@ -1,28 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8"/><!-- /Added by HTTrack -->
+
+<!-- Mirrored from risingtheme.com/html/demo-becute/becute/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Jun 2024 11:55:24 GMT -->
 <head>
     <meta charset="utf-8">
+    <title>PT ESA SEMARAK ABADI</title>
+    <meta name="description" content="Morden Bootstrap HTML5 Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="PxEWRCbSiVH8HA8yEWpBDv2sOAUbkcLdxvCs0w6Z">
-    <title>Cosmetic App</title>
-    <link rel="shortcut icon" href="{{asset('favicon.ico')}}"/>
-    <link rel='stylesheet' href="{{asset('css/common.css')}}"/>
-    <link rel='stylesheet' href="{{asset('css/default.css')}}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/top_logo.png')}}">
+
+    <!-- ======= All CSS Plugins here ======== -->
+    <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/plugins/glightbox.min.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;family=Karma:wght@300;400;500;600;700&amp;display=swap"
+          rel="stylesheet">
+
+    <!-- Plugin css -->
+    <link rel="stylesheet" href="{{asset('css/vendor/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
-<script src="{{asset('js/backend-bundle.min.js')}}"></script>
 
+<body>
+<div id="preloader">
+    <div id="ctn-preloader" class="ctn-preloader">
+        <div class="animation-preloader">
+            <div class="spinner"></div>
+            <div class="txt-loading">
+                    <span data-text-preloader="L" class="letters-loading">
+                        L
+                    </span>
 
-@include('layout-app.top-navbar')
-<div id="wrap_sub">
-    <div class="sub_content">
-        @include('layout-app.side-navbar')
-        @yield('content')
+                <span data-text-preloader="O" class="letters-loading">
+                        O
+                    </span>
+
+                <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+
+                <span data-text-preloader="D" class="letters-loading">
+                        D
+                    </span>
+
+                <span data-text-preloader="I" class="letters-loading">
+                        I
+                    </span>
+
+                <span data-text-preloader="N" class="letters-loading">
+                        N
+                    </span>
+
+                <span data-text-preloader="G" class="letters-loading">
+                        G
+                    </span>
+            </div>
+        </div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
     </div>
 </div>
 
+@include('layout-app.top-navbar')
+
+@yield('content')
+
 @include('layout-app.footer')
+
+<script src="{{asset('js/vendor/popper.js')}}" defer="defer"></script>
+<script src="{{asset('js/vendor/bootstrap.min.js')}}" defer="defer"></script>
+<script src="{{asset('js/plugins/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('js/plugins/glightbox.min.js')}}"></script>
+
+<!-- Customscript js -->
+<script src="{{asset('js/script.js')}}"></script>
 </body>
 
 </html>

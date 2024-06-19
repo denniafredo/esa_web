@@ -23,7 +23,7 @@ class DashboardController extends Controller
         if (sizeof($companyProfiles) > 0) {
             $companyProfile = $companyProfiles[0];
         }
-        return view('dashboard.index', compact(['companyProfiles', 'locale', 'companyProfile']));
+        return view('dashboard.index', compact(['companyProfiles', 'companyProfile']));
     }
 
 

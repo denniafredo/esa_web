@@ -1,51 +1,51 @@
 @extends('layout-app.web') <!-- Extend the main template -->
 
 @section('content')
-    <style>
-        .article-item {
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+    <main class="main__content_wrapper">
 
-        .article-item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .article-item h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .article-item p.grid-label {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .article-item p.grid-date {
-            font-size: 14px;
-            color: #666;
-        }
-
-    </style>
-    <div class="content_desc">
-        <div class="content_title">
-            <div class="sub_title">
-                <p>{{$locale == 'en' ? $companyProfile->contentName : $companyProfile->namaKonten}}</p>
-            </div>
-            <div class="sub_navi">
-                <p><img src="{{asset('images/navi_home.png')}}"> > Company Profile </p>
+        <!-- Start breadcrumb section -->
+        <div class="breadcrumb__section breadcrumb__bg">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <div class="breadcrumb__content text-center">
+                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
+                                <li class="breadcrumb__content--menu__items"><a href="#">{{__('COMPANY INFO')}}</a></li>
+                                <li class="breadcrumb__content--menu__items">
+                                    <span>{{App::getLocale()=='en'?$companyProfile->contentName:$companyProfile->namaKonten}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="tbl_head01 tbl_wrap">
-            <div class="article-item">
-                <img src="{{$companyProfile->coverImage}}"
-                     alt="{{$locale == 'en' ? $companyProfile->contentName : $companyProfile->namaKonten}}">
-                <p class="grid-label">{!!$locale == 'en' ? $companyProfile->content : $companyProfile->konten!!}</p>
-                <p class="grid-date">{{$companyProfile->created_at? $companyProfile->created_at->format('F j, Y'):''}}</p>
+        <!-- End breadcrumb section -->
+
+        <!-- Start blog details section -->
+        <section class="blog__details--section section--padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="blog__details--wrapper">
+                            <div class="entry__blog">
+                                <div class="blog__post--header mb-30">
+                                    <h2 class="post__header--title mb-15">{{App::getLocale()=='en'?$companyProfile->contentName:$companyProfile->namaKonten}}</h2>
+                                    <p class="blog__post--meta">Posted by : Admin / On
+                                        : {{$companyProfile->created_at}} </p>
+                                </div>
+                                <div class="blog__thumbnail mb-30">
+                                    <img class="blog__thumbnail--img border-radius-10"
+                                         src="{{$companyProfile->coverImage}}" alt="blog-img">
+                                </div>
+                                <div class="blog__details--content">
+                                    <p class="blog__details--content__desc mb-20">{{App::getLocale()=='en'?$companyProfile->content:$companyProfile->konten}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 @endsection
