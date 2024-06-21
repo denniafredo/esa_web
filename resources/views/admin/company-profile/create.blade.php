@@ -3,9 +3,7 @@
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
-
             <h1 class="h3 mb-3">New Content</h1>
-
             <div class="row">
                 <div class="col-md-12 col-xl-12">
                     <div class="card">
@@ -14,6 +12,8 @@
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+
+
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="inputUsername" class="form-label">Cover Image
@@ -49,8 +49,8 @@
                                                 <label for="inputUsername" class="form-label">Konten
                                                     <i class="align-middle" data-lucide="star" style="color: red"></i>
                                                 </label>
-                                                <textarea rows="10" class="form-control" id="konten" name="konten"
-                                                          placeholder="Ketik Disini..." required></textarea>
+                                                <input type="hidden" name="konten" id="hiddenKonten">
+                                                <div class="q1" style="height: 250px;"></div>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -69,8 +69,8 @@
                                                 <label for="inputUsername" class="form-label">Content
                                                     <i class="align-middle" data-lucide="star" style="color: red"></i>
                                                 </label>
-                                                <textarea rows="10" class="form-control" id="content" name="content"
-                                                          placeholder="Type Here..." required></textarea>
+                                                <input type="hidden" name="content" id="hiddenContent">
+                                                <div class="q2" style="height: 250px;"></div>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -89,47 +89,28 @@
                     </div>
                 </div>
             </div>
-
-            {{--            <div class="row">--}}
-            {{--                <div class="col-md-12 col-xl-12">--}}
-            {{--                    <div class="card">--}}
-            {{--                        <div class="card-body">--}}
-            {{--                            <div class="row">--}}
-            {{--                                <div class="col-md-6">--}}
-            {{--                                    <div class="mb-3">--}}
-            {{--                                        <label for="inputUsername" class="form-label">Lihat Konten</label>--}}
-            {{--                                        <div id="displayKonten" class="border p-3"></div>--}}
-            {{--                                    </div>--}}
-            {{--                                </div>--}}
-            {{--                                <div class="col-md-6">--}}
-            {{--                                    <div class="mb-3">--}}
-            {{--                                        <label for="inputUsername" class="form-label">Content Render</label>--}}
-            {{--                                        <div id="displayContent" class="border p-3"></div>--}}
-            {{--                                    </div>--}}
-            {{--                                </div>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
         </div>
     </main>
     <script>
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     var kontenTextArea = document.getElementById('konten');
-        //     var displayDiv = document.getElementById('displayKonten');
-        //
-        //     kontenTextArea.addEventListener('input', function () {
-        //         displayDiv.innerHTML = kontenTextArea.value;
-        //     });
-        //
-        //     var ContentTextArea = document.getElementById('content');
-        //     var displayContentDiv = document.getElementById('displayContent');
-        //
-        //     ContentTextArea.addEventListener('input', function () {
-        //         displayContentDiv.innerHTML = ContentTextArea.value;
-        //     });
-        // });
+        document.addEventListener("DOMContentLoaded", function () {
+            var konten = new Quill('.q1', {
+                theme: 'snow',
+                placeholder: 'Ketik Disini'
+            });
+            var content = new Quill('.q2', {
+                theme: 'snow',
+                placeholder: 'Type Here'
+            });
+
+            function updateHiddenInputs() {
+                document.getElementById('hiddenKonten').value = konten.root.innerHTML;
+                document.getElementById('hiddenContent').value = content.root.innerHTML;
+            }
+
+            // Attach text-change event listeners to Quill editors
+            konten.on('text-change', updateHiddenInputs);
+            content.on('text-change', updateHiddenInputs);
+        })
 
         function previewImage(event) {
             var input = event.target;

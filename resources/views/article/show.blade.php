@@ -39,7 +39,7 @@
                                          src="{{$data->coverImage}}" alt="blog-img">
                                 </div>
                                 <div class="blog__details--content">
-                                    <p class="blog__details--content__desc mb-20">{{App::getLocale()=='en'?$data->content:$data->konten}}</p>
+                                    <p class="blog__details--content__desc mb-20">{!! App::getLocale()=='en'?$data->content:$data->konten !!}</p>
                                 </div>
                             </div>
                         </div>

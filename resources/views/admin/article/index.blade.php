@@ -36,7 +36,7 @@
                                     <tr>
                                         <td><img src="{{$item->coverImage}}" alt="" width="250px"></td>
                                         <td>{{$item->namaKonten}}</td>
-                                        <td>{{$item->konten}}</td>
+                                        <td>{!! $item->konten !!}</td>
                                         <td>
                                             <div class="d-flex justify-content-end align-items-center">
                                                 <a href="{{route('article.edit', $item->id)}}"
@@ -74,6 +74,6 @@
             });
         });
 
-        
+
     </script>
 @endsection

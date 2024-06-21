@@ -38,7 +38,7 @@
                                         <td>{{$item->brand->name}}</td>
                                         <td><img src="{{$item->image}}" alt="" width="250px"></td>
                                         <td>{{$item->nama}}</td>
-                                        <td>{{$item->deskripsi}}</td>
+                                        <td>{!! $item->deskripsi  !!}</td>
                                         <td>
                                             <div class="d-flex justify-content-end align-items-center">
                                                 <a href="{{route('product.edit', $item->id)}}"

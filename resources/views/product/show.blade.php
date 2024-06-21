@@ -64,7 +64,7 @@
                                     </span>
                                 </div>
                                 <p class="product__details--info__desc mb-15">
-                                    {{App::getLocale()=='en'? $product->description : $product->deskripsi}}
+                                    {!! App::getLocale()=='en'? $product->description : $product->deskripsi !!}
                                 </p>
                             </form>
                         </div>

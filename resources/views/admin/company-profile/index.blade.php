@@ -37,7 +37,7 @@
                                     <tr>
                                         <td><img src="{{$item->coverImage}}" alt="" width="250px"></td>
                                         <td>{{$item->namaKonten}}</td>
-                                        <td>{{$item->konten}}</td>
+                                        <td>{!! $item->konten !!}</td>
                                         <td>{{$item->urutan}}</td>
                                         <td>
                                             <div class="d-flex justify-content-end align-items-center">

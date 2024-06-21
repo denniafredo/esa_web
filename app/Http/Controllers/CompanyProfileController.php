@@ -21,28 +21,32 @@ class CompanyProfileController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'namaKonten' => 'required',
-            'konten' => 'required',
-            'contentName' => 'required',
-            'content' => 'required',
-            'urutan' => 'nullable|integer|min:1',
-        ]);
-        $coverImage = $request->file('coverImage');
-        $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
-        $coverImagePath = '/storage/cover_images/' . $coverImageName; // Assuming you want to article images in /storage/cover_images folder
-        $coverImage->move(public_path('storage/cover_images'), $coverImageName);
+        try {
+            $request->validate([
+                'namaKonten' => 'required',
+                'konten' => 'required',
+                'contentName' => 'required',
+                'content' => 'required',
+                'urutan' => 'nullable|integer|min:1',
+            ]);
+            $coverImage = $request->file('coverImage');
+            $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
+            $coverImagePath = '/storage/cover_images/' . $coverImageName; // Assuming you want to article images in /storage/cover_images folder
+            $coverImage->move(public_path('storage/cover_images'), $coverImageName);
 
-        $data = [
-            'coverImage' => $coverImagePath,
-            'namaKonten' => $request->input('namaKonten'),
-            'konten' => $request->input('konten'),
-            'contentName' => $request->input('contentName'),
-            'content' => $request->input('content'),
-            'urutan' => $request->input('urutan'),
-        ];
-        CompanyProfile::create($data);
-        return redirect()->route('company-profile.index')->with('success', 'Content Added Successfully');
+            $data = [
+                'coverImage' => $coverImagePath,
+                'namaKonten' => $request->input('namaKonten'),
+                'konten' => $request->input('konten'),
+                'contentName' => $request->input('contentName'),
+                'content' => $request->input('content'),
+                'urutan' => $request->input('urutan'),
+            ];
+            CompanyProfile::create($data);
+            return redirect()->route('company-profile.index')->with('success', 'Content Added Successfully');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     public function create()

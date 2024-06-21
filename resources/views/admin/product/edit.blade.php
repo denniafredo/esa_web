@@ -76,9 +76,8 @@
                                                 <label for="inputUsername" class="form-label">Deskripsi
                                                     <i class="align-middle" data-lucide="star" style="color: red"></i>
                                                 </label>
-                                                <textarea rows="10" class="form-control" id="deskripsi" name="deskripsi"
-                                                          placeholder="Ketik Disini..."
-                                                          required> {{$data->deskripsi}} </textarea>
+                                                <input type="hidden" name="deskripsi" id="hiddenDeskripsi">
+                                                <div class="q1" style="height: 250px;"></div>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -97,10 +96,8 @@
                                                 <label class="form-label">Descriptions
                                                     <i class="align-middle" data-lucide="star" style="color: red"></i>
                                                 </label>
-                                                <textarea rows="10" class="form-control" id="description"
-                                                          name="description"
-                                                          placeholder="Type Here..."
-                                                          required>{{$data->description}}</textarea>
+                                                <input type="hidden" name="description" id="hiddenDescription">
+                                                <div class="q2" style="height: 250px;"></div>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -116,6 +113,36 @@
     </main>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            var deskripsi = new Quill('.q1', {
+                theme: 'snow',
+                placeholder: 'Ketik Disini'
+            });
+            var description = new Quill('.q2', {
+                theme: 'snow',
+                placeholder: 'Type Here'
+            });
+
+            deskripsi.clipboard.dangerouslyPasteHTML('{!! addslashes($data->deskripsi) !!}');
+            description.clipboard.dangerouslyPasteHTML('{!! addslashes($data->description) !!}');
+
+            function updateHiddenInputs() {
+                document.getElementById('hiddenDeskripsi').value = deskripsi.root.innerHTML;
+                document.getElementById('hiddenDescription').value = description.root.innerHTML;
+            }
+
+            // Attach text-change event listeners to Quill editors
+            deskripsi.on('text-change', updateHiddenInputs);
+            description.on('text-change', updateHiddenInputs);
+
+            $(".select2").each(function () {
+                $(this)
+                    .wrap("<div class=\"position-relative\"></div>")
+                    .select2({
+                        placeholder: "Select value",
+                        dropdownParent: $(this).parent()
+                    });
+            })
+
             $(".select2").each(function () {
                 $(this)
                     .wrap("<div class=\"position-relative\"></div>")

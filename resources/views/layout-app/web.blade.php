@@ -74,6 +74,8 @@
 
 <!-- Customscript js -->
 <script src="{{asset('js/script.js')}}"></script>
+<script src="{{asset('js/quill.js')}}"></script>
+
 </body>
 
 </html>
