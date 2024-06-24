@@ -1,6 +1,15 @@
 @extends('layout-app.web') <!-- Extend the main template -->
 
 @section('content')
+    <style>
+        .blog__details--content ol li {
+            list-style: decimal !important;
+        }
+
+        .blog__details--content ul li {
+            list-style: disc !important;
+        }
+    </style>
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
@@ -30,7 +39,7 @@
                         <div class="blog__details--wrapper">
                             <div class="entry__blog">
                                 <div class="blog__post--header mb-30">
-                                    <h2 class="post__header--title mb-15">{{App::getLocale()=='en'?$data->contentName:$companyProfile->namaKonten}}</h2>
+                                    <h2 class="post__header--title mb-15">{{App::getLocale()=='en'?$data->contentName:$data->namaKonten}}</h2>
                                     <p class="blog__post--meta">Posted by : Admin / On
                                         : {{$data->created_at}} </p>
                                 </div>

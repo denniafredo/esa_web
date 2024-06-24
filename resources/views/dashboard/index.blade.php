@@ -1,6 +1,15 @@
 @extends('layout-app.web') <!-- Extend the main template -->
 
 @section('content')
+    <style>
+        .blog__details--content ol li {
+            list-style: decimal !important;
+        }
+
+        .blog__details--content ul li {
+            list-style: disc !important;
+        }
+    </style>
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
@@ -39,7 +48,9 @@
                                          src="{{$companyProfile->coverImage}}" alt="blog-img">
                                 </div>
                                 <div class="blog__details--content">
-                                    <p class="blog__details--content__desc mb-20">{!! App::getLocale()=='en'?$companyProfile->content:$companyProfile->konten!!}</p>
+                                    <p class="blog__details--content__desc mb-20">
+                                        {!! App::getLocale()=='en' ? $companyProfile->content:$companyProfile->konten!!}
+                                    </p>
                                 </div>
                             </div>
                         </div>

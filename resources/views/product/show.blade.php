@@ -1,6 +1,15 @@
 @extends('layout-app.web') <!-- Extend the main template -->
 
 @section('content')
+    <style>
+        .product__details--info__desc ol li {
+            list-style: decimal !important;
+        }
+
+        .product__details--info__desc ul li {
+            list-style: disc !important;
+        }
+    </style>
     <main class="main__content_wrapper">
 
         <!-- Start product details section -->
@@ -63,9 +72,9 @@
                                         </ul>
                                     </span>
                                 </div>
-                                <p class="product__details--info__desc mb-15">
+                                <div class="product__details--info__desc mb-15">
                                     {!! App::getLocale()=='en'? $product->description : $product->deskripsi !!}
-                                </p>
+                                </div>
                             </form>
                         </div>
                     </div>
