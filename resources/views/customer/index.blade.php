@@ -46,8 +46,13 @@
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">
-                                                <a href="https://wa.me/{{ $headOffice->phone }}"
-                                                   target='_blank'>{{ $headOffice->phone }}</a></span>
+                                                 <a href="https://wa.me/{{ $headOffice->phone }}"
+                                                    style="display: flex; align-items: center; text-decoration: none; color: inherit;"
+                                                    target='_blank'>
+                                                    <img width="15px"
+                                                         src="{{asset('img/icon/wa-ico.png')}}" alt=""> &nbsp;
+                                                    <p class="mt-1">{{ $headOffice->phone }}</p>
+                                                </a></span>
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">{{ $headOffice->city }}</span>
@@ -90,7 +95,12 @@
                                                 {{ $salesExecutive->email }}</a>
                                                 <br>
                                                 <a href="https://wa.me/{{ $salesExecutive->phone }}"
-                                                   target='_blank'>{{ $salesExecutive->phone }}</a>
+                                                   style="display: flex; align-items: center; text-decoration: none; color: inherit;"
+                                                   target='_blank'>
+                                                    <img width="15px"
+                                                         src="{{asset('img/icon/wa-ico.png')}}" alt=""> &nbsp;
+                                                    <p class="mt-1">{{ $salesExecutive->phone }}</p>
+                                                </a>
                                             </span>
                                         </td>
                                         <td class="cart__table--body__list">
