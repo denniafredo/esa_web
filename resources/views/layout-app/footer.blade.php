@@ -24,7 +24,7 @@
                             <p class="footer__widget--desc">
                                 {{$about->nama}} </p>
                             <p class="footer__widget--desc">
-                                <a href="{{$about->website}}">{{$about->website}}</a>
+                                <a href="mailto:{{$about->website}}">{{$about->website}}</a>
                             </p>
                             <ul class="footer__widget--info">
                                 <li class="footer__widget--info_list">
