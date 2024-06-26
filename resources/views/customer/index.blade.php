@@ -84,7 +84,8 @@
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">{{ $salesExecutive->email }}<br><a
-                                                        href="https://wa.me/{{ $salesExecutive->phone }}">{{ $salesExecutive->phone }}</a></span>
+                                                        href="https://wa.me/{{ $salesExecutive->phone }}"
+                                                        target='_blank'>{{ $salesExecutive->phone }}</a></span>
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">{{ $salesExecutive->city }}</span>
