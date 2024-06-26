@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li class="sidebar-item {{ request()->is('admin/sosmed*') ? ' active' : '' }}">
-                <a class='sidebar-link' href='{{route('sosmed.edit',1)}}'>
+                <a class='sidebar-link' href='{{route('sosmed.index')}}'>
                     <i class="align-middle" data-lucide="list"></i>
                     <span class="align-middle">Social Media</span>
                 </a>

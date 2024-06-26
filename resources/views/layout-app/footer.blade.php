@@ -2,7 +2,7 @@
     <div class="container">
         <div class="main__footer section--padding">
             <div class="row ">
-                <div class="col-lg-4 col-md-8">
+                <div class="col-lg-6 col-md-8">
                     <div class="footer__widget">
                         <h2 class="footer__widget--title d-none d-sm-u-block">HEAD OFFICE
                             <button class="footer__widget--button" aria-label="footer widget button"></button>
@@ -46,6 +46,24 @@
                                     <a class="footer__widget--info__text"
                                        href="tel:+{{$about->phone}}">: {{$about->phone}}</a>
                                 </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-8">
+                    <div class="footer__widget">
+                        <h2 class="footer__widget--title d-none d-sm-u-block">Our Social Media
+                        </h2>
+                        <div class="footer__widget--inner">
+                            <p class="footer__widget--desc"><b>
+                                    Our Social Media </b></p><br>
+                            <ul class="footer__widget--info">
+                                @foreach($sosmed as $sm)
+                                    <li class="footer__widget--info_list">
+                                        <img src="{{$sm->image}}" alt="" width="50px">
+                                        <a class="footer__widget--info__text" href="{{$sm->link}}">{{$sm->username}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
