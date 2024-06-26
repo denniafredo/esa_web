@@ -45,7 +45,9 @@
                                             </h3>
                                         </td>
                                         <td class="cart__table--body__list">
-                                            <span class="cart__price">{{ $headOffice->phone }}</span>
+                                            <span class="cart__price">
+                                                <a href="https://wa.me/{{ $headOffice->phone }}"
+                                                   target='_blank'>{{ $headOffice->phone }}</a></span>
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">{{ $headOffice->city }}</span>
@@ -83,9 +85,13 @@
                                             </h3>
                                         </td>
                                         <td class="cart__table--body__list">
-                                            <span class="cart__price">{{ $salesExecutive->email }}<br><a
-                                                        href="https://wa.me/{{ $salesExecutive->phone }}"
-                                                        target='_blank'>{{ $salesExecutive->phone }}</a></span>
+                                            <span class="cart__price">
+                                                <a href="mailto:{{ $salesExecutive->email }}" target='_blank'>
+                                                {{ $salesExecutive->email }}</a>
+                                                <br>
+                                                <a href="https://wa.me/{{ $salesExecutive->phone }}"
+                                                   target='_blank'>{{ $salesExecutive->phone }}</a>
+                                            </span>
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">{{ $salesExecutive->city }}</span>
