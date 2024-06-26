@@ -50,12 +50,10 @@
                                                placeholder="Phone" value="{{$data->phone}}" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="inputUsername" class="form-label">Website Kantor
-                                            <i class="align-middle" data-lucide="star" style="color: red"></i>
-                                        </label>
+                                        <label for="inputUsername" class="form-label">Website Kantor</label>
                                         <input type="text" class="form-control" id="website"
                                                name="website"
-                                               placeholder="Website" value="{{$data->website}}" required>
+                                               placeholder="Website" value="{{$data->website}}">
                                     </div>
                                 </div>
                                 <br>

@@ -53,6 +53,12 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="footer__widget">
                         <h2 class="footer__widget--title d-none d-sm-u-block">Our Social Media
+                            <button class="footer__widget--button" aria-label="footer widget button"></button>
+                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
+                                 width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                                <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z"
+                                      transform="translate(-6 -8.59)" fill="currentColor"></path>
+                            </svg>
                         </h2>
                         <div class="footer__widget--inner">
                             <p class="footer__widget--desc"><b>

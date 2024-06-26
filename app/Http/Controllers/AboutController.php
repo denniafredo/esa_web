@@ -43,7 +43,6 @@ class AboutController extends Controller
                 'nama' => 'required',
                 'address' => 'required',
                 'phone' => 'required',
-                'website' => 'required',
             ]);
             $about = About::where('kantor', 'Pusat')->first();
 
