@@ -66,28 +66,25 @@
                             <table class="cart__table--inner">
                                 <thead class="cart__table--header">
                                 <tr class="cart__table--header__items">
-                                    <th class="cart__table--header__list">No</th>
+                                    {{--                                    <th class="cart__table--header__list">No</th>--}}
                                     <th class="cart__table--header__list">{{__('Name')}}</th>
-                                    <th class="cart__table--header__list">Email</th>
-                                    <th class="cart__table--header__list">Phone</th>
+                                    <th class="cart__table--header__list">Email/Phone (WA)</th>
                                     <th class="cart__table--header__list">{{__('City')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody class="cart__table--body">
                                 @foreach($salesExecutives as $key => $salesExecutive)
                                     <tr class="cart__table--body__items">
-                                        <td class="cart__table--body__list">
-                                            <span class="cart__price">{{ $key + 1 }}</span>
-                                        </td>
+                                        {{--                                        <td class="cart__table--body__list">--}}
+                                        {{--                                            <span class="cart__price">{{ $key + 1 }}</span>--}}
+                                        {{--                                        </td>--}}
                                         <td class="cart__table--body__list">
                                             <h3 class="cart__content--title h4">{{ $salesExecutive->name }}
                                             </h3>
                                         </td>
                                         <td class="cart__table--body__list">
-                                            <span class="cart__price">{{ $salesExecutive->email }}</span>
-                                        </td>
-                                        <td class="cart__table--body__list">
-                                            <span class="cart__price">{{ $salesExecutive->phone }}</span>
+                                            <span class="cart__price">{{ $salesExecutive->email }}<br><a
+                                                        href="https://wa.me/{{ $salesExecutive->phone }}">{{ $salesExecutive->phone }}</a></span>
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">{{ $salesExecutive->city }}</span>
