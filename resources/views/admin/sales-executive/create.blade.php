@@ -38,6 +38,14 @@
                                                    name="phone"
                                                    placeholder="No. Telp" required>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="inputUsername" class="form-label">City
+                                                <i class="align-middle" data-lucide="star" style="color: red"></i>
+                                            </label>
+                                            <input type="text" class="form-control" id="city"
+                                                   name="city"
+                                                   placeholder="City" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
@@ -53,6 +61,6 @@
         </div>
     </main>
     <script>
-       
+
     </script>
 @endsection

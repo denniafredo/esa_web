@@ -28,6 +28,7 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>No. Hp</th>
+                                    <th>Kota</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
@@ -37,6 +38,7 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->email}}</td>
                                         <td>{{$item->phone}}</td>
+                                        <td>{{$item->city}}</td>
                                         <td>
                                             <div class="d-flex justify-content-end align-items-center">
                                                 <a href="{{route('sales-executive.edit', $item->id)}}"

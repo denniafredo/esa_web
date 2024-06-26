@@ -26,12 +26,14 @@ class SalesExecutiveController extends Controller
                 'name' => 'required',
                 'email' => 'required',
                 'phone' => 'required',
+                'city' => 'required',
             ]);
 
             $data = [
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
+                'city' => $request->input('city'),
             ];
 
             SalesExecutive::create($data);
@@ -61,12 +63,13 @@ class SalesExecutiveController extends Controller
                 'name' => 'required',
                 'email' => 'required',
                 'phone' => 'required',
+                'city' => 'required',
             ]);
 
             $salesExecutive = SalesExecutive::findOrFail($id);
 
             // Prepare data for updating
-            $data = $request->only(['name', 'email', 'phone']);
+            $data = $request->only(['name', 'email', 'phone', 'city']);
 
             // Handle file upload if a new cover image is provided
 

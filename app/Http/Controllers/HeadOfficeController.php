@@ -24,21 +24,21 @@ class HeadOfficeController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required',
+                'city' => 'required',
                 'phone' => 'required',
             ]);
 
             $data = [
                 'name' => $request->input('name'),
-                'email' => $request->input('email'),
+                'city' => $request->input('city'),
                 'phone' => $request->input('phone'),
             ];
 
             HeadOffice::create($data);
-            return redirect()->route('head-office.index')->with('success', 'Head Office Added Successfully');
+            return redirect()->route('head-office.index')->with('success', 'Branch Added Successfully');
         } catch (Exception $e) {
             dd($e->getMessage());
-            return redirect()->route('head-office.index')->with('error', 'An error occurred while adding Head Office data. Please try again.');
+            return redirect()->route('head-office.index')->with('error', 'An error occurred while adding Branch data. Please try again.');
         }
     }
 
@@ -59,23 +59,23 @@ class HeadOfficeController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required',
+                'city' => 'required',
                 'phone' => 'required',
             ]);
 
             $headOffice = HeadOffice::findOrFail($id);
 
             // Prepare data for updating
-            $data = $request->only(['name', 'email', 'phone']);
+            $data = $request->only(['name', 'city', 'phone']);
 
             // Handle file upload if a new cover image is provided
 
             $headOffice->update($data);
 
-            return redirect()->route('head-office.index')->with('success', 'Head Office Updated Successfully');
+            return redirect()->route('head-office.index')->with('success', 'Branch Updated Successfully');
         } catch (Exception $e) {
             // Log the exception and return an error message
-            return redirect()->route('head-office.index')->with('error', 'An error occurred while updating the Head Office Data. Please try again.');
+            return redirect()->route('head-office.index')->with('error', 'An error occurred while updating the Branch Data. Please try again.');
         }
     }
 
@@ -87,10 +87,10 @@ class HeadOfficeController extends Controller
 
             $data->delete();
 
-            return redirect()->route('head-office.index')->with('success', 'Head Office Deleted Successfully');
+            return redirect()->route('head-office.index')->with('success', 'Branch Deleted Successfully');
         } catch (Exception $e) {
             // Log the exception and return an error message
-            return redirect()->route('head-office.index')->with('error', 'An error occurred while deleting the Head Office Data. Please try again.');
+            return redirect()->route('head-office.index')->with('error', 'An error occurred while deleting the Branch Data. Please try again.');
         }
     }
 

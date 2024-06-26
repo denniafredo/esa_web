@@ -4,7 +4,7 @@
     <main class="content">
         <div class="container-fluid p-0">
 
-            <h1 class="h3 mb-3">New Head Office</h1>
+            <h1 class="h3 mb-3">New Branches</h1>
 
             <div class="row">
                 <div class="col-md-12 col-xl-12">
@@ -23,12 +23,12 @@
                                                    placeholder="Nama Kantor" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="inputUsername" class="form-label">Email
+                                            <label for="inputUsername" class="form-label">Kota
                                                 <i class="align-middle" data-lucide="star" style="color: red"></i>
                                             </label>
-                                            <input type="email" class="form-control" id="email"
-                                                   name="email"
-                                                   placeholder="Email" required>
+                                            <input type="text" class="form-control" id="city"
+                                                   name="city"
+                                                   placeholder="city" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputUsername" class="form-label">No. Telp
@@ -53,6 +53,6 @@
         </div>
     </main>
     <script>
-        
+
     </script>
 @endsection

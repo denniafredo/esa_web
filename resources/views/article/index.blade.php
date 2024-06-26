@@ -6,7 +6,7 @@
         <section class="blog__section section--padding">
             <div class="container">
                 <div class="section__heading text-center  mb-40">
-                    <h2 class="section__heading--maintitle">Articles</h2>
+                    <h2 class="section__heading--maintitle">{{__('PRIVATE LABEL')}}</h2>
                 </div>
                 <div class="blog__section--inner">
                     <div class="row mb--n30">

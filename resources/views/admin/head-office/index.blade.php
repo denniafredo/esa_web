@@ -16,8 +16,8 @@
             @endif
             <a href="{{ route('head-office.create') }}" class="btn btn-primary float-end mt-n1"><i
                         class="fas fa-plus"></i>
-                New Head Office</a>
-            <h1 class="h3 mb-3">Head Office</h1>
+                New Branch</a>
+            <h1 class="h3 mb-3">{{__('BRANCHES')}}</h1>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -25,8 +25,8 @@
                             <table id="datatables-reponsive" class="table table-striped w-100">
                                 <thead>
                                 <tr>
-                                    <th>Nama Kantor</th>
-                                    <th>Email</th>
+                                    <th>Nama Cabang</th>
+                                    <th>Kota</th>
                                     <th>No. Hp</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -35,7 +35,7 @@
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{$item->name}}</td>
-                                        <td>{{$item->email}}</td>
+                                        <td>{{$item->city}}</td>
                                         <td>{{$item->phone}}</td>
                                         <td>
                                             <div class="d-flex justify-content-end align-items-center">

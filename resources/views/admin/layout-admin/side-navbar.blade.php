@@ -52,13 +52,28 @@
             <li class="sidebar-item {{ request()->is('admin/head-office*') ? ' active' : '' }}">
                 <a class='sidebar-link' href='{{route('head-office.index')}}'>
                     <i class="align-middle" data-lucide="home"></i> <span
-                            class="align-middle">Head Office</span>
+                            class="align-middle">Branches</span>
                 </a>
             </li>
             <li class="sidebar-item {{ request()->is('admin/sales-executive*') ? ' active' : '' }}">
                 <a class='sidebar-link' href='{{route('sales-executive.index')}}'>
                     <i class="align-middle" data-lucide="star"></i> <span
                             class="align-middle">Sales Executive</span>
+                </a>
+            </li>
+            <li class="sidebar-header">
+                Footer
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/about*') ? ' active' : '' }}">
+                <a class='sidebar-link' href='{{route('about.edit',1)}}'>
+                    <i class="align-middle" data-lucide="sticky-note"></i> <span
+                            class="align-middle">About</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/sosmed*') ? ' active' : '' }}">
+                <a class='sidebar-link' href='{{route('sosmed.edit',1)}}'>
+                    <i class="align-middle" data-lucide="list"></i>
+                    <span class="align-middle">Social Media</span>
                 </a>
             </li>
         </ul>

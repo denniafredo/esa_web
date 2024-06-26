@@ -97,7 +97,7 @@
                             </li>
                             <li class="header__menu--items">
                                 <a class="header__menu--link {{ Request::is('articleweb*') ? 'active' : '' }}"
-                                   href="{{ url('articleweb') }}">{{ __('PRODUCT LABELING') }}</a>
+                                   href="{{ url('articleweb') }}">{{ __('PRIVATE LABEL') }}</a>
                             </li>
                             <li class="header__menu--items">
                                 <a class="header__menu--link {{ Request::is('customer*') ? 'active' : '' }}"
@@ -110,8 +110,8 @@
                                 </a>
                                 <ul class="header__sub--menu">
                                     <li class="header__sub--menu__items">
-                                        <a href="{{ url('customer#head-office') }}" class="header__sub--menu__link">Head
-                                            Office</a>
+                                        <a href="{{ url('customer#head-office') }}"
+                                           class="header__sub--menu__link">{{__('BRANCHES')}}</a>
                                     </li>
                                     <li class="header__sub--menu__items">
                                         <a href="https://forms.gle/4KAZzDsZb3vWxEyLA" class="header__sub--menu__link"
@@ -157,14 +157,14 @@
                         <a class="offcanvas__menu_item" href="{{url('productweb')}}">{{ __('PRODUCT INFO') }}</a>
                     </li>
                     <li class="offcanvas__menu_li">
-                        <a class="offcanvas__menu_item" href="{{url('articleweb')}}">{{ __('PRODUCT LABELING') }}</a>
+                        <a class="offcanvas__menu_item" href="{{url('articleweb')}}">{{ __('PRIVATE LABEL') }}</a>
                     </li>
                     <li class="offcanvas__menu_li">
                         <a class="offcanvas__menu_item">{{ __('CUSTOMER CENTER') }}</a>
                         <ul class="offcanvas__sub_menu">
                             <li class="offcanvas__sub_menu_li">
                                 <a href="{{ url('customer#head-office') }}" class="offcanvas__sub_menu_item">
-                                    Head Office
+                                    {{__('BRANCHES')}}
                                 </a>
                             </li>
                             <li class="offcanvas__sub_menu_li">

@@ -4,7 +4,7 @@
     <main class="content">
         <div class="container-fluid p-0">
 
-            <h1 class="h3 mb-3">New Head Office</h1>
+            <h1 class="h3 mb-3">Edit Branch</h1>
 
             <div class="row">
                 <div class="col-md-12 col-xl-12">
@@ -38,6 +38,14 @@
                                             <input type="text" class="form-control" id="phone"
                                                    name="phone" value="{{$data->phone}}"
                                                    placeholder="No. Telp" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="inputUsername" class="form-label">City
+                                                <i class="align-middle" data-lucide="star" style="color: red"></i>
+                                            </label>
+                                            <input type="text" class="form-control" id="city"
+                                                   name="city" value="{{$data->city}}"
+                                                   placeholder="City" required>
                                         </div>
                                     </div>
                                 </div>

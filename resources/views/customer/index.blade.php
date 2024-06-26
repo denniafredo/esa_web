@@ -23,15 +23,15 @@
             <div class="container content_desc head-office active">
                 <div class="cart__section--inner">
                     <form action="#">
-                        <h2 class="cart__title mb-30">{{__('HEAD OFFICE')}}</h2>
+                        <h2 class="cart__title mb-30">{{__('BRANCHES')}}</h2>
                         <div class="cart__table">
                             <table class="cart__table--inner">
                                 <thead class="cart__table--header">
                                 <tr class="cart__table--header__items">
                                     <th class="cart__table--header__list">No</th>
                                     <th class="cart__table--header__list">{{__('Name')}}</th>
-                                    <th class="cart__table--header__list">Email</th>
                                     <th class="cart__table--header__list">Phone</th>
+                                    <th class="cart__table--header__list">{{__('City')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody class="cart__table--body">
@@ -45,10 +45,10 @@
                                             </h3>
                                         </td>
                                         <td class="cart__table--body__list">
-                                            <span class="cart__price">{{ $headOffice->email }}</span>
+                                            <span class="cart__price">{{ $headOffice->phone }}</span>
                                         </td>
                                         <td class="cart__table--body__list">
-                                            <span class="cart__price">{{ $headOffice->phone }}</span>
+                                            <span class="cart__price">{{ $headOffice->city }}</span>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -70,6 +70,7 @@
                                     <th class="cart__table--header__list">{{__('Name')}}</th>
                                     <th class="cart__table--header__list">Email</th>
                                     <th class="cart__table--header__list">Phone</th>
+                                    <th class="cart__table--header__list">{{__('City')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody class="cart__table--body">
@@ -87,6 +88,9 @@
                                         </td>
                                         <td class="cart__table--body__list">
                                             <span class="cart__price">{{ $salesExecutive->phone }}</span>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">{{ $salesExecutive->city }}</span>
                                         </td>
                                     </tr>
                                 @endforeach

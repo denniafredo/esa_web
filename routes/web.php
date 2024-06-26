@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleWebController;
 use App\Http\Controllers\AuthController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\HeadOfficeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductWebController;
 use App\Http\Controllers\SalesExecutiveController;
+use App\Http\Controllers\SocialMediaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -52,6 +54,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('/product', ProductController::class);
     Route::resource('/head-office', HeadOfficeController::class);
     Route::resource('/sales-executive', SalesExecutiveController::class);
+    Route::resource('/about', AboutController::class);
+    Route::resource('/sosmed', SocialMediaController::class);
     Route::get('/categories/{brandId}', [ProductController::class, 'getCategoriesByBrand'])->name('categories.byBrand');
 });
 
