@@ -168,7 +168,7 @@
                                 </a>
                             </li>
                             <li class="offcanvas__sub_menu_li">
-                                <a href="https://forms.gle/4KAZzDsZb3vWxEyLA" class="offcanvas__sub_menu_item">
+                                <a href="https://forms.gle/kZ7Hxkhma41dJqPR6" class="offcanvas__sub_menu_item">
                                     BIZPART
                                 </a>
                             </li>

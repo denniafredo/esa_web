@@ -133,6 +133,7 @@
             // Attach text-change event listeners to Quill editors
             deskripsi.on('text-change', updateHiddenInputs);
             description.on('text-change', updateHiddenInputs);
+            updateHiddenInputs();
 
             $(".select2").each(function () {
                 $(this)

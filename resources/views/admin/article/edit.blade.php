@@ -112,6 +112,7 @@
             // Attach text-change event listeners to Quill editors
             konten.on('text-change', updateHiddenInputs);
             content.on('text-change', updateHiddenInputs);
+            updateHiddenInputs();
         })
 
         function previewImage(event) {

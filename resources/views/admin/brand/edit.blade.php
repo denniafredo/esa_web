@@ -63,6 +63,10 @@
                                                 <tbody>
                                                 @foreach($data->categories as $category)
                                                     <tr>
+                                                        <input type="hidden" class="form-control"
+                                                               name="id[]"
+                                                               placeholder="id" required
+                                                               value="{{$category->id}}">
                                                         <td><input type="text" class="form-control kategori"
                                                                    name="kategori[]"
                                                                    placeholder="Kategori" required

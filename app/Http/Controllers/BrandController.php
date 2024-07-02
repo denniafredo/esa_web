@@ -125,27 +125,64 @@ class BrandController extends Controller
             }
             $brand->update($data);
 
-            Category::where('brand_id', $brand->id)->delete();
             $kategories = $request->input('kategori');
             $categories = $request->input('category');
+            $ids = $request->input('id');
 
-            $categoryData = [];
-            for ($i = 0; $i < count($kategories); $i++) {
-                $kategori = $kategories[$i];
-                $category = $categories[$i];
-                if ($kategori && $category) {
-                    $categoryData[] = [
-                        'brand_id' => $brand->id,
-                        'nama' => $kategori,
-                        'name' => $category,
-                    ];
+            // Prepare data for batch insert and update
+            $categoryDataToInsert = [];
+            $categoryDataToUpdate = [];
+            $existingIds = [];
+
+            if ($kategories) {
+                for ($i = 0; $i < count($kategories); $i++) {
+                    $kategori = $kategories[$i];
+                    $category = $categories[$i];
+                    $idCat = $ids[$i] ?? null; // Use null if $ids[$i] is undefined
+
+                    if ($kategori && $category) {
+                        if ($idCat) {
+                            // Collect data for updating existing records
+                            $categoryDataToUpdate[] = [
+                                'id' => $idCat,
+                                'brand_id' => $id,
+                                'nama' => $kategori,
+                                'name' => $category,
+                            ];
+                            $existingIds[] = $idCat;
+                        } else {
+                            // Collect data for inserting new records
+                            $categoryDataToInsert[] = [
+                                'brand_id' => $id,
+                                'nama' => $kategori,
+                                'name' => $category,
+                            ];
+                        }
+                    }
                 }
             }
-            if (!empty($categoryData)) {
-                Category::insert($categoryData);
+
+            Category::where('brand_id', $brand->id)
+                ->whereNotIn('id', $existingIds)
+                ->delete();
+
+            if (!empty($categoryDataToInsert)) {
+                Category::insert($categoryDataToInsert);
             }
-            return redirect()->route('brand.index')->with('success', 'Brand Updated Successfully with ' . count($categoryData) . ' categories.');
+
+            foreach ($categoryDataToUpdate as $data) {
+                Category::where('id', $data['id'])->update($data);
+            }
+
+// Delete categories not present in the input IDs
+
+
+            return redirect()->route('brand.index')->with('success', 'Brand Updated Successfully.');
         } catch (Exception $e) {
+            if ($e->getCode() == 23503) {
+                return redirect()->route('brand.index')->with('error', 'Kategori tidak dapat di hapus, karena masih digunakan di produk lain!');
+            }
+            dd($e->getMessage());
             return redirect()->route('brand.index')->with('error', 'An error while saving new Brand');
         }
     }

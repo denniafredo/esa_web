@@ -103,6 +103,8 @@ class ArticleController extends Controller
 
             return redirect()->route('article.index')->with('success', 'Article Updated Successfully');
         } catch (Exception $e) {
+            dd($e->getMessage());
+            
             // Log the exception and return an error message
             return redirect()->route('article.index')->with('error', 'An error occurred while updating the article. Please try again.');
         }
