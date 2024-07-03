@@ -32,6 +32,7 @@ class AboutController extends Controller
             $data->address = '';
             $data->phone = '';
             $data->website = '';
+            $data->bizpartLink = '';
         }
         return view('admin.about.edit', compact(['data']));
     }
@@ -46,7 +47,7 @@ class AboutController extends Controller
             ]);
             $about = About::where('kantor', 'Pusat')->first();
 
-            $data = $request->only(['nama', 'address', 'phone', 'website']);
+            $data = $request->only(['nama', 'address', 'phone', 'website', 'bizpartLink']);
             if (is_null($about)) {
                 About::create($data);
             } else {

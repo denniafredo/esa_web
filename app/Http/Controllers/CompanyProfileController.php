@@ -100,7 +100,6 @@ class CompanyProfileController extends Controller
             return redirect()->route('company-profile.index')->with('success', 'Content Updated Successfully');
         } catch (Exception $e) {
             return redirect()->route('company-profile.index')->with('error', 'Content Failed to Update');
-
         }
     }
 

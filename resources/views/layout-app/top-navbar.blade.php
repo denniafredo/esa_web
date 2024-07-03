@@ -1,6 +1,3 @@
-@php
-    $linkBizpart = 'https://forms.gle/kZ7Hxkhma41dJqPR6';
-@endphp
 <header class="header__section">
     <div class="header__topbar bg__primary">
         <div class="container">
@@ -117,7 +114,7 @@
                                            class="header__sub--menu__link">{{__('BRANCHES')}}</a>
                                     </li>
                                     <li class="header__sub--menu__items">
-                                        <a href="{{$linkBizpart}}" class="header__sub--menu__link"
+                                        <a href="{{$about->bizpartLink}}" class="header__sub--menu__link"
                                            target="_blank">BIZPART</a>
                                     </li>
                                     <li class="header__sub--menu__items">
@@ -171,7 +168,7 @@
                                 </a>
                             </li>
                             <li class="offcanvas__sub_menu_li">
-                                <a href="{{$linkBizpart}}" class="offcanvas__sub_menu_item">
+                                <a href="{{$about->bizpartLink}}" class="offcanvas__sub_menu_item">
                                     BIZPART
                                 </a>
                             </li>

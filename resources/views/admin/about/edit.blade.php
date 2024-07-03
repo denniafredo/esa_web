@@ -55,6 +55,12 @@
                                                name="website"
                                                placeholder="Email" value="{{$data->website}}">
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="inputUsername" class="form-label">Link Bizpart</label>
+                                        <input type="text" class="form-control" id="bizpartLink"
+                                               name="bizpartLink"
+                                               placeholder="bizpartLink" value="{{$data->bizpartLink}}">
+                                    </div>
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Update</button>

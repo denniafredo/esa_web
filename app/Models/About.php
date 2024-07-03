@@ -15,6 +15,7 @@ class About extends Model
         'address',
         'phone',
         'website',
+        'bizpartLink'
     ];
 
 }
