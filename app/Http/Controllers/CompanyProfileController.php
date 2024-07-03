@@ -63,40 +63,45 @@ class CompanyProfileController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'namaKonten' => 'required',
-            'konten' => 'required',
-            'contentName' => 'required',
-            'content' => 'required',
-        ]);
-        $companyProfile = CompanyProfile::findOrFail($id);
+        try {
+            $request->validate([
+                'namaKonten' => 'required',
+                'konten' => 'required',
+                'contentName' => 'required',
+                'content' => 'required',
+            ]);
+            $companyProfile = CompanyProfile::findOrFail($id);
 
-        // Prepare data for updating
-        $data = $request->only(['namaKonten', 'konten', 'contentName', 'content', 'urutan']);
+            // Prepare data for updating
+            $data = $request->only(['namaKonten', 'konten', 'contentName', 'content', 'urutan']);
 
-        // Handle file upload if a new cover image is provided
-        if ($request->file('coverImage')) {
-            $coverImage = $request->file('coverImage');
-            $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
-            $coverImagePath = '/storage/cover_images/' . $coverImageName; // Assuming you want to article images in /storage/cover_images folder
+            // Handle file upload if a new cover image is provided
+            if ($request->file('coverImage')) {
+                $coverImage = $request->file('coverImage');
+                $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
+                $coverImagePath = '/storage/cover_images/' . $coverImageName; // Assuming you want to article images in /storage/cover_images folder
 
-            // Move the new file to the desired location
-            $coverImage->move(public_path('storage/cover_images'), $coverImageName);
+                // Move the new file to the desired location
+                $coverImage->move(public_path('storage/cover_images'), $coverImageName);
 
-            // Add the new cover image path to the data array
-            $data['coverImage'] = $coverImagePath;
+                // Add the new cover image path to the data array
+                $data['coverImage'] = $coverImagePath;
 
-            // Optionally, delete the old cover image file if it exists
-            if ($companyProfile->coverImage) {
-                $oldImagePath = public_path($companyProfile->coverImage);
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
+                // Optionally, delete the old cover image file if it exists
+                if ($companyProfile->coverImage) {
+                    $oldImagePath = public_path($companyProfile->coverImage);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
                 }
             }
-        }
-        $companyProfile->update($data);
+            $companyProfile->update($data);
 
-        return redirect()->route('company-profile.index')->with('success', 'Content Added Successfully');
+            return redirect()->route('company-profile.index')->with('success', 'Content Updated Successfully');
+        } catch (Exception $e) {
+            return redirect()->route('company-profile.index')->with('error', 'Content Failed to Update');
+
+        }
     }
 
     public function destroy($id)
