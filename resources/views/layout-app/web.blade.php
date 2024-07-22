@@ -6,9 +6,10 @@
 <head>
     <meta charset="utf-8">
     <title>PT ESA SEMARAK ABADI</title>
-    <meta name="description" content="Morden Bootstrap HTML5 Template">
+    <meta property="og:image" content="{{asset('images/top_logo.png')}}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/top_logo.png')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/top_logo.png')}}">
 
     <!-- ======= All CSS Plugins here ======== -->
     <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
