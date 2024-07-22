@@ -7,6 +7,8 @@
     <meta charset="utf-8">
     <title>PT ESA SEMARAK ABADI</title>
     <meta property="og:image" content="{{asset('images/top_logo.png')}}"/>
+    <meta name="description"
+          content="PT ESA SEMARAK ABADI is a company that produces Skin Care products founded with the passion and dedication of talented young people and managed with Professionals. In the midst of ongoing developments and changes, we are here to innovate to bring fresh air to the beauty industry with innovative and quality products. Supported by experienced management, we are determined to present products that are in accordance with trends, new developments and according to the needs of the community.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/top_logo.png')}}">
     <link rel="icon" type="image/x-icon" href="{{asset('images/top_logo.png')}}">
