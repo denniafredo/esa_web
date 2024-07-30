@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-lg-6 col-md-8">
                     <div class="footer__widget">
-                        <h2 class="footer__widget--title d-none d-sm-u-block">Our Social Media
+                        <h2 class="footer__widget--title d-none d-sm-u-block">Our Social Media and Online Store
                             <button class="footer__widget--button" aria-label="footer widget button"></button>
                             <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                  width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
@@ -62,7 +62,7 @@
                         </h2>
                         <div class="footer__widget--inner">
                             <p class="footer__widget--desc"><b>
-                                    Our Social Media </b></p><br>
+                                    Our Social Media and Online Store </b></p><br>
                             <ul class="footer__widget--info">
                                 @foreach($sosmed as $sm)
                                     <li class="footer__widget--info_list">
