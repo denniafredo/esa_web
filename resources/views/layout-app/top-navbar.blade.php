@@ -118,8 +118,8 @@
                                            target="_blank">BIZPART</a>
                                     </li>
                                     <li class="header__sub--menu__items">
-                                        <a href="{{ url('customer#sales-executive') }}" class="header__sub--menu__link">Sales
-                                            Executive</a>
+                                        <a href="{{ url('customer#sales-executive') }}" class="header__sub--menu__link">SALES
+                                            EXECUTIVE</a>
                                     </li>
                                 </ul>
                             </li>
@@ -174,7 +174,7 @@
                             </li>
                             <li class="offcanvas__sub_menu_li">
                                 <a href="{{ url('customer#sales-executive') }}" class="offcanvas__sub_menu_item">
-                                    Sales Executive
+                                    SALES EXECUTIVE
                                 </a>
                             </li>
                         </ul>
